@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\GUIControl.cs" />
+     <Compile Include="Assets\Scripts\GUI\PlayerHealth.cs" />
      <Compile Include="Assets\Scripts\GameControl.cs" />
      <Compile Include="Assets\Scripts\Playermovement.cs" />
      <Compile Include="Assets\Scripts\background\RendererExtensions.cs" />

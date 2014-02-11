@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Playermovement : MonoBehaviour {
+
+	public delegate void player(int sp);
+	public event player healthChanged;
 	
 	static int UP_ONE_LANE = 1;
 	static int DOWN_ONE_LANE = -1;
@@ -35,7 +38,7 @@ public class Playermovement : MonoBehaviour {
 		currentLane = firstLane;
 		isMoving = false;
 		isBeingHit = false;
-		health = 4;
+		
 	}
 	
 	// Update is called once per frame
@@ -116,19 +119,27 @@ public class Playermovement : MonoBehaviour {
 	}
 	
 	IEnumerator hitByObstacle() {
-		Debug.Log("hit by obstacle");
 		if(!isBeingHit)
 		{	
-			Debug.Log("is being hit");
 			isBeingHit = true;
 			health --;
+			healthChanged (health);
 			//play damage animation here
 			yield return new WaitForSeconds(invulTime);
 			StartCoroutine(hitByObstacle());
 		} else
 		{
-			Debug.Log("not being hit");
 			isBeingHit = false;
+		}
+	}
+
+	public int Health {
+		get {
+			return health;
+		}
+		set {
+			healthChanged (value);
+			health = value;
 		}
 	}
 	

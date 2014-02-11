@@ -8,10 +8,15 @@ public class GameControl : MonoBehaviour {
 	
 	public int gameSpeed;
 	private GameState gameState;
+	private Playermovement player;
+	
 	// Use this for initialization
 	void Start () {
-		gameState = GameState.MainMenu;
+		//Subscribing to receive event healthchanged from PlayerMovement, if so, calls healthChanged	
+		player = GameObject.Find("Player").GetComponent<Playermovement>();
+		player.healthChanged += healthChanged;
 	
+		gameState = GameState.MainMenu;
 	}
 	
 	// Update is called once per frame
@@ -69,8 +74,14 @@ public class GameControl : MonoBehaviour {
 		}
 	}	
 	
-	
-	
+	void healthChanged (int sp)
+	{
+		if(sp == 0)
+		{
+			gameState = GameState.Defeat;
+			Debug.Log("defeat");
+		}
+	}
 	
 	public enum GameState{
 		MainMenu,
