@@ -16,11 +16,11 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: .25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: 5
   maxTextureSize: 1024
   textureSettings:
     filterMode: 0
@@ -52,6 +52,24 @@ TextureImporter:
         y: 245
         width: 11
         height: 11
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: GUI_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 226
+        width: 77
+        height: 14
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: GUI_2
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 139
+        width: 69
+        height: 83
       alignment: 0
       pivot: {x: .5, y: .5}
   spritePackingTag: 

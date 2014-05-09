@@ -53,12 +53,12 @@ public class GameControl : MonoBehaviour {
 		
 		if(gameState == GameState.Defeat)
 		{
-			
+			//show defeat panel, with total points and info about how to restart the level or exit
 		}
 		
 		if(gameState == GameState.Victory)
 		{
-			
+			//show victory panel, with total points and other related infos
 		}
 				
 	
@@ -79,7 +79,12 @@ public class GameControl : MonoBehaviour {
 		if(sp == 0)
 		{
 			gameState = GameState.Defeat;
-			Debug.Log("defeat");
+		}
+	}
+
+	public GameState currentGameState {
+		get {
+			return gameState;
 		}
 	}
 	

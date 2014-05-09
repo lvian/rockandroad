@@ -44,9 +44,14 @@ public class Playermovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-		checkInput();
+		Debug.Log(gameControl.currentGameState);
+		Debug.Log (GameControl.GameState.Pause);
+		if(gameControl.currentGameState != GameControl.GameState.Pause)
+		{
+			checkInput();
 
-		moveTo();
+			moveTo();
+		}
 	}
 
 	
