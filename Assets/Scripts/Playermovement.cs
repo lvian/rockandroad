@@ -4,9 +4,6 @@ using System.Collections.Generic;
 
 public class Playermovement : MonoBehaviour {
 
-	public delegate void player(int sp);
-	public event player healthChanged;
-	
 	static int UP_ONE_LANE = 1;
 	static int DOWN_ONE_LANE = -1;
 	
@@ -17,7 +14,7 @@ public class Playermovement : MonoBehaviour {
 	public int firstLane;
 	public GameObject[] lanes;
 	public float speed;
-	private int previousLane;
+	//private int previousLane;
 	private int currentLane;
 	private bool isMoving;
 	private bool isBeingHit;
@@ -27,7 +24,6 @@ public class Playermovement : MonoBehaviour {
 	void Start () {
 		//Subscribing to receive event stateChanged from GameControll, if so, calls gameStateChanged	
 		gameControl = GameObject.Find("GameControl").GetComponent<GameControl>();
-		gameControl.stateChanged += gameStateChanged;
 		
 		//starting position
 		firstLane--;
@@ -45,8 +41,7 @@ public class Playermovement : MonoBehaviour {
 	void Update ()
 	{
 		Debug.Log(gameControl.currentGameState);
-		Debug.Log (GameControl.GameState.Pause);
-		if(gameControl.currentGameState != GameControl.GameState.Pause)
+		if(gameControl.currentGameState == GameControl.GameState.Play)
 		{
 			checkInput();
 
@@ -77,34 +72,20 @@ public class Playermovement : MonoBehaviour {
 		{
 			move(DOWN_ONE_LANE);
 		}
-		if(Input.GetKeyDown(KeyCode.P))
-		{
-			pause();
-		}
+		
 	}
 
 	private void move(int nextLane)
 	{
 		if((nextLane == UP_ONE_LANE && currentLane < 3) || ( nextLane == DOWN_ONE_LANE && currentLane > 0))
 		{
-			previousLane = currentLane;
+			//previousLane = currentLane;
 			currentLane  += nextLane;
 			isMoving = true;
 		}
 						
 	}
 	
-	private void pause()
-	{
-		Time.timeScale =  Time.timeScale == 0 ? 1 :  0; 
-	}
-	
-	void gameStateChanged(float gs)
-	{
-		//TODO codigo atualiza gamespeed e outros
-	}	
-	
-
 	
 	void OnTriggerEnter2D(Collider2D other) {
 		//Player hit an obstacle
@@ -119,7 +100,7 @@ public class Playermovement : MonoBehaviour {
 		//Player got an health increase
 		if(other.gameObject.tag == "healthBoost")
 		{
-			StartCoroutine(hitByObstacle());
+			StartCoroutine("gotAHealthBoost");
 		}
 	}
 	
@@ -128,13 +109,17 @@ public class Playermovement : MonoBehaviour {
 		{	
 			isBeingHit = true;
 			health --;
-			healthChanged (health);
 			//play damage animation here
 			yield return new WaitForSeconds(invulTime);
 			StartCoroutine(hitByObstacle());
 		} else
 		{
 			isBeingHit = false;
+			//Test is being made here, so we can play an animation before showing de defeat screen
+			if(health == 0)
+			{
+				gameControl.currentGameState = GameControl.GameState.Defeat;
+			}
 		}
 	}
 
@@ -143,7 +128,6 @@ public class Playermovement : MonoBehaviour {
 			return health;
 		}
 		set {
-			healthChanged (value);
 			health = value;
 		}
 	}

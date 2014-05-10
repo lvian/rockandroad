@@ -5,11 +5,12 @@ public abstract class obstacle : MonoBehaviour {
 
 	private Vector2 speed;
 	public Vector2 direction = new Vector2(-1, 0);
+	protected GameControl gc;
 	
 	// Use this for initialization
 	public virtual void Start () {
 		//Subscribing to receive event stateChanged from GameControll, if so, calls gameStateChanged	
-		GameControl gc = GameObject.Find("GameControl").GetComponent<GameControl>();
+		gc = GameObject.Find("GameControl").GetComponent<GameControl>();
 		gc.stateChanged += gameStateChanged;
 		
 		//Makes sure the obstacle starts with current game speed
@@ -43,7 +44,5 @@ public abstract class obstacle : MonoBehaviour {
 	void gameStateChanged(float gs)
 	{
 		speed = new Vector2(gs, 0);
-		
-		//TODO codigo atualiza gamespeed e outros
 	}
 }

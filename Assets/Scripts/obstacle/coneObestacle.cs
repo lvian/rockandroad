@@ -8,8 +8,9 @@ public class coneObestacle : obstacle {
 	
 	// Update is called once per frame
 	void Update () {
-		movement();
-		
-	
+		if(gc.currentGameState == GameControl.GameState.Play)
+		{
+			movement();
+		}
 	}
 }

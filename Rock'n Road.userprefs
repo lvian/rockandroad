@@ -1,14 +1,16 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GameControl.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Playermovement.cs">
     <Files>
-      <File FileName="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored.shader" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GUI\PlayerHealth.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Playermovement.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\spawner\SpawnerRoad.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GameControl.cs" Line="73" Column="22" />
-      <File FileName="Assets\Scripts\spawner\Spawner.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\background\RendererExtensions.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GameControl.cs" Line="88" Column="21" />
+      <File FileName="Assets\Scripts\Playermovement.cs" Line="118" Column="90" />
+      <File FileName="Assets\Scripts\spawner\SpawnerRoad.cs" Line="17" Column="67" />
+      <File FileName="Assets\Scripts\spawner\Spawner.cs" Line="10" Column="3" />
+      <File FileName="Assets\Scripts\obstacle\obstacle.cs" Line="10" Column="32" />
+      <File FileName="Assets\Scripts\background\background.cs" Line="75" Column="40" />
+      <File FileName="Assets\Scripts\obstacle\trashObstacle.cs" Line="11" Column="40" />
+      <File FileName="Assets\Scripts\obstacle\coneObestacle.cs" Line="11" Column="40" />
+      <File FileName="Assets\Scripts\spawner\SpawnerStreet.cs" Line="18" Column="67" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

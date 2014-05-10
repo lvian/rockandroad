@@ -12,9 +12,6 @@ public class GameControl : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		//Subscribing to receive event healthchanged from PlayerMovement, if so, calls healthChanged	
-		player = GameObject.Find("Player").GetComponent<Playermovement>();
-		player.healthChanged += healthChanged;
 	
 		gameState = GameState.MainMenu;
 	}
@@ -22,6 +19,10 @@ public class GameControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
+		if(Input.GetKeyDown(KeyCode.P))
+		{
+			pause();
+		}
 		if(Input.GetKeyDown(KeyCode.R))
 		{
 			GameSpeed ++;
@@ -58,7 +59,7 @@ public class GameControl : MonoBehaviour {
 		
 		if(gameState == GameState.Victory)
 		{
-			//show victory panel, with total points and other related infos
+			//show victory panel, with total points and other related stuff
 		}
 				
 	
@@ -86,7 +87,28 @@ public class GameControl : MonoBehaviour {
 		get {
 			return gameState;
 		}
+		set {
+			gameState = value;
+		}
 	}
+	
+	private void pause()
+	{
+		if(currentGameState == GameState.Pause)
+		{
+			currentGameState = GameState.Play;
+		}
+		else if(currentGameState == GameState.Play)
+		{
+			currentGameState = GameState.Pause;
+		}		
+			
+	}
+	
+	public void GameStart()
+	{
+		currentGameState = GameState.Play;
+	} 
 	
 	public enum GameState{
 		MainMenu,
