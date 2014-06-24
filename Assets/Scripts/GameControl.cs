@@ -9,10 +9,11 @@ public class GameControl : MonoBehaviour {
 	public int gameSpeed;
 	private GameState gameState;
 	private Playermovement player;
+	public GameObject gameplayPanel,menuPanel, mainCamera;
 	
 	// Use this for initialization
 	void Start () {
-	
+		NGUITools.SetActive( gameplayPanel ,false);
 		gameState = GameState.MainMenu;
 	}
 	
@@ -92,7 +93,7 @@ public class GameControl : MonoBehaviour {
 		}
 	}
 	
-	private void pause()
+	public void pause()
 	{
 		if(currentGameState == GameState.Pause)
 		{
@@ -105,9 +106,25 @@ public class GameControl : MonoBehaviour {
 			
 	}
 	
+	public void toggleSound()
+	{
+		if(mainCamera.GetComponent<AudioListener>().enabled == true)
+		{
+			mainCamera.GetComponent<AudioListener>().enabled = false;
+		}
+		else
+		{
+			mainCamera.GetComponent<AudioListener>().enabled = true;
+		}
+		
+	}
+		
 	public void GameStart()
 	{
 		currentGameState = GameState.Play;
+		NGUITools.SetActive( menuPanel,false);
+		//gameplayPanel.GetComponent<UIPanel>().enabled = true;
+		NGUITools.SetActive( gameplayPanel,true);
 	} 
 	
 	public enum GameState{
