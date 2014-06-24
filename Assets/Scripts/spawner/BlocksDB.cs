@@ -6,7 +6,7 @@ public class BlocksDB : MonoBehaviour {
 	public List<MapBlock> blocks;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		blocks = new List<MapBlock>();
 
 		MapBlock b1 = new MapBlock();

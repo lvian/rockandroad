@@ -30,6 +30,11 @@ public class GridSpawner : MonoBehaviour {
 		timer = 1f;
 
 		blocks = blocksClass.blocks;
+		if(blocks == null){
+			GameObject go = GameObject.Find ("BlockDB");
+			blocksClass = go.GetComponent<BlocksDB>();
+			blocks = blocksClass.blocks;
+		}
 
 		st = blocks[Random.Range(0,blocks.Count - 1)];
 		nd = blocks[Random.Range(0,blocks.Count - 1)];
