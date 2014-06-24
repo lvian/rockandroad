@@ -19,12 +19,19 @@ public class Playermovement : MonoBehaviour {
 	private bool isMoving;
 	private bool isBeingHit;
 	private GameControl gameControl;
-		
+	private Animator anim;
+	
+	
+	
+			
 	// Use this for initialization
 	void Start () {
 		//Subscribing to receive event stateChanged from GameControll, if so, calls gameStateChanged	
 		gameControl = GameObject.Find("GameControl").GetComponent<GameControl>();
-		
+	
+		// Get the Animator component from your gameObject
+		anim = GetComponent<Animator>();
+	
 		//starting position
 		firstLane--;
 		Vector3 pos = new Vector3(lanes[firstLane].transform.position.x,lanes[firstLane].transform.position.y, gameObject.gameObject.transform.position.z);
@@ -130,6 +137,13 @@ public class Playermovement : MonoBehaviour {
 		set {
 			health = value;
 		}
+	}
+	
+	
+	public void FixedUpdate() {
+		
+		anim.SetInteger("Speed", gameControl.gameSpeed);
+		anim.SetInteger("GameState", (int)gameControl.currentGameState);
 	}
 	
 }
