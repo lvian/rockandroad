@@ -27,7 +27,7 @@ public class GridSpawner : MonoBehaviour {
 		gc.stateChanged += gameStateChanged;
 		
 		speed = new Vector2(gc.GameSpeed , 0);
-		timer = 1f;
+		timer = 2f;
 
 		blocks = blocksClass.blocks;
 		if(blocks == null){
@@ -56,7 +56,6 @@ public class GridSpawner : MonoBehaviour {
 				rd = blocks[Random.Range(0,blocks.Count - 1)];
 				gridColumn = 0;
 			}
-			Debug.Log("Length -> " + gridColumn);
 			spawnColumn(new int[4] {
 				st.grid[0, gridColumn],
 				st.grid[1, gridColumn],
@@ -64,7 +63,7 @@ public class GridSpawner : MonoBehaviour {
 				st.grid[3, gridColumn]
 			});
 			gridColumn++;
-			timer = 1f;
+			timer = 2f;
 		}
 		else{
 			timer -= (Time.deltaTime * speed.x);

@@ -9,11 +9,10 @@ public class GameControl : MonoBehaviour {
 	public int gameSpeed;
 	private GameState gameState;
 	private Playermovement player;
-	public GameObject gameplayPanel,menuPanel, mainCamera;
+	public GameObject gameplayPanel,menuPanel, controlsPanel, creditsPanel, mainCamera;
 	
 	// Use this for initialization
 	void Start () {
-		NGUITools.SetActive( gameplayPanel ,false);
 		gameState = GameState.MainMenu;
 	}
 	
@@ -95,6 +94,9 @@ public class GameControl : MonoBehaviour {
 	
 	public void pause()
 	{
+		bool myState = UIToggle.current.value;
+		Debug.Log (myState);
+
 		if(currentGameState == GameState.Pause)
 		{
 			currentGameState = GameState.Play;
@@ -105,27 +107,69 @@ public class GameControl : MonoBehaviour {
 		}		
 			
 	}
-	
-	public void toggleSound()
+
+	public void togglePause()
 	{
-		if(mainCamera.GetComponent<AudioListener>().enabled == true)
+		if(UIToggle.current.value == true)
 		{
-			mainCamera.GetComponent<AudioListener>().enabled = false;
+			currentGameState = GameState.Pause;
 		}
 		else
 		{
-			mainCamera.GetComponent<AudioListener>().enabled = true;
+			currentGameState = GameState.Play;
+		}
+		
+	}
+
+	public void backToMenu()
+	{
+		NGUITools.SetActive( controlsPanel,false);
+		NGUITools.SetActive( creditsPanel,false);
+		//NGUITools.SetActive( menuPanel,true);
+		
+	}
+
+	public void toggleSound()
+	{
+		if(UIToggle.current.value == true)
+		{
+			AudioListener.volume = 0;
+		}
+		else
+		{
+			AudioListener.volume = 1;
 		}
 		
 	}
 		
 	public void GameStart()
 	{
-		currentGameState = GameState.Play;
+
 		NGUITools.SetActive( menuPanel,false);
-		//gameplayPanel.GetComponent<UIPanel>().enabled = true;
 		NGUITools.SetActive( gameplayPanel,true);
+		currentGameState = GameState.Play;
+		//mainCamera.GetComponent<AudioSource>().Play();
+		
 	} 
+
+	public void Control()
+	{
+		
+		//NGUITools.SetActive( menuPanel,false);
+		NGUITools.SetActive( controlsPanel,true);
+		//mainCamera.GetComponent<AudioSource>().Play();
+		
+	}
+
+
+	public void Credits()
+	{
+		
+		//NGUITools.SetActive( menuPanel,false);
+		NGUITools.SetActive( creditsPanel,true);
+		//mainCamera.GetComponent<AudioSource>().Play();
+		
+	}
 	
 	public enum GameState{
 		MainMenu,

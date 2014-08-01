@@ -47,7 +47,6 @@ public class Playermovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-		Debug.Log(gameControl.currentGameState);
 		if(gameControl.currentGameState == GameControl.GameState.Play)
 		{
 			checkInput();
