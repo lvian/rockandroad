@@ -6,6 +6,8 @@ public abstract class obstacle : MonoBehaviour {
 	private Vector2 speed;
 	public Vector2 direction = new Vector2(-1, 0);
 	protected GameControl gc;
+	protected Playermovement pm;
+	private bool pointsAwarded = false;
 	
 	// Use this for initialization
 	public virtual void Start () {
@@ -13,6 +15,7 @@ public abstract class obstacle : MonoBehaviour {
 		gc = GameObject.Find("GameControl").GetComponent<GameControl>();
 		gc.stateChanged += gameStateChanged;
 		
+		pm = GameObject.Find("Player").GetComponent<Playermovement>();
 		//Makes sure the obstacle starts with current game speed
 		speed = new Vector2(gc.GameSpeed, 0);
 		
@@ -23,7 +26,7 @@ public abstract class obstacle : MonoBehaviour {
 	
 	}
 	
-	protected virtual void movement()
+	protected virtual void movement(int pts)
 	{
 		// Movement
 		Vector3 movement = new Vector3(
@@ -33,7 +36,14 @@ public abstract class obstacle : MonoBehaviour {
 		
 		movement *= Time.deltaTime;
 		transform.Translate(movement);
-		
+
+
+		if(transform.position.x < -5 && pointsAwarded == false && gc.currentGameState == GameControl.GameState.Play )
+		{
+			pm.givePoints(pts);
+			pointsAwarded = true;
+		}
+
 		if(transform.position.x < -8)
 		{
 			Destroy(gameObject);

@@ -8,12 +8,15 @@ public class Playermovement : MonoBehaviour {
 	static int DOWN_ONE_LANE = -1;
 	
 	//TODO Player states
+	public int points = 0;
 	public int health;
 	public float invulTime;
 	public GameObject startingPlace;
+	private GameObject scoreValue;
 	public int firstLane;
 	public GameObject[] lanes;
 	public float speed;
+	public GameObject[] healthDisks;
 	//private int previousLane;
 	private int currentLane;
 	private bool isMoving;
@@ -28,7 +31,7 @@ public class Playermovement : MonoBehaviour {
 	void Start () {
 		//Subscribing to receive event stateChanged from GameControll, if so, calls gameStateChanged	
 		gameControl = GameObject.Find("GameControl").GetComponent<GameControl>();
-	
+
 		// Get the Animator component from your gameObject
 		anim = GetComponent<Animator>();
 	
@@ -115,6 +118,27 @@ public class Playermovement : MonoBehaviour {
 		{	
 			isBeingHit = true;
 			health --;
+			this.adjustHealthIcons();
+			//play damage animation here
+			yield return new WaitForSeconds(invulTime);
+			StartCoroutine(hitByObstacle());
+		} else
+		{
+			isBeingHit = false;
+			//Test is being made here, so we can play an animation before showing de defeat screen
+			if(health == 0)
+			{
+				gameControl.currentGameState = GameControl.GameState.Defeat;
+			}
+		}
+	}
+
+	IEnumerator gotAHealthBoost() {
+		if(!isBeingHit)
+		{	
+			isBeingHit = true;
+			health --;
+			this.adjustHealthIcons();
 			//play damage animation here
 			yield return new WaitForSeconds(invulTime);
 			StartCoroutine(hitByObstacle());
@@ -137,8 +161,49 @@ public class Playermovement : MonoBehaviour {
 			health = value;
 		}
 	}
+
+	public void adjustHealthIcons() {
+		switch(Health){
+			case 0:
+				NGUITools.SetActive(healthDisks[0],false);
+				NGUITools.SetActive(healthDisks[1],false);
+				NGUITools.SetActive(healthDisks[2],false);
+				NGUITools.SetActive(healthDisks[3],false);
+				break;
+			case 1:
+				NGUITools.SetActive(healthDisks[0],true);
+				NGUITools.SetActive(healthDisks[1],false);
+				NGUITools.SetActive(healthDisks[2],false);
+				NGUITools.SetActive(healthDisks[3],false);
+				break;
+			case 2:
+				NGUITools.SetActive(healthDisks[0],true);
+				NGUITools.SetActive(healthDisks[1],true);
+				NGUITools.SetActive(healthDisks[2],false);
+				NGUITools.SetActive(healthDisks[3],false);
+				break;
+			case 3:
+				NGUITools.SetActive(healthDisks[0],true);
+				NGUITools.SetActive(healthDisks[1],true);
+				NGUITools.SetActive(healthDisks[2],true);
+				NGUITools.SetActive(healthDisks[3],false);
+				break;
+			case 4:
+				NGUITools.SetActive(healthDisks[0],true);
+				NGUITools.SetActive(healthDisks[1],true);
+				NGUITools.SetActive(healthDisks[2],true);
+				NGUITools.SetActive(healthDisks[3],true);
+				break;
+
+
+		}
+	}
 	
-	
+	public void givePoints(int pts) {
+		points += pts;
+		UILabel score = GameObject.Find("score_value").GetComponent<UILabel>();
+		score.text = points.ToString();
+	}
 	public void FixedUpdate() {
 		
 		anim.SetInteger("Speed", gameControl.gameSpeed);
