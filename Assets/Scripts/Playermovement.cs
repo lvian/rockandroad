@@ -109,7 +109,17 @@ public class Playermovement : MonoBehaviour {
 		//Player got an health increase
 		if(other.gameObject.tag == "healthBoost")
 		{
-			StartCoroutine("gotAHealthBoost");
+			//We could have disabled the collider and avoided this whole 'check for hit thing'
+			other.collider2D.enabled = false;
+			Destroy(other.gameObject);
+			if(health <= 3)
+			{
+				health ++;
+				this.adjustHealthIcons();
+			}
+			givePoints(100);
+			//coroutine not needed atm
+			//StartCoroutine("gotAHealthBoost");
 		}
 	}
 	
@@ -120,8 +130,16 @@ public class Playermovement : MonoBehaviour {
 			health --;
 			this.adjustHealthIcons();
 			//play damage animation here
-			yield return new WaitForSeconds(invulTime);
-			StartCoroutine(hitByObstacle());
+			if(health == 0)
+			{
+				//change timer to something like 'death animation time lenght'
+				yield return new WaitForSeconds(1f);
+				StartCoroutine(hitByObstacle());
+			} else
+			{
+				yield return new WaitForSeconds(invulTime);
+				StartCoroutine(hitByObstacle());
+			}
 		} else
 		{
 			isBeingHit = false;
@@ -134,23 +152,12 @@ public class Playermovement : MonoBehaviour {
 	}
 
 	IEnumerator gotAHealthBoost() {
-		if(!isBeingHit)
-		{	
-			isBeingHit = true;
-			health --;
-			this.adjustHealthIcons();
-			//play damage animation here
-			yield return new WaitForSeconds(invulTime);
-			StartCoroutine(hitByObstacle());
-		} else
-		{
-			isBeingHit = false;
-			//Test is being made here, so we can play an animation before showing de defeat screen
-			if(health == 0)
-			{
-				gameControl.currentGameState = GameControl.GameState.Defeat;
-			}
-		}
+
+		health ++;
+		this.adjustHealthIcons();
+		//play healing animation here
+		yield return new WaitForSeconds(invulTime);
+		StartCoroutine(hitByObstacle());
 	}
 
 	public int Health {

@@ -146,6 +146,8 @@ public class GameControl : MonoBehaviour {
 	{
 
 		NGUITools.SetActive( menuPanel,false);
+		NGUITools.SetActive( controlsPanel,false);
+		NGUITools.SetActive( creditsPanel,false);
 		NGUITools.SetActive( gameplayPanel,true);
 		currentGameState = GameState.Play;
 		//mainCamera.GetComponent<AudioSource>().Play();
@@ -155,7 +157,7 @@ public class GameControl : MonoBehaviour {
 	public void Control()
 	{
 		
-		//NGUITools.SetActive( menuPanel,false);
+		NGUITools.SetActive( creditsPanel,false);
 		NGUITools.SetActive( controlsPanel,true);
 		//mainCamera.GetComponent<AudioSource>().Play();
 		
@@ -165,7 +167,7 @@ public class GameControl : MonoBehaviour {
 	public void Credits()
 	{
 		
-		//NGUITools.SetActive( menuPanel,false);
+		NGUITools.SetActive( controlsPanel,false);
 		NGUITools.SetActive( creditsPanel,true);
 		//mainCamera.GetComponent<AudioSource>().Play();
 		
