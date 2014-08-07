@@ -109,6 +109,7 @@ public class Playermovement : MonoBehaviour {
 		//Player got an health increase
 		if(other.gameObject.tag == "healthBoost")
 		{
+			Debug.Log("health");
 			//We could have disabled the collider and avoided this whole 'check for hit thing'
 			other.collider2D.enabled = false;
 			Destroy(other.gameObject);
