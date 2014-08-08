@@ -86,7 +86,7 @@ public class GridSpawner : MonoBehaviour {
 			obs.transform.parent = spawnPoints[spawner].transform;
 			break;
 		case 2:
-			objectLenght = obstacles.Length;
+			objectLenght = powerups.Length;
 			rand = Random.Range( 0 , objectLenght );
 			obs = (GameObject) Instantiate(powerups[rand] , spawnPoints[spawner].transform.position , spawnPoints[spawner].transform.rotation); 
 			obs.transform.parent = spawnPoints[spawner].transform;

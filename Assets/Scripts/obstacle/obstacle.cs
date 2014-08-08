@@ -26,12 +26,12 @@ public abstract class obstacle : MonoBehaviour {
 	
 	}
 	
-	protected virtual void movement(int pts)
+	protected virtual void movement(int pts, float sp)
 	{
 		// Movement
 		Vector3 movement = new Vector3(
-			speed.x * direction.x,
-			speed.y * direction.y,
+			speed.x * direction.x * sp,
+			speed.y * direction.y * sp,
 			0);
 		
 		movement *= Time.deltaTime;

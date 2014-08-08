@@ -178,6 +178,7 @@
      <Compile Include="Assets\Scripts\background\background.cs" />
      <Compile Include="Assets\Scripts\obstacle\coneObestacle.cs" />
      <Compile Include="Assets\Scripts\obstacle\obstacle.cs" />
+     <Compile Include="Assets\Scripts\obstacle\tireObestacle.cs" />
      <Compile Include="Assets\Scripts\obstacle\trashObstacle.cs" />
      <Compile Include="Assets\Scripts\spawner\BlocksDB.cs" />
      <Compile Include="Assets\Scripts\spawner\GridSpawner.cs" />
