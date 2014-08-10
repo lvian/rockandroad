@@ -9,8 +9,8 @@ public class GameControl : MonoBehaviour {
 	public int gameSpeed;
 	private GameState gameState;
 	private Playermovement player;
-	public GameObject gameplayPanel,menuPanel, controlsPanel, creditsPanel, mainCamera;
-	
+	public GameObject gameplayPanel,menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1,tutorialPanel2;
+
 	// Use this for initialization
 	void Start () {
 		gameState = GameState.MainMenu;
@@ -129,6 +129,8 @@ public class GameControl : MonoBehaviour {
 		
 	}
 
+
+
 	public void toggleSound()
 	{
 		if(UIToggle.current.value == true)
@@ -149,9 +151,26 @@ public class GameControl : MonoBehaviour {
 		NGUITools.SetActive( controlsPanel,false);
 		NGUITools.SetActive( creditsPanel,false);
 		NGUITools.SetActive( gameplayPanel,true);
+		NGUITools.SetActive( tutorialPanel1,false);
+		NGUITools.SetActive( tutorialPanel2,false);
 		currentGameState = GameState.Play;
 		//mainCamera.GetComponent<AudioSource>().Play();
 		
+	} 
+
+	public void Tutorial()
+	{
+
+		NGUITools.SetActive( menuPanel,false);
+		NGUITools.SetActive( controlsPanel,false);
+		NGUITools.SetActive( creditsPanel,false);
+		NGUITools.SetActive( tutorialPanel1,true);
+	} 
+
+	public void swapTutorials()
+	{
+		NGUITools.SetActive( tutorialPanel1,false);
+		NGUITools.SetActive( tutorialPanel2,true);
 	} 
 
 	public void Control()

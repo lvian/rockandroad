@@ -29,6 +29,7 @@ public abstract class obstacle : MonoBehaviour {
 	protected virtual void movement(int pts, float sp)
 	{
 		// Movement
+		// speed = 1 is stationary(same speed as background)
 		Vector3 movement = new Vector3(
 			speed.x * direction.x * sp,
 			speed.y * direction.y * sp,
