@@ -9,10 +9,12 @@ public class GameControl : MonoBehaviour {
 	public int gameSpeed;
 	private GameState gameState;
 	private Playermovement player;
-	public GameObject gameplayPanel,menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1,tutorialPanel2;
+	public GameObject gameplayPanel,menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1,tutorialPanel2,defeatPanel;
 
 	// Use this for initialization
 	void Start () {
+		player = GameObject.Find("Player").GetComponent<Playermovement>();
+
 		gameState = GameState.MainMenu;
 	}
 	
@@ -94,9 +96,6 @@ public class GameControl : MonoBehaviour {
 	
 	public void pause()
 	{
-		bool myState = UIToggle.current.value;
-		Debug.Log (myState);
-
 		if(currentGameState == GameState.Pause)
 		{
 			currentGameState = GameState.Play;
@@ -146,25 +145,44 @@ public class GameControl : MonoBehaviour {
 		
 	public void GameStart()
 	{
-
+		if(UIButton.current.name.Equals("skip_button"))
+		{
+			PlayerPrefs.SetInt("skipTutorial", 1);
+		}
 		NGUITools.SetActive( menuPanel,false);
 		NGUITools.SetActive( controlsPanel,false);
 		NGUITools.SetActive( creditsPanel,false);
 		NGUITools.SetActive( gameplayPanel,true);
 		NGUITools.SetActive( tutorialPanel1,false);
 		NGUITools.SetActive( tutorialPanel2,false);
+		NGUITools.SetActive( defeatPanel,false);
 		currentGameState = GameState.Play;
 		//mainCamera.GetComponent<AudioSource>().Play();
 		
 	} 
 
+	public void MainMenu()
+	{
+		NGUITools.SetActive( menuPanel,true);
+		NGUITools.SetActive( gameplayPanel,false);
+		NGUITools.SetActive( defeatPanel,false);
+		//mainCamera.GetComponent<AudioSource>().Play();
+		
+	}
+
 	public void Tutorial()
 	{
-
-		NGUITools.SetActive( menuPanel,false);
-		NGUITools.SetActive( controlsPanel,false);
-		NGUITools.SetActive( creditsPanel,false);
-		NGUITools.SetActive( tutorialPanel1,true);
+		//PlayerPrefs.SetString("MyString", "MyValue");
+		if (PlayerPrefs.GetInt ("skipTutorial") == 1)
+		{
+			GameStart ();
+		} else
+		{
+			NGUITools.SetActive (menuPanel, false);
+			NGUITools.SetActive (controlsPanel, false);
+			NGUITools.SetActive (creditsPanel, false);
+			NGUITools.SetActive (tutorialPanel1, true);
+		}
 	} 
 
 	public void swapTutorials()
@@ -191,7 +209,51 @@ public class GameControl : MonoBehaviour {
 		//mainCamera.GetComponent<AudioSource>().Play();
 		
 	}
-	
+
+	public void Defeat()
+	{
+		currentGameState = GameState.Defeat;
+		NGUITools.SetActive( gameplayPanel,false);
+
+		if(player.points > PlayerPrefs.GetInt("topScore"))
+		{
+			PlayerPrefs.SetInt("topScore",player.points );
+		}
+		NGUITools.SetActive( defeatPanel,true);
+		UILabel defeatScore = GameObject.Find("defeat_score_value").GetComponent<UILabel>();
+		UILabel topScore = GameObject.Find("top_score_value").GetComponent<UILabel>();
+		defeatScore.text = player.points.ToString();
+		topScore.text = PlayerPrefs.GetInt("topScore").ToString();
+
+	}
+
+	public void gameReset()
+	{
+		player.points = 0;
+		player.health = PlayerPrefs.GetInt("defaultHealth");
+		player.adjustHealthIcons ();
+
+		GameObject[] obstacles = GameObject.FindGameObjectsWithTag ("Obstacles");
+		GameObject[] healthBoost = GameObject.FindGameObjectsWithTag ("healthBoost");
+		foreach( GameObject ob in obstacles)
+		{
+			Destroy (ob);
+		}
+		foreach( GameObject hb in healthBoost)
+		{
+			Destroy (hb);
+		}
+
+		if (UIButton.current.name.Equals ("main_button")) 
+		{
+			MainMenu();
+		} else if (UIButton.current.name.Equals ("restart_button"))
+		{
+			GameStart();
+		}
+		
+	}
+
 	public enum GameState{
 		MainMenu,
 		GameMenu,

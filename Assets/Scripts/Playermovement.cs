@@ -32,6 +32,7 @@ public class Playermovement : MonoBehaviour {
 		//Subscribing to receive event stateChanged from GameControll, if so, calls gameStateChanged	
 		gameControl = GameObject.Find("GameControl").GetComponent<GameControl>();
 
+		PlayerPrefs.SetInt("defaultHealth",health );
 		// Get the Animator component from your gameObject
 		anim = GetComponent<Animator>();
 	
@@ -39,7 +40,8 @@ public class Playermovement : MonoBehaviour {
 		firstLane--;
 		Vector3 pos = new Vector3(lanes[firstLane].transform.position.x,lanes[firstLane].transform.position.y, gameObject.gameObject.transform.position.z);
 		gameObject.transform.position = pos;
-		
+
+		anim = GetComponent<Animator>();
 		
 		currentLane = firstLane;
 		isMoving = false;
@@ -52,9 +54,13 @@ public class Playermovement : MonoBehaviour {
 	{
 		if(gameControl.currentGameState == GameControl.GameState.Play)
 		{
+			anim.speed = 1;
 			checkInput();
 
 			moveTo();
+		} else if (gameControl.currentGameState == GameControl.GameState.Pause)
+		{
+			anim.speed = 0;
 		}
 	}
 
@@ -63,7 +69,7 @@ public class Playermovement : MonoBehaviour {
 	{
 		if(isMoving)
 		{
-			transform.position = Vector3.MoveTowards(gameObject.transform.position,lanes[currentLane].transform.position, 0.03f * gameControl.GameSpeed);
+			transform.position = Vector3.MoveTowards(gameObject.transform.position,lanes[currentLane].transform.position, 0.02f * gameControl.GameSpeed);
 		}
 	
 	}
@@ -109,7 +115,6 @@ public class Playermovement : MonoBehaviour {
 		//Player got an health increase
 		if(other.gameObject.tag == "healthBoost")
 		{
-			Debug.Log("health");
 			//We could have disabled the collider and avoided this whole 'check for hit thing'
 			other.collider2D.enabled = false;
 			Destroy(other.gameObject);
@@ -147,7 +152,7 @@ public class Playermovement : MonoBehaviour {
 			//Test is being made here, so we can play an animation before showing de defeat screen
 			if(health == 0)
 			{
-				gameControl.currentGameState = GameControl.GameState.Defeat;
+				gameControl.Defeat();
 			}
 		}
 	}
@@ -208,9 +213,12 @@ public class Playermovement : MonoBehaviour {
 	}
 	
 	public void givePoints(int pts) {
-		points += pts;
-		UILabel score = GameObject.Find("score_value").GetComponent<UILabel>();
-		score.text = points.ToString();
+		if(health > 0)
+		{
+			points += pts;
+			UILabel score = GameObject.Find("score_value").GetComponent<UILabel>();
+			score.text = points.ToString();
+			}
 	}
 	public void FixedUpdate() {
 		
