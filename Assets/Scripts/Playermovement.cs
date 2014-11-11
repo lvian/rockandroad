@@ -23,7 +23,7 @@ public class Playermovement : MonoBehaviour {
 	private bool isBeingHit;
 	private GameControl gameControl;
 	private Animator anim;
-	
+	private BoxCollider2D movementDelimiter;
 	
 	
 			
@@ -31,9 +31,9 @@ public class Playermovement : MonoBehaviour {
 	void Start () {
 		//Subscribing to receive event stateChanged from GameControll, if so, calls gameStateChanged	
 		gameControl = GameObject.Find("GameControl").GetComponent<GameControl>();
+		movementDelimiter = GameObject.Find("MovementDelimiter").GetComponent<BoxCollider2D>();
 
 		PlayerPrefs.SetInt("defaultHealth",health );
-		// Get the Animator component from your gameObject
 		anim = GetComponent<Animator>();
 	
 		//starting position
@@ -78,15 +78,44 @@ public class Playermovement : MonoBehaviour {
 	
 	private void checkInput()
 	{
-		if(Input.GetKeyDown(KeyCode.W))
+		float x = gameObject.transform.position.x ;
+		float newx = x;
+		float y = gameObject.transform.position.y;
+		float newy = y;
+
+		if(Input.GetButton("W"))
 		{
-			move(UP_ONE_LANE);
+			newy += 0.05f;
 		}
 		
-		if(Input.GetKeyDown(KeyCode.S))
+		if(Input.GetButton("S"))
 		{
-			move(DOWN_ONE_LANE);
+			newy -= 0.05f;
 		}
+		if(Input.GetButton("D"))
+		{
+			newx += 0.05f;
+		}
+		
+		if(Input.GetButton("A"))
+		{
+			newx -= 0.1f;
+		}
+
+		Vector2 pos = new Vector2 (newx,y);
+		//Test x and y separetly to allow movement of a single axis when on the edge
+		if(movementDelimiter.bounds.Contains(pos)){
+			//transform.Translate(0, 0, z);
+			x =  newx;
+		}
+		pos = new Vector2 (x ,newy);
+		if(movementDelimiter.bounds.Contains(pos)){
+			//transform.Translate(0, 0, z);
+			y = newy;
+		}
+
+		transform.position = new Vector2(x,y);
+
 		
 	}
 

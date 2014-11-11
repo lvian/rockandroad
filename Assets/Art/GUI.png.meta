@@ -1,6 +1,10 @@
 fileFormatVersion: 2
 guid: 81b7efe015aa10f40997de841c55ae7c
 TextureImporter:
+  fileIDToRecycleName:
+    21300000: GUI_0
+    21300002: GUI_1
+    21300004: GUI_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -16,7 +20,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: .25
     normalMapFilter: 0
-  isReadable: 1
+  isReadable: 0
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
@@ -35,6 +39,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
@@ -54,6 +59,7 @@ TextureImporter:
         height: 11
       alignment: 0
       pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: GUI_1
       rect:
         serializedVersion: 2
@@ -63,6 +69,7 @@ TextureImporter:
         height: 14
       alignment: 0
       pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: GUI_2
       rect:
         serializedVersion: 2
@@ -72,5 +79,6 @@ TextureImporter:
         height: 83
       alignment: 0
       pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

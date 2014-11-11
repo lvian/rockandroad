@@ -16,6 +16,7 @@ public class GameControl : MonoBehaviour {
 		player = GameObject.Find("Player").GetComponent<Playermovement>();
 
 		gameState = GameState.MainMenu;
+		mainCamera.GetComponent<AudioSource>().Play();
 	}
 	
 	// Update is called once per frame
@@ -213,6 +214,8 @@ public class GameControl : MonoBehaviour {
 	public void Defeat()
 	{
 		currentGameState = GameState.Defeat;
+		UILabel score = GameObject.Find("score_value").GetComponent<UILabel>();
+		score.text = "0";
 		NGUITools.SetActive( gameplayPanel,false);
 
 		if(player.points > PlayerPrefs.GetInt("topScore"))
@@ -230,6 +233,8 @@ public class GameControl : MonoBehaviour {
 	public void gameReset()
 	{
 		player.points = 0;
+
+
 		player.health = PlayerPrefs.GetInt("defaultHealth");
 		player.adjustHealthIcons ();
 
