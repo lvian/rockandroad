@@ -11,6 +11,7 @@ public class Playermovement : MonoBehaviour {
 	public int points = 0;
 	public int health;
 	public float invulTime;
+	private bool isInvul;
 	public GameObject startingPlace;
 	private GameObject scoreValue;
 	public int firstLane;
@@ -46,6 +47,8 @@ public class Playermovement : MonoBehaviour {
 		currentLane = firstLane;
 		isMoving = false;
 		isBeingHit = false;
+		isInvul = false;
+
 		
 	}
 	
@@ -62,6 +65,9 @@ public class Playermovement : MonoBehaviour {
 		{
 			anim.speed = 0;
 		}
+		if(isInvul){
+			animatedAlpha();
+		}
 	}
 
 	
@@ -76,47 +82,29 @@ public class Playermovement : MonoBehaviour {
 	
 	
 	
-	private void checkInput()
-	{
-		float x = gameObject.transform.position.x ;
-		float newx = x;
-		float y = gameObject.transform.position.y;
-		float newy = y;
+	private void checkInput(){
 
-		if(Input.GetButton("W"))
+		if(Input.GetKeyDown(KeyCode.W))
 		{
-			newy += 0.05f;
+			move(UP_ONE_LANE);
 		}
 		
-		if(Input.GetButton("S"))
+		if(Input.GetKeyDown(KeyCode.S))
 		{
-			newy -= 0.05f;
+			move (DOWN_ONE_LANE);
 		}
-		if(Input.GetButton("D"))
-		{
-			newx += 0.05f;
-		}
-		
-		if(Input.GetButton("A"))
-		{
-			newx -= 0.1f;
-		}
-
-		Vector2 pos = new Vector2 (newx,y);
-		//Test x and y separetly to allow movement of a single axis when on the edge
-		if(movementDelimiter.bounds.Contains(pos)){
-			//transform.Translate(0, 0, z);
-			x =  newx;
-		}
-		pos = new Vector2 (x ,newy);
-		if(movementDelimiter.bounds.Contains(pos)){
-			//transform.Translate(0, 0, z);
-			y = newy;
-		}
-
-		transform.position = new Vector2(x,y);
 
 		
+	}
+
+	void animatedAlpha (){
+		float duration = .1f;
+		float lerp = Mathf.PingPong (Time.time, duration) / duration;
+
+		float alpha = Mathf.Lerp(0.0f, 1.0f, lerp) ;
+		Color c = new Color(
+			renderer.material.color.r, renderer.material.color.g, renderer.material.color.b, alpha);
+		renderer.material.color = c;
 	}
 
 	private void move(int nextLane)
@@ -170,9 +158,15 @@ public class Playermovement : MonoBehaviour {
 				//change timer to something like 'death animation time lenght'
 				yield return new WaitForSeconds(1f);
 				StartCoroutine(hitByObstacle());
-			} else
+			}
+			else
 			{
+				isInvul = true;
 				yield return new WaitForSeconds(invulTime);
+				isInvul = false;
+				Color c = new Color(
+					renderer.material.color.r, renderer.material.color.g, renderer.material.color.b, 1f);
+				renderer.material.color = c;
 				StartCoroutine(hitByObstacle());
 			}
 		} else
