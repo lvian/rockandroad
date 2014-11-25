@@ -235,8 +235,8 @@ public class GameControl : MonoBehaviour {
 		player.points = 0;
 
 
-		player.health = PlayerPrefs.GetInt("defaultHealth");
-		player.adjustHealthIcons ();
+		player.energy = PlayerPrefs.GetFloat("defaultEnergy");
+		player.adjustEnergy ();
 
 		GameObject[] obstacles = GameObject.FindGameObjectsWithTag ("Obstacles");
 		GameObject[] healthBoost = GameObject.FindGameObjectsWithTag ("healthBoost");

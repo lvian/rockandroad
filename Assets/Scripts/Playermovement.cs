@@ -9,7 +9,8 @@ public class Playermovement : MonoBehaviour {
 	
 	//TODO Player states
 	public int points = 0;
-	public int health;
+	//public int health;
+	public float energy;
 	public float invulTime;
 	private bool isInvul;
 	public GameObject startingPlace;
@@ -17,14 +18,18 @@ public class Playermovement : MonoBehaviour {
 	public int firstLane;
 	public GameObject[] lanes;
 	public float speed;
-	public GameObject[] healthDisks;
+	public GameObject healthbar;
+	//public GameObject[] healthDisks;
 	//private int previousLane;
+	private float energyTimer;
 	private int currentLane;
 	private bool isMoving;
 	private bool isBeingHit;
 	private GameControl gameControl;
 	private Animator anim;
 	private BoxCollider2D movementDelimiter;
+	private UIProgressBar pg;
+
 	
 	
 			
@@ -34,7 +39,7 @@ public class Playermovement : MonoBehaviour {
 		gameControl = GameObject.Find("GameControl").GetComponent<GameControl>();
 		movementDelimiter = GameObject.Find("MovementDelimiter").GetComponent<BoxCollider2D>();
 
-		PlayerPrefs.SetInt("defaultHealth",health );
+		PlayerPrefs.SetFloat("defaultEnergy",energy );
 		anim = GetComponent<Animator>();
 	
 		//starting position
@@ -42,8 +47,9 @@ public class Playermovement : MonoBehaviour {
 		Vector3 pos = new Vector3(lanes[firstLane].transform.position.x,lanes[firstLane].transform.position.y, gameObject.gameObject.transform.position.z);
 		gameObject.transform.position = pos;
 
+		energyTimer = Time.time;
 		anim = GetComponent<Animator>();
-		
+		pg  = healthbar.GetComponent<UIProgressBar>();
 		currentLane = firstLane;
 		isMoving = false;
 		isBeingHit = false;
@@ -61,6 +67,7 @@ public class Playermovement : MonoBehaviour {
 			checkInput();
 
 			moveTo();
+			energyDecay();
 		} else if (gameControl.currentGameState == GameControl.GameState.Pause)
 		{
 			anim.speed = 0;
@@ -124,22 +131,25 @@ public class Playermovement : MonoBehaviour {
 		if(other.gameObject.tag == "Obstacles")
 		{
 			if(!isBeingHit)
-			{
+			{ 
 				StartCoroutine("hitByObstacle");
 			}
 		}
 		
-		//Player got an health increase
+		//Player got an energy increase
 		if(other.gameObject.tag == "healthBoost")
 		{
 			//We could have disabled the collider and avoided this whole 'check for hit thing'
 			other.collider2D.enabled = false;
 			Destroy(other.gameObject);
-			if(health <= 3)
+			if(energy <= 90)
 			{
-				health ++;
-				this.adjustHealthIcons();
+				energy += 10;
+				this.adjustEnergy();
+			} else{
+				energy = 100;
 			}
+
 			givePoints(100);
 			//coroutine not needed atm
 			//StartCoroutine("gotAHealthBoost");
@@ -150,10 +160,10 @@ public class Playermovement : MonoBehaviour {
 		if(!isBeingHit)
 		{	
 			isBeingHit = true;
-			health --;
-			this.adjustHealthIcons();
+			energy -= 10;
+			this.adjustEnergy();
 			//play damage animation here
-			if(health == 0)
+			if(energy <= 0)
 			{
 				//change timer to something like 'death animation time lenght'
 				yield return new WaitForSeconds(1f);
@@ -173,76 +183,58 @@ public class Playermovement : MonoBehaviour {
 		{
 			isBeingHit = false;
 			//Test is being made here, so we can play an animation before showing de defeat screen
-			if(health == 0)
+			if(energy <= 0)
 			{
 				gameControl.Defeat();
 			}
 		}
 	}
 
+	//not being used atm
 	IEnumerator gotAHealthBoost() {
 
-		health ++;
-		this.adjustHealthIcons();
+		energy += 10; //can receive diferent healthboost values
+		this.adjustEnergy();
 		//play healing animation here
 		yield return new WaitForSeconds(invulTime);
 		StartCoroutine(hitByObstacle());
 	}
 
-	public int Health {
+	public float Energy {
 		get {
-			return health;
+			return energy;
 		}
 		set {
-			health = value;
+			energy = value;
 		}
 	}
 
-	public void adjustHealthIcons() {
-		switch(Health){
-			case 0:
-				NGUITools.SetActive(healthDisks[0],false);
-				NGUITools.SetActive(healthDisks[1],false);
-				NGUITools.SetActive(healthDisks[2],false);
-				NGUITools.SetActive(healthDisks[3],false);
-				break;
-			case 1:
-				NGUITools.SetActive(healthDisks[0],true);
-				NGUITools.SetActive(healthDisks[1],false);
-				NGUITools.SetActive(healthDisks[2],false);
-				NGUITools.SetActive(healthDisks[3],false);
-				break;
-			case 2:
-				NGUITools.SetActive(healthDisks[0],true);
-				NGUITools.SetActive(healthDisks[1],true);
-				NGUITools.SetActive(healthDisks[2],false);
-				NGUITools.SetActive(healthDisks[3],false);
-				break;
-			case 3:
-				NGUITools.SetActive(healthDisks[0],true);
-				NGUITools.SetActive(healthDisks[1],true);
-				NGUITools.SetActive(healthDisks[2],true);
-				NGUITools.SetActive(healthDisks[3],false);
-				break;
-			case 4:
-				NGUITools.SetActive(healthDisks[0],true);
-				NGUITools.SetActive(healthDisks[1],true);
-				NGUITools.SetActive(healthDisks[2],true);
-				NGUITools.SetActive(healthDisks[3],true);
-				break;
+	public void adjustEnergy() {
+		pg.value = this.energy / 100;
+		//Debug.Log (pg.value);
 
-
-		}
 	}
 	
 	public void givePoints(int pts) {
-		if(health > 0)
+		if(energy > 0)
 		{
 			points += pts;
 			UILabel score = GameObject.Find("score_value").GetComponent<UILabel>();
 			score.text = points.ToString();
 			}
 	}
+
+	void energyDecay ()
+	{
+		energyTimer += Time.deltaTime;
+		if(energyTimer >= 1)
+		{
+			this.energy --;
+			energyTimer = 0;
+			adjustEnergy();
+		}
+	}
+
 	public void FixedUpdate() {
 		
 		anim.SetInteger("Speed", gameControl.gameSpeed);
