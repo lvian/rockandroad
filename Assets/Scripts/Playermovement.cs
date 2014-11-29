@@ -67,13 +67,13 @@ public class Playermovement : MonoBehaviour {
 			checkInput();
 
 			moveTo();
-			energyDecay();
+			StartCoroutine(energyDecay());
 		} else if (gameControl.currentGameState == GameControl.GameState.Pause)
 		{
 			anim.speed = 0;
 		}
 		if(isInvul){
-			animatedAlpha();
+			animateAlpha();
 		}
 	}
 
@@ -104,7 +104,7 @@ public class Playermovement : MonoBehaviour {
 		
 	}
 
-	void animatedAlpha (){
+	void animateAlpha (){
 		float duration = .1f;
 		float lerp = Mathf.PingPong (Time.time, duration) / duration;
 
@@ -157,6 +157,8 @@ public class Playermovement : MonoBehaviour {
 	}
 	
 	IEnumerator hitByObstacle() {
+		if(gameControl.currentGameState != GameControl.GameState.Play) // ??? Reacess!
+			yield break;
 		if(!isBeingHit)
 		{	
 			isBeingHit = true;
@@ -167,6 +169,7 @@ public class Playermovement : MonoBehaviour {
 			{
 				//change timer to something like 'death animation time lenght'
 				yield return new WaitForSeconds(1f);
+				Debug.Log("BUMP 2");
 				StartCoroutine(hitByObstacle());
 			}
 			else
@@ -177,14 +180,17 @@ public class Playermovement : MonoBehaviour {
 				Color c = new Color(
 					renderer.material.color.r, renderer.material.color.g, renderer.material.color.b, 1f);
 				renderer.material.color = c;
+				Debug.Log("BUMP 1");
 				StartCoroutine(hitByObstacle());
 			}
-		} else
+		}
+		else
 		{
 			isBeingHit = false;
 			//Test is being made here, so we can play an animation before showing de defeat screen
 			if(energy <= 0)
 			{
+				Debug.Log("BUMP 3");
 				gameControl.Defeat();
 			}
 		}
@@ -197,6 +203,7 @@ public class Playermovement : MonoBehaviour {
 		this.adjustEnergy();
 		//play healing animation here
 		yield return new WaitForSeconds(invulTime);
+		Debug.Log("BUMP 4");
 		StartCoroutine(hitByObstacle());
 	}
 
@@ -224,12 +231,18 @@ public class Playermovement : MonoBehaviour {
 			}
 	}
 
-	void energyDecay ()
+	IEnumerator energyDecay ()
 	{
 		energyTimer += Time.deltaTime;
 		if(energyTimer >= 1)
 		{
 			this.energy --;
+			if(energy <= 0)
+			{
+				yield return new WaitForSeconds(1f);
+				Debug.Log("BUMP 5");
+				StartCoroutine(hitByObstacle());
+			}
 			energyTimer = 0;
 			adjustEnergy();
 		}
