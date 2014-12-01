@@ -9,7 +9,7 @@ public class GameControl : MonoBehaviour {
 	public int gameSpeed;
 	private GameState gameState;
 	private Playermovement player;
-	public GameObject gameplayPanel,menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1,tutorialPanel2,defeatPanel;
+	public GameObject gameplayPanel,menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1,tutorialPanel2,defeatPanel, exitPanel;
 
 	// Use this for initialization
 	void Start () {
@@ -22,10 +22,6 @@ public class GameControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-		if(Input.GetKeyDown(KeyCode.P))
-		{
-			pause();
-		}
 		if(Input.GetKeyDown(KeyCode.R))
 		{
 			GameSpeed ++;
@@ -39,15 +35,20 @@ public class GameControl : MonoBehaviour {
 		{
 		
 		}
+
+
 		
 		if(gameState == GameState.GameMenu)
 		{
-			
+					
 		}
 		
 		if(gameState == GameState.Play)
 		{
-			
+			if(Input.GetKeyDown(KeyCode.Escape))
+			{
+				exitGameplay();
+			}	
 		}
 		
 		if(gameState == GameState.Pause)
@@ -97,9 +98,13 @@ public class GameControl : MonoBehaviour {
 	
 	public void pause()
 	{
+	//	NGUITools.SetActive( exitPanel,false);
+	//	NGUITools.SetActive( gameplayPanel,true);
 		if(currentGameState == GameState.Pause)
 		{
+			NGUITools.SetActive( gameplayPanel,true);
 			currentGameState = GameState.Play;
+			NGUITools.SetActive( exitPanel,false);
 		}
 		else if(currentGameState == GameState.Play)
 		{
@@ -158,7 +163,10 @@ public class GameControl : MonoBehaviour {
 		NGUITools.SetActive( tutorialPanel2,false);
 		NGUITools.SetActive( defeatPanel,false);
 		currentGameState = GameState.Play;
-		//mainCamera.GetComponent<AudioSource>().Play();
+
+		//Makes sure the score label is set to zero after a restart
+		UILabel score = GameObject.Find("score_value").GetComponent<UILabel>();
+		score.text = "0";
 		
 	} 
 
@@ -167,6 +175,7 @@ public class GameControl : MonoBehaviour {
 		NGUITools.SetActive( menuPanel,true);
 		NGUITools.SetActive( gameplayPanel,false);
 		NGUITools.SetActive( defeatPanel,false);
+		NGUITools.SetActive( exitPanel,false);
 		//mainCamera.GetComponent<AudioSource>().Play();
 		
 	}
@@ -230,6 +239,15 @@ public class GameControl : MonoBehaviour {
 
 	}
 
+
+	void exitGameplay ()
+	{
+		pause ();
+
+		NGUITools.SetActive( gameplayPanel,false);
+		NGUITools.SetActive( exitPanel,true);
+	}
+
 	public void gameReset()
 	{
 		player.points = 0;
@@ -249,7 +267,7 @@ public class GameControl : MonoBehaviour {
 			Destroy (hb);
 		}
 
-		if (UIButton.current.name.Equals ("main_button")) 
+		if (UIButton.current.name.Equals ("main_button") || UIButton.current.name.Equals ("yes_button")) 
 		{
 			MainMenu();
 		} else if (UIButton.current.name.Equals ("restart_button"))
