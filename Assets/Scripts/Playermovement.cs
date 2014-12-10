@@ -37,7 +37,6 @@ public class Playermovement : MonoBehaviour {
 	void Start () {
 		//Subscribing to receive event stateChanged from GameControll, if so, calls gameStateChanged	
 		gameControl = GameObject.Find("GameControl").GetComponent<GameControl>();
-		movementDelimiter = GameObject.Find("MovementDelimiter").GetComponent<BoxCollider2D>();
 
 		PlayerPrefs.SetFloat("defaultEnergy",energy );
 		anim = GetComponent<Animator>();
