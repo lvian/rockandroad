@@ -5,8 +5,8 @@ using System.Collections.Generic;
 public class GridSpawner : MonoBehaviour {
 
 	protected GameControl gc;
-	public GameObject[] obstacles;
-	public GameObject[] powerups;
+	public SpawnableObject[] obstacles;
+	public SpawnableObject[] powerups;
 	public GameObject[] spawnPoints;
 	public Vector2 speed;
 	public float timer;
@@ -78,17 +78,18 @@ public class GridSpawner : MonoBehaviour {
 	}
 
 	void spawnTile(int tile, int spawner){
+		BlockSpawner bs = BlockSpawner.Instance;
 		switch(tile){
 		case 1:
 			int objectLenght = obstacles.Length;
-			int rand = Random.Range( 0 , objectLenght );
-			GameObject obs = (GameObject) Instantiate(obstacles[rand] , spawnPoints[spawner].transform.position , spawnPoints[spawner].transform.rotation); 
+			int rand = bs.randomInfluencedIndex(obstacles);
+			GameObject obs = (GameObject) Instantiate(obstacles[rand].gameObject , spawnPoints[spawner].transform.position , spawnPoints[spawner].transform.rotation); 
 			obs.transform.parent = spawnPoints[spawner].transform;
 			break;
 		case 2:
 			objectLenght = powerups.Length;
-			rand = Random.Range( 0 , objectLenght );
-			obs = (GameObject) Instantiate(powerups[rand] , spawnPoints[spawner].transform.position , spawnPoints[spawner].transform.rotation); 
+			rand = bs.randomInfluencedIndex(powerups);
+			obs = (GameObject) Instantiate(powerups[rand].gameObject , spawnPoints[spawner].transform.position , spawnPoints[spawner].transform.rotation); 
 			obs.transform.parent = spawnPoints[spawner].transform;
 			break;
 		default:

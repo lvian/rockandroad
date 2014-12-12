@@ -168,7 +168,6 @@ public class Playermovement : MonoBehaviour {
 			{
 				//change timer to something like 'death animation time lenght'
 				yield return new WaitForSeconds(1f);
-				Debug.Log("BUMP 2");
 				StartCoroutine(hitByObstacle());
 			}
 			else
@@ -179,7 +178,6 @@ public class Playermovement : MonoBehaviour {
 				Color c = new Color(
 					renderer.material.color.r, renderer.material.color.g, renderer.material.color.b, 1f);
 				renderer.material.color = c;
-				Debug.Log("BUMP 1");
 				StartCoroutine(hitByObstacle());
 			}
 		}
@@ -189,7 +187,6 @@ public class Playermovement : MonoBehaviour {
 			//Test is being made here, so we can play an animation before showing de defeat screen
 			if(energy <= 0)
 			{
-				Debug.Log("BUMP 3");
 				gameControl.Defeat();
 			}
 		}
@@ -202,7 +199,6 @@ public class Playermovement : MonoBehaviour {
 		this.adjustEnergy();
 		//play healing animation here
 		yield return new WaitForSeconds(invulTime);
-		Debug.Log("BUMP 4");
 		StartCoroutine(hitByObstacle());
 	}
 
@@ -239,7 +235,6 @@ public class Playermovement : MonoBehaviour {
 			if(energy <= 0)
 			{
 				yield return new WaitForSeconds(1f);
-				Debug.Log("BUMP 5");
 				StartCoroutine(hitByObstacle());
 			}
 			energyTimer = 0;
