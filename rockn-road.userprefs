@@ -1,8 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\spawner\BlockSpawner.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Spawner\BlockSpawner.cs">
     <Files>
-      <File FileName="Assets\Scripts\spawner\BlockSpawner.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Spawner\BlocksDB.cs" Line="40" Column="5" />
+      <File FileName="Assets\Scripts\Spawner\BlockSpawner.cs" Line="28" Column="1" />
+      <File FileName="Assets\Scripts\Objects\ConeObestacle.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Spawner\GridSpawner.cs" Line="58" Column="37" />
+      <File FileName="Assets\Scripts\Spawner\MapBlock.cs" Line="14" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

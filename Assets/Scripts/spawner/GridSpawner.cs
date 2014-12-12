@@ -41,7 +41,7 @@ public class GridSpawner : MonoBehaviour {
 		rd = blocks[Random.Range(0,blocks.Count - 1)];
 
 		gridColumn = 0;
-		gridSize = MapBlock.Size;
+		gridSize = st.grid.GetLength(1);
 	}
 	
 	// Update is called once per frame
@@ -55,6 +55,7 @@ public class GridSpawner : MonoBehaviour {
 				nd = rd;
 				rd = blocks[Random.Range(0,blocks.Count - 1)];
 				gridColumn = 0;
+				gridSize = st.grid.GetLength(1);
 			}
 			spawnColumn(new int[4] {
 				st.grid[0, gridColumn],
