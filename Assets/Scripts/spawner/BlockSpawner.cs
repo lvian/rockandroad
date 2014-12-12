@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BlockSpawner {
 	private float totalInfluence;
@@ -41,5 +42,26 @@ public class BlockSpawner {
 			}
 		}
 		return items.Length-1;
+	}
+
+	private float calcInfluences(List<MapBlock> items){
+		float sum = 0;
+		foreach(MapBlock i in items){
+			sum += i.spawnChance;
+		}
+		return sum;
+	}
+	
+	public int randomInfluencedIndex(List<MapBlock> items){
+		totalInfluence = calcInfluences(items);
+		float rand = Random.Range(0f, totalInfluence);
+		float tempSum = 0;
+		for(int i = 0; i < items.Count; i++){
+			tempSum += items[i].spawnChance;
+			if(rand <= tempSum){
+				return i;
+			}
+		}
+		return items.Count-1;
 	}
 }

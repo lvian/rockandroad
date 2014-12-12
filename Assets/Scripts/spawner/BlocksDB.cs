@@ -10,7 +10,7 @@ public class BlocksDB : MonoBehaviour {
 		blocks = new List<MapBlock>();
 
 		MapBlock b1 = new MapBlock();
-		b1.grid = new int[4,8]
+		b1.grid = new int[,]
 		{
 			{ 0, 1, 0, 0, 1, 0, 0, 1 },
 			{ 0, 0, 1, 0, 0, 1, 0, 0 },
@@ -19,25 +19,69 @@ public class BlocksDB : MonoBehaviour {
 		};
 		blocks.Add(b1);
 
-		MapBlock b2 = new MapBlock();
-		b2.grid = new int[4,8]
+		b1 = new MapBlock();
+		b1.grid = new int[,]
 		{
 			{ 0, 1, 0, 0, 1, 0, 1, 1 },
 			{ 0, 1, 0, 0, 0, 0, 0, 0 },
 			{ 1, 0, 1, 0, 0, 1, 0, 0 },
 			{ 0, 0, 0, 0, 1, 0, 1, 0 }
 		};
-		blocks.Add(b2);
+		blocks.Add(b1);
 
 
-		MapBlock b3 = new MapBlock();
-		b2.grid = new int[4,8]
+		b1 = new MapBlock();
+		b1.grid = new int[,]
 		{
-			{ 0, 1, 0, 0, 1, 0, 1, 1 },
-			{ 0, 1, 0, 2, 0, 0, 0, 0 },
-			{ 1, 0, 1, 0, 0, 1, 0, 0 },
-			{ 0, 0, 0, 0, 1, 0, 1, 0 }
+			{ 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1 },
+			{ 0, 1, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0 },
+			{ 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0 },
+			{ 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1 }
 		};
-		blocks.Add(b3);
+		blocks.Add(b1);
+
+		b1 = new MapBlock();
+		b1.grid = new int[,]
+		{
+			{ 1, 1, 0, 1, 0 },
+			{ 1, 1, 0, 0, 1 },
+			{ 0, 0, 0, 0, 0 },
+			{ 0, 1, 0, 0, 1 }
+		};
+		blocks.Add(b1);
+
+		b1 = new MapBlock();
+		b1.spawnChance = .1f;
+		b1.grid = new int[,]
+		{
+			{ 0, 0, 1 },
+			{ 1, 0, 1 },
+			{ 0, 2, 0 },
+			{ 1, 0, 0 }
+		};
+		blocks.Add(b1);
+
+		b1 = new MapBlock();
+		b1.spawnChance = .3f;
+		b1.grid = new int[,]
+		{
+			{ 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0 },
+			{ 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0 },
+			{ 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1 },
+			{ 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1 }
+		};
+		blocks.Add(b1);
+
+		b1 = new MapBlock();
+		b1.spawnChance = .07f;
+		b1.grid = new int[,]
+		{
+			{ 0, 1, 0, 2, 1, 0, 1, 1 },
+			{ 0, 1, 1, 0, 2, 0, 0, 0 },
+			{ 0, 0, 0, 0, 0, 1, 0, 0 },
+			{ 0, 1, 0, 0, 2, 0, 1, 0 }
+		};
+		blocks.Add(b1);
+		//blocks.Add(b1);
 	}
 }

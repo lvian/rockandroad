@@ -10,8 +10,10 @@ public class GridSpawner : MonoBehaviour {
 	public GameObject[] spawnPoints;
 	public Vector2 speed;
 	public float timer;
+	public int tileCounter;
 
 	public BlocksDB blocksClass;
+	private BlockSpawner bs;
 	private List<MapBlock> blocks;
 	private MapBlock st; //1st block of tiles
 	private MapBlock nd; //2nd block of tiles
@@ -29,6 +31,7 @@ public class GridSpawner : MonoBehaviour {
 		speed = new Vector2(gc.GameSpeed , 0);
 		timer = 2f;
 
+		bs = BlockSpawner.Instance;
 		blocks = blocksClass.blocks;
 		if(blocks == null){
 			GameObject go = GameObject.Find ("BlockDB");
@@ -36,12 +39,13 @@ public class GridSpawner : MonoBehaviour {
 			blocks = blocksClass.blocks;
 		}
 
-		st = blocks[Random.Range(0,blocks.Count - 1)];
-		nd = blocks[Random.Range(0,blocks.Count - 1)];
-		rd = blocks[Random.Range(0,blocks.Count - 1)];
+		st = blocks[bs.randomInfluencedIndex(blocks)];
+		nd = blocks[bs.randomInfluencedIndex(blocks)];
+		rd = blocks[bs.randomInfluencedIndex(blocks)];
 
 		gridColumn = 0;
 		gridSize = st.grid.GetLength(1);
+		tileCounter = 0;
 	}
 	
 	// Update is called once per frame
@@ -53,17 +57,19 @@ public class GridSpawner : MonoBehaviour {
 				spawnColumn(generateTransitoryColumn(st, nd));
 				st = nd;
 				nd = rd;
-				rd = blocks[Random.Range(0,blocks.Count - 1)];
+				rd = blocks[bs.randomInfluencedIndex(blocks)];
 				gridColumn = 0;
 				gridSize = st.grid.GetLength(1);
 			}
-			spawnColumn(new int[4] {
-				st.grid[0, gridColumn],
-				st.grid[1, gridColumn],
-				st.grid[2, gridColumn],
-				st.grid[3, gridColumn]
-			});
-			gridColumn++;
+			else{
+				spawnColumn(new int[4] {
+					st.grid[0, gridColumn],
+					st.grid[1, gridColumn],
+					st.grid[2, gridColumn],
+					st.grid[3, gridColumn]
+				});
+				gridColumn++;
+			}
 			timer = 2f;
 		}
 		else{
@@ -76,19 +82,17 @@ public class GridSpawner : MonoBehaviour {
 		spawnTile(column[1], 1);
 		spawnTile(column[2], 2);
 		spawnTile(column[3], 3);
+		tileCounter++;
 	}
 
 	void spawnTile(int tile, int spawner){
-		BlockSpawner bs = BlockSpawner.Instance;
 		switch(tile){
 		case 1:
-			int objectLenght = obstacles.Length;
 			int rand = bs.randomInfluencedIndex(obstacles);
 			GameObject obs = (GameObject) Instantiate(obstacles[rand].gameObject , spawnPoints[spawner].transform.position , spawnPoints[spawner].transform.rotation); 
 			obs.transform.parent = spawnPoints[spawner].transform;
 			break;
 		case 2:
-			objectLenght = powerups.Length;
 			rand = bs.randomInfluencedIndex(powerups);
 			obs = (GameObject) Instantiate(powerups[rand].gameObject , spawnPoints[spawner].transform.position , spawnPoints[spawner].transform.rotation); 
 			obs.transform.parent = spawnPoints[spawner].transform;
@@ -99,7 +103,20 @@ public class GridSpawner : MonoBehaviour {
 	}
 
 	int[] generateTransitoryColumn(MapBlock previous, MapBlock next){
-		return new int[4] {0, 0, 0, 0};
+		int[] column = new int[4] {0, 0, 0, 0};
+		for(int r = 0; r < previous.grid.GetLength(0); r++){
+			int _prev = previous.grid[r,previous.grid.GetLength(1) - 1];
+			int _next = next.grid[r,0];
+			if(_prev == 0){
+				if(_next == 1)
+					column[r] = 1;
+			}
+			else{
+				if(_next == 0)
+					column[r] = 1;
+			}
+		}
+		return column;
 	}
 
 	void gameStateChanged(float gs)
