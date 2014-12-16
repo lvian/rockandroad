@@ -139,17 +139,16 @@ public class Playermovement : MonoBehaviour {
 		if(other.gameObject.tag == "healthBoost")
 		{
 			//We could have disabled the collider and avoided this whole 'check for hit thing'
+			HealthBoost hb = other.gameObject.GetComponent<HealthBoost>();
 			other.collider2D.enabled = false;
 			Destroy(other.gameObject);
-			if(energy <= 90)
+			energy += hb.HealthAmount;
+			if(energy > 100)
 			{
-				energy += 10;
-				this.adjustEnergy();
-			} else{
 				energy = 100;
+				this.adjustEnergy();
 			}
-
-			givePoints(100);
+			givePoints(hb.Points);
 			//coroutine not needed atm
 			//StartCoroutine("gotAHealthBoost");
 		}
