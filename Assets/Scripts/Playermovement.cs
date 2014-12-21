@@ -9,6 +9,7 @@ public class Playermovement : MonoBehaviour {
 	
 	//TODO Player states
 	public int points = 0;
+	public int multiplier = 1;
 	//public int health;
 	public float energy;
 	public float invulTime;
@@ -152,6 +153,18 @@ public class Playermovement : MonoBehaviour {
 			//coroutine not needed atm
 			//StartCoroutine("gotAHealthBoost");
 		}
+		if(other.gameObject.tag == "multiplier")
+		{
+			//We could have disabled the collider and avoided this whole 'check for hit thing'
+			Multiplier mp = other.gameObject.GetComponent<Multiplier>();
+			other.collider2D.enabled = false;
+			Destroy(other.gameObject);
+			multiplier ++;
+			givePoints(mp.Points);
+			adjustMultiplier();
+			//coroutine not needed atm
+			//StartCoroutine("gotAHealthBoost");
+		}
 	}
 	
 	IEnumerator hitByObstacle() {
@@ -159,6 +172,8 @@ public class Playermovement : MonoBehaviour {
 			yield break;
 		if(!isBeingHit)
 		{	
+			multiplier = 1;
+			adjustMultiplier();
 			isBeingHit = true;
 			energy -= 10;
 			this.adjustEnergy();
@@ -191,15 +206,6 @@ public class Playermovement : MonoBehaviour {
 		}
 	}
 
-	//not being used atm
-	IEnumerator gotAHealthBoost() {
-
-		energy += 10; //can receive diferent healthboost values
-		this.adjustEnergy();
-		//play healing animation here
-		yield return new WaitForSeconds(invulTime);
-		StartCoroutine(hitByObstacle());
-	}
 
 	public float Energy {
 		get {
@@ -215,15 +221,23 @@ public class Playermovement : MonoBehaviour {
 		//Debug.Log (pg.value);
 
 	}
+
+	public void adjustMultiplier() {
+		UILabel mp = GameObject.Find("scoremultiplier_value").GetComponent<UILabel>();
+		mp.text = "x " +multiplier.ToString();
+		
+	}
 	
 	public void givePoints(int pts) {
 		if(energy > 0)
 		{
-			points += pts;
+			points += pts * multiplier;
 			UILabel score = GameObject.Find("score_value").GetComponent<UILabel>();
 			score.text = points.ToString();
 			}
 	}
+
+
 
 	IEnumerator energyDecay ()
 	{

@@ -175,6 +175,7 @@
      <Compile Include="Assets\Scripts\GameControl.cs" />
      <Compile Include="Assets\Scripts\Objects\ConeObestacle.cs" />
      <Compile Include="Assets\Scripts\Objects\HealthBoost.cs" />
+     <Compile Include="Assets\Scripts\Objects\Multiplier.cs" />
      <Compile Include="Assets\Scripts\Objects\Obstacle.cs" />
      <Compile Include="Assets\Scripts\Objects\PowerUp.cs" />
      <Compile Include="Assets\Scripts\Objects\SpawnableObject.cs" />

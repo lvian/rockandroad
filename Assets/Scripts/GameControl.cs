@@ -251,11 +251,12 @@ public class GameControl : MonoBehaviour {
 	public void gameReset()
 	{
 		player.points = 0;
-
+		player.multiplier = 1;
 
 		player.energy = PlayerPrefs.GetFloat("defaultEnergy");
 		player.adjustEnergy ();
 
+		GameObject[] multiplier = GameObject.FindGameObjectsWithTag ("multiplier");
 		GameObject[] obstacles = GameObject.FindGameObjectsWithTag ("Obstacles");
 		GameObject[] healthBoost = GameObject.FindGameObjectsWithTag ("healthBoost");
 		foreach( GameObject ob in obstacles)
@@ -266,7 +267,10 @@ public class GameControl : MonoBehaviour {
 		{
 			Destroy (hb);
 		}
-
+		foreach( GameObject mp in multiplier)
+		{
+			Destroy (mp);
+		}
 		if (UIButton.current.name.Equals ("main_button") || UIButton.current.name.Equals ("yes_button")) 
 		{
 			MainMenu();

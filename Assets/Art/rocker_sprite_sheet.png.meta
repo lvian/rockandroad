@@ -288,5 +288,15 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
+    - name: rocker_sprite_sheet_21
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 217
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
