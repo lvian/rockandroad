@@ -72,6 +72,17 @@ public class Playermovement : MonoBehaviour {
 		{
 			anim.speed = 0;
 		}
+		else if (gameControl.currentGameState == GameControl.GameState.GameRestart)
+		{
+			anim.speed = 1;
+			moveTo();
+			if(Vector3.Distance(lanes[currentLane].transform.position, transform.position) == 0)
+			{
+				isMoving = false;
+				gameControl.currentGameState = GameControl.GameState.MainMenu;
+				Debug.Log (gameControl.currentGameState);
+			}
+		}
 		if(isInvul){
 			animateAlpha();
 		}
@@ -123,6 +134,13 @@ public class Playermovement : MonoBehaviour {
 			isMoving = true;
 		}
 						
+	}
+
+	public void resetPLayerPosition()
+	{
+		currentLane  = firstLane;
+		isMoving = true;
+		
 	}
 	
 	

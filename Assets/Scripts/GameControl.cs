@@ -240,7 +240,7 @@ public class GameControl : MonoBehaviour {
 	}
 
 
-	void exitGameplay ()
+	public void exitGameplay ()
 	{
 		pause ();
 
@@ -250,6 +250,8 @@ public class GameControl : MonoBehaviour {
 
 	public void gameReset()
 	{
+		gameState = GameState.GameRestart;
+		player.resetPLayerPosition ();
 		player.points = 0;
 		player.multiplier = 1;
 
@@ -287,6 +289,7 @@ public class GameControl : MonoBehaviour {
 		Play,
 		Pause,
 		Victory,
-		Defeat
+		Defeat,
+		GameRestart
 	}
 }
