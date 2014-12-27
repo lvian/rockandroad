@@ -74,12 +74,14 @@ public class Playermovement : MonoBehaviour {
 		}
 		else if (gameControl.currentGameState == GameControl.GameState.GameRestart)
 		{
+			gameControl.gameSpeed = 2;
 			anim.speed = 1;
 			moveTo();
 			if(Vector3.Distance(lanes[currentLane].transform.position, transform.position) == 0)
 			{
 				isMoving = false;
 				gameControl.currentGameState = GameControl.GameState.MainMenu;
+				gameControl.gameSpeed = 5;
 				Debug.Log (gameControl.currentGameState);
 			}
 		}
