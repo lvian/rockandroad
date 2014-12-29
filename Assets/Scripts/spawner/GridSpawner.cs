@@ -91,6 +91,9 @@ public class GridSpawner : MonoBehaviour {
 			int rand = bs.randomInfluencedIndex(obstacles);
 			GameObject obs = (GameObject) Instantiate(obstacles[rand].gameObject , spawnPoints[spawner].transform.position , spawnPoints[spawner].transform.rotation); 
 			obs.transform.parent = spawnPoints[spawner].transform;
+			SpawnableObject so = obs.GetComponent<SpawnableObject>();
+			so.lanes = spawnPoints;
+			so.spawnLane = spawner;
 			break;
 		case 2:
 			rand = bs.randomInfluencedIndex(powerups);

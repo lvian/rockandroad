@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class TireObestacle : Obstacle {
+public class TireObestacle : MovableObstacle {
 
 	// Use this for initialization
 	public int points = 15;
@@ -10,7 +10,7 @@ public class TireObestacle : Obstacle {
 	private Animator anim;
 	// Update is called once per frame
 
-	void Start()
+	public override void Start()
 	{
 		base.Start ();
 		anim = GetComponent<Animator>();

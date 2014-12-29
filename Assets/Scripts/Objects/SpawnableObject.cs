@@ -3,12 +3,14 @@ using System.Collections;
 
 public abstract class SpawnableObject : MonoBehaviour {
 
-	private Vector2 speed;
+	protected Vector2 speed;
 	public Vector2 direction = new Vector2(-1, 0);
 	protected GameControl gc;
 	protected Playermovement pm;
-	private bool pointsAwarded = false;
+	protected bool pointsAwarded = false;
 	public float spawnChance;
+	public GameObject[] lanes;
+	public int spawnLane;
 	
 	// Use this for initialization
 	public virtual void Start () {
@@ -19,7 +21,7 @@ public abstract class SpawnableObject : MonoBehaviour {
 		
 		pm = GameObject.Find("Player").GetComponent<Playermovement>();
 		//Makes sure the obstacle starts with current game speed
-		speed = new Vector2(gc.GameSpeed, 0);
+		speed = new Vector2(gc.GameSpeed, gc.GameSpeed);
 		spawnChance = .5f;
 		
 	}
@@ -54,6 +56,7 @@ public abstract class SpawnableObject : MonoBehaviour {
 		}
 	
 	}
+
 	
 	void gameStateChanged(float gs)
 	{

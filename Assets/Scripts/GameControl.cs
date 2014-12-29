@@ -103,14 +103,22 @@ public class GameControl : MonoBehaviour {
 		if(currentGameState == GameState.Pause)
 		{
 			NGUITools.SetActive( gameplayPanel,true);
-			currentGameState = GameState.Play;
 			NGUITools.SetActive( exitPanel,false);
+			StartCoroutine(wait(1f));
+			currentGameState = GameState.Play;
+
 		}
 		else if(currentGameState == GameState.Play)
 		{
 			currentGameState = GameState.Pause;
 		}		
 			
+	}
+
+	IEnumerator wait(float waitTime) {
+		Debug.Log (waitTime);
+		yield return new WaitForSeconds(waitTime);
+		
 	}
 
 	public void togglePause()
@@ -121,6 +129,7 @@ public class GameControl : MonoBehaviour {
 		}
 		else
 		{
+			StartCoroutine(wait(1f));
 			currentGameState = GameState.Play;
 		}
 		
