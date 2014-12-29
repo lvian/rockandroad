@@ -60,10 +60,8 @@ public class MovableObstacle : Obstacle {
 	{
 		float v = lanes [spawnLane].transform.position.y;
 		int l = Random.Range (0, 4);
-		Debug.Log ("l "+ l);
 		while ( l == spawnLane  || Mathf.Abs(l - spawnLane ) > 1)
 		{
-			Debug.Log ("spawn "+spawnLane);
 			l = Random.Range(0,4);
 		}
 		spawnLane = l;

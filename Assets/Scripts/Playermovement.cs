@@ -82,7 +82,6 @@ public class Playermovement : MonoBehaviour {
 				isMoving = false;
 				gameControl.currentGameState = GameControl.GameState.MainMenu;
 				gameControl.gameSpeed = 5;
-				Debug.Log (gameControl.currentGameState);
 			}
 		}
 		if(isInvul){

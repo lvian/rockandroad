@@ -104,8 +104,7 @@ public class GameControl : MonoBehaviour {
 		{
 			NGUITools.SetActive( gameplayPanel,true);
 			NGUITools.SetActive( exitPanel,false);
-			StartCoroutine(wait(1f));
-			currentGameState = GameState.Play;
+			StartCoroutine(playDelay(1f));
 
 		}
 		else if(currentGameState == GameState.Play)
@@ -115,9 +114,9 @@ public class GameControl : MonoBehaviour {
 			
 	}
 
-	IEnumerator wait(float waitTime) {
-		Debug.Log (waitTime);
+	IEnumerator playDelay(float waitTime) {
 		yield return new WaitForSeconds(waitTime);
+		currentGameState = GameState.Play;
 		
 	}
 
@@ -129,8 +128,7 @@ public class GameControl : MonoBehaviour {
 		}
 		else
 		{
-			StartCoroutine(wait(1f));
-			currentGameState = GameState.Play;
+			StartCoroutine(playDelay(1f));
 		}
 		
 	}
