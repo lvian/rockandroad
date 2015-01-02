@@ -9,7 +9,7 @@ public class GameControl : MonoBehaviour {
 	public int gameSpeed;
 	private GameState gameState;
 	private Playermovement player;
-	public GameObject gameplayPanel,menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1,tutorialPanel2,defeatPanel, exitPanel;
+	public GameObject gameplayPanel, menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1, tutorialPanel2, defeatPanel, exitPanel;
 
 	// Use this for initialization
 	void Start () {
@@ -158,10 +158,8 @@ public class GameControl : MonoBehaviour {
 		
 	public void GameStart()
 	{
-		if(UIButton.current.name.Equals("skip_button"))
-		{
-			PlayerPrefs.SetInt("skipTutorial", 1);
-		}
+		//PlayerPrefs.DeleteAll ();
+
 		NGUITools.SetActive( menuPanel,false);
 		NGUITools.SetActive( controlsPanel,false);
 		NGUITools.SetActive( creditsPanel,false);
@@ -175,6 +173,11 @@ public class GameControl : MonoBehaviour {
 		UILabel score = GameObject.Find("score_value").GetComponent<UILabel>();
 		score.text = "0";
 		
+	} 
+
+	public void SkipTutorial()
+	{
+			PlayerPrefs.SetInt("skipTutorial", 1);
 	} 
 
 	public void MainMenu()

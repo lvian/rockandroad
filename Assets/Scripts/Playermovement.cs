@@ -94,7 +94,7 @@ public class Playermovement : MonoBehaviour {
 	{
 		if(isMoving)
 		{
-			transform.position = Vector3.MoveTowards(gameObject.transform.position,lanes[currentLane].transform.position, 0.02f * gameControl.GameSpeed);
+			transform.position = Vector3.MoveTowards(gameObject.transform.position,lanes[currentLane].transform.position, 0.03f * gameControl.GameSpeed);
 		}
 	
 	}
