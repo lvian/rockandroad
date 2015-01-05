@@ -326,7 +326,7 @@ TextureImporter:
         width: 60
         height: 60
       alignment: 9
-      pivot: {x: .5, y: .419999987}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: rocker_sprite_sheet_25
       rect:
@@ -336,7 +336,7 @@ TextureImporter:
         width: 60
         height: 60
       alignment: 9
-      pivot: {x: .5, y: .419999987}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

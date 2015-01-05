@@ -24,12 +24,12 @@ public class GameControl : MonoBehaviour {
 	{
 		if(Input.GetKeyDown(KeyCode.R))
 		{
-			GameSpeed ++;
+			//GameSpeed ++;
 		}
 		
 		if(Input.GetKeyDown(KeyCode.F))
 		{
-			GameSpeed --;
+			//GameSpeed --;
 		}
 		if(gameState == GameState.MainMenu)
 		{
@@ -159,7 +159,7 @@ public class GameControl : MonoBehaviour {
 	public void GameStart()
 	{
 		//PlayerPrefs.DeleteAll ();
-
+		StartCoroutine(playDelay (0.5f));
 		NGUITools.SetActive( menuPanel,false);
 		NGUITools.SetActive( controlsPanel,false);
 		NGUITools.SetActive( creditsPanel,false);
@@ -167,7 +167,7 @@ public class GameControl : MonoBehaviour {
 		NGUITools.SetActive( tutorialPanel1,false);
 		NGUITools.SetActive( tutorialPanel2,false);
 		NGUITools.SetActive( defeatPanel,false);
-		currentGameState = GameState.Play;
+		//currentGameState = GameState.Play;
 
 		//Makes sure the score label is set to zero after a restart
 		UILabel score = GameObject.Find("score_value").GetComponent<UILabel>();
