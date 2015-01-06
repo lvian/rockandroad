@@ -133,15 +133,22 @@ public class GameControl : MonoBehaviour {
 		
 	}
 
-	public void backToMenu()
+
+
+	public void checkCreditsControl()
 	{
-		NGUITools.SetActive( controlsPanel,false);
-		NGUITools.SetActive( creditsPanel,false);
-		//NGUITools.SetActive( menuPanel,true);
-		
+		Debug.Log (UIButton.current.name);
+		if (UIButton.current.name == "controls_button") {
+			creditsPanel.GetComponent<TweenPosition> ().PlayReverse ();
+			controlsPanel.GetComponent<TweenPosition> ().Play ();
+		}
+		if(UIButton.current.name == "credits_button")
+		{
+			controlsPanel.GetComponent<TweenPosition> ().PlayReverse ();
+			creditsPanel.GetComponent<TweenPosition> ().Play ();
+		}
+
 	}
-
-
 
 	public void toggleSound()
 	{
@@ -161,8 +168,10 @@ public class GameControl : MonoBehaviour {
 		//PlayerPrefs.DeleteAll ();
 		StartCoroutine(playDelay (0.5f));
 		NGUITools.SetActive( menuPanel,false);
-		NGUITools.SetActive( controlsPanel,false);
-		NGUITools.SetActive( creditsPanel,false);
+		controlsPanel.GetComponent<TweenPosition> ().PlayReverse ();
+		//NGUITools.SetActive( controlsPanel,false);
+		creditsPanel.GetComponent<TweenPosition> ().PlayReverse ();
+		//NGUITools.SetActive( creditsPanel,false);
 		NGUITools.SetActive( gameplayPanel,true);
 		NGUITools.SetActive( tutorialPanel1,false);
 		NGUITools.SetActive( tutorialPanel2,false);
@@ -199,8 +208,8 @@ public class GameControl : MonoBehaviour {
 		} else
 		{
 			NGUITools.SetActive (menuPanel, false);
-			NGUITools.SetActive (controlsPanel, false);
-			NGUITools.SetActive (creditsPanel, false);
+			//NGUITools.SetActive (controlsPanel, false);
+			//NGUITools.SetActive (creditsPanel, false);
 			NGUITools.SetActive (tutorialPanel1, true);
 		}
 	} 
@@ -211,24 +220,7 @@ public class GameControl : MonoBehaviour {
 		NGUITools.SetActive( tutorialPanel2,true);
 	} 
 
-	public void Control()
-	{
-		
-		NGUITools.SetActive( creditsPanel,false);
-		NGUITools.SetActive( controlsPanel,true);
-		//mainCamera.GetComponent<AudioSource>().Play();
-		
-	}
 
-
-	public void Credits()
-	{
-		
-		NGUITools.SetActive( controlsPanel,false);
-		NGUITools.SetActive( creditsPanel,true);
-		//mainCamera.GetComponent<AudioSource>().Play();
-		
-	}
 
 	public void Defeat()
 	{
