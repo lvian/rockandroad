@@ -103,12 +103,12 @@ public class Playermovement : MonoBehaviour {
 	
 	private void checkInput(){
 
-		if(Input.GetKeyDown(KeyCode.W))
+		if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
 		{
 			move(UP_ONE_LANE);
 		}
 		
-		if(Input.GetKeyDown(KeyCode.S))
+		if(Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
 		{
 			move (DOWN_ONE_LANE);
 		}
