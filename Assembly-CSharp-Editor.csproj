@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{B137DB5C-8C35-8D6A-0F13-04EE64AFBA73}</ProjectGuid>
+	<ProjectGuid>{62AB7011-2062-C92B-AE33-0A0A10CE6967}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -39,10 +39,10 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>D:/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>D:/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -51,11 +51,9 @@
      <Compile Include="Assets\NGUI\Scripts\Editor\ActiveAnimationEditor.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\BMFontReader.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\ComponentSelector.cs" />
-     <Compile Include="Assets\NGUI\Scripts\Editor\EventDelegateDrawer.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\EventDelegateEditor.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\FreeType.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\NGUIContextMenu.cs" />
-     <Compile Include="Assets\NGUI\Scripts\Editor\NGUIEditorExtensions.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\NGUIEditorTools.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\NGUIHandles.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\NGUIHelp.cs" />
@@ -65,8 +63,6 @@
      <Compile Include="Assets\NGUI\Scripts\Editor\NGUISettings.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\NGUISnap.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\NGUITransformInspector.cs" />
-     <Compile Include="Assets\NGUI\Scripts\Editor\PropertyBindingEditor.cs" />
-     <Compile Include="Assets\NGUI\Scripts\Editor\PropertyReferenceDrawer.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\SpriteSelector.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\TweenAlphaEditor.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\TweenColorEditor.cs" />
@@ -83,10 +79,8 @@
      <Compile Include="Assets\NGUI\Scripts\Editor\UIAnchorEditor.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\UIAtlasInspector.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\UIAtlasMaker.cs" />
-     <Compile Include="Assets\NGUI\Scripts\Editor\UIBasicSpriteEditor.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\UIButtonColorEditor.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\UIButtonEditor.cs" />
-     <Compile Include="Assets\NGUI\Scripts\Editor\UIButtonKeysEditor.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\UIButtonMessageEditor.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\UICameraEditor.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\UICameraTool.cs" />
@@ -102,7 +96,6 @@
      <Compile Include="Assets\NGUI\Scripts\Editor\UIGridEditor.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\UIImageButtonInspector.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\UIInputEditor.cs" />
-     <Compile Include="Assets\NGUI\Scripts\Editor\UIKeyNavigationEditor.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\UILabelInspector.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\UILocalizeEditor.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\UIPanelInspector.cs" />
@@ -110,14 +103,12 @@
      <Compile Include="Assets\NGUI\Scripts\Editor\UIPlayAnimationEditor.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\UIPlayTweenEditor.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\UIPopupListInspector.cs" />
-     <Compile Include="Assets\NGUI\Scripts\Editor\UIPrefabTool.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\UIProgressBarEditor.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\UIRectEditor.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\UIRootEditor.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\UIScrollBarEditor.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\UIScrollViewEditor.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\UISliderEditor.cs" />
-     <Compile Include="Assets\NGUI\Scripts\Editor\UISnapshotPointEditor.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\UISpriteAnimationInspector.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\UISpriteInspector.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\UIStretchEditor.cs" />
@@ -128,64 +119,60 @@
      <Compile Include="Assets\NGUI\Scripts\Editor\UITweenerEditor.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\UIWidgetContainerEditor.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\UIWidgetInspector.cs" />
-     <Compile Include="Assets\NGUI\Scripts\Editor\UIWrapContentEditor.cs" />
-     <None Include="Assets\NGUI\Examples\Shaders\Unlit - Depth Cutout.shader" />
-     <None Include="Assets\NGUI\ReadMe - 3.7.6.txt" />
-     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text 2.shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Depth Cutout.shader" />
+     <None Include="Assets\NGUI\ReadMe - 3.4.9.txt" />
      <None Include="Assets\Font\open-window_metal-mania\OFL.txt" />
      <None Include="Assets\NGUI\Examples\Models\Orc\Orc Skin.shader" />
      <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo20.txt" />
      <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo14.txt" />
-     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text 1.shader" />
-     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored (TextureClip).shader" />
-     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (Packed) (TextureClip).shader" />
-     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored 2.shader" />
-     <None Include="Assets\NGUI\Examples\Shaders\Unlit - Masked Colored.shader" />
-     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 3.shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text (SoftClip).shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Dynamic Font (AlphaClip).shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Masked Colored.shader" />
      <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo18.txt" />
-     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (TextureClip).shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (Packed) (AlphaClip) .shader" />
      <None Include="Assets\NGUI\Examples\Atlases\SciFi\SciFi Font - Header.txt" />
-     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored 1.shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored (AlphaClip).shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (AlphaClip).shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text (AlphaClip).shader" />
      <None Include="Assets\NGUI\Examples\Atlases\Fantasy\Fantasy Font - Normal.txt" />
-     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored 3.shader" />
      <None Include="Assets\NGUI\Examples\Atlases\Refractive\Refractive Font - Normal.txt" />
-     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 2.shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Dynamic Font (SoftClip).shader" />
      <None Include="Assets\Font\rock-font.fnt" />
-     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text 3.shader" />
-     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed 2.shader" />
-     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed 1.shader" />
-     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 1.shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (Packed) (SoftClip).shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored (SoftClip).shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored.shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Dynamic Font.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored.shader" />
+     <None Include="Assets\NGUI\Examples\Other\English.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text.shader" />
-     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed.shader" />
-     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed 3.shader" />
-     <None Include="Assets\NGUI\Examples\Shaders\Unlit - Additive Colored.shader" />
+     <None Include="Assets\NGUI\Examples\Other\French.txt" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (Packed).shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Additive Colored.shader" />
      <None Include="Assets\NGUI\Examples\Atlases\Refractive\Refractive Font - Header.txt" />
      <None Include="Assets\NGUI\Examples\Shaders\Refractive.shader" />
-     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text (TextureClip).shader" />
-     <None Include="Assets\NGUI\Examples\Shaders\Unlit - Depth.shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Depth.shader" />
      <None Include="Assets\NGUI\Examples\Atlases\SciFi\SciFi Font - Normal.txt" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (SoftClip).shader" />
      <None Include="Assets\NGUI\Examples\Models\Orc Armor\Orc Armor.shader" />
      <None Include="Assets\NGUI\Examples\Resources\Localization.txt" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/Editor/UnityEditor.UI.dll</HintPath>
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/Editor/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="ICSharpCode.SharpZipLib">
- <HintPath>C:/Users/Caco/Documents/rockn-road/Assets/plugins/ICSharpCode.SharpZipLib.dll</HintPath>
+ <HintPath>D:/Projects/Rock'n Road/Assets/plugins/ICSharpCode.SharpZipLib.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
- <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
+ <HintPath>D:/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{FE047DF4-AD5C-BF07-1E94-F0C590010220}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{9736DFC5-0B3F-63E6-55A0-48AE80295B21}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{FADE24F6-8125-09DD-AA20-9920C3219BD6}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+      <Project>{4BFE66DA-DBF1-1E78-98C9-6B59702D3C1D}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
