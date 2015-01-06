@@ -5,8 +5,9 @@ using System.Collections.Generic;
 public class GridSpawner : MonoBehaviour {
 
 	protected GameControl gc;
-	public SpawnableObject[] obstacles;
-	public SpawnableObject[] powerups;
+	public SpawnableObject[] staticObstacles;
+	public SpawnableObject[] movableObstacles;
+	public SpawnableObject[] powerUps;
 	public GameObject[] spawnPoints;
 	public Vector2 speed;
 	public float timer;
@@ -88,16 +89,21 @@ public class GridSpawner : MonoBehaviour {
 	void spawnTile(int tile, int spawner){
 		switch(tile){
 		case 1:
-			int rand = bs.randomInfluencedIndex(obstacles);
-			GameObject obs = (GameObject) Instantiate(obstacles[rand].gameObject , spawnPoints[spawner].transform.position , spawnPoints[spawner].transform.rotation); 
+			int rand = bs.randomInfluencedIndex(staticObstacles);
+			GameObject obs = (GameObject) Instantiate(staticObstacles[rand].gameObject , spawnPoints[spawner].transform.position , spawnPoints[spawner].transform.rotation); 
+			obs.transform.parent = spawnPoints[spawner].transform;
+			break;
+		case 2:
+			rand = bs.randomInfluencedIndex(movableObstacles);
+			obs = (GameObject) Instantiate(movableObstacles[rand].gameObject , spawnPoints[spawner].transform.position , spawnPoints[spawner].transform.rotation); 
 			obs.transform.parent = spawnPoints[spawner].transform;
 			SpawnableObject so = obs.GetComponent<SpawnableObject>();
 			so.lanes = spawnPoints;
 			so.spawnLane = spawner;
 			break;
-		case 2:
-			rand = bs.randomInfluencedIndex(powerups);
-			obs = (GameObject) Instantiate(powerups[rand].gameObject , spawnPoints[spawner].transform.position , spawnPoints[spawner].transform.rotation); 
+		case 3:
+			rand = bs.randomInfluencedIndex(powerUps);
+			obs = (GameObject) Instantiate(powerUps[rand].gameObject , spawnPoints[spawner].transform.position , spawnPoints[spawner].transform.rotation); 
 			obs.transform.parent = spawnPoints[spawner].transform;
 			break;
 		default:
@@ -111,12 +117,16 @@ public class GridSpawner : MonoBehaviour {
 			int _prev = previous.grid[r,previous.grid.GetLength(1) - 1];
 			int _next = next.grid[r,0];
 			if(_prev == 0){
-				if(_next == 1)
-					column[r] = 1;
+				if(_next == 1){
+					column[r] = 3;
+					return column;
+				}
 			}
 			else{
-				if(_next == 0)
-					column[r] = 1;
+				if(_next == 0){
+					column[r] = 3;
+					return column;
+				}
 			}
 		}
 		return column;

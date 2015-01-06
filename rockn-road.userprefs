@@ -1,11 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Spawner\BlocksDB.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Flow\GameFlow.cs">
     <Files>
-      <File FileName="Assets\Scripts\Spawner\BlocksDB.cs" Line="54" Column="24" />
-      <File FileName="Assets\Scripts\Spawner\GridSpawner.cs" Line="3" Column="1" />
-      <File FileName="Assets\Scripts\Spawner\MapBlock.cs" Line="13" Column="26" />
-      <File FileName="Assets\Scripts\Spawner\BlockSpawner.cs" Line="65" Column="21" />
+      <File FileName="Assets\Scripts\Flow\GameFlow.cs" Line="10" Column="4" />
+      <File FileName="Assets\Scripts\Flow\Level1Flow.cs" Line="14" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
