@@ -9,7 +9,7 @@ public class GameControl : MonoBehaviour {
 	public int gameSpeed;
 	private GameState gameState;
 	private Playermovement player;
-	public GameObject gameplayPanel, menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1, tutorialPanel2, defeatPanel, exitPanel;
+	public GameObject gameplayPanel, menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1, tutorialPanel2, defeatPanel, exitPanel, readyMessage, goMessage;
 
 	// Use this for initialization
 	void Start () {
@@ -104,6 +104,7 @@ public class GameControl : MonoBehaviour {
 		{
 			NGUITools.SetActive( gameplayPanel,true);
 			NGUITools.SetActive( exitPanel,false);
+			checkReadyGo();
 			StartCoroutine(playDelay(1f));
 
 		}
@@ -122,13 +123,18 @@ public class GameControl : MonoBehaviour {
 
 	public void togglePause()
 	{
-		if(UIToggle.current.value == true)
-		{
+		if (currentGameState == GameState.MainMenu) {
 			currentGameState = GameState.Pause;
-		}
-		else
-		{
-			StartCoroutine(playDelay(1f));
+		}else{
+			if(UIToggle.current.value == true)
+			{
+				currentGameState = GameState.Pause;
+			}
+			else 
+			{
+				checkReadyGo();
+				StartCoroutine(playDelay(1f));
+			}
 		}
 		
 	}
@@ -137,7 +143,6 @@ public class GameControl : MonoBehaviour {
 
 	public void checkCreditsControl()
 	{
-		Debug.Log (UIButton.current.name);
 		if (UIButton.current.name == "controls_button") {
 			creditsPanel.GetComponent<TweenPosition> ().PlayReverse ();
 			controlsPanel.GetComponent<TweenPosition> ().Play ();
@@ -148,6 +153,12 @@ public class GameControl : MonoBehaviour {
 			creditsPanel.GetComponent<TweenPosition> ().Play ();
 		}
 
+	}
+
+	public void checkReadyGo()
+	{
+		readyMessage.GetComponent<TweenScale> ().ResetToBeginning();
+		readyMessage.GetComponent<TweenScale> ().PlayForward();
 	}
 
 	public void toggleSound()
