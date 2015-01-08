@@ -9,7 +9,7 @@ public class GameControl : MonoBehaviour {
 	public int gameSpeed;
 	private GameState gameState;
 	private Playermovement player;
-	public GameObject gameplayPanel, menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1, tutorialPanel2, defeatPanel, exitPanel, readyMessage, goMessage;
+	public GameObject gameplayPanel, menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1, tutorialPanel2, defeatPanel, exitPanel, readyMessage, goMessage, pauseMessage;
 
 	// Use this for initialization
 	void Start () {
@@ -129,9 +129,11 @@ public class GameControl : MonoBehaviour {
 			if(UIToggle.current.value == true)
 			{
 				currentGameState = GameState.Pause;
+				NGUITools.SetActive(pauseMessage, true);
 			}
 			else 
 			{
+				NGUITools.SetActive(pauseMessage, false);
 				checkReadyGo();
 				StartCoroutine(playDelay(1f));
 			}
