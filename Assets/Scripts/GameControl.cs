@@ -9,7 +9,7 @@ public class GameControl : MonoBehaviour {
 	public int gameSpeed;
 	private GameState gameState;
 	private Playermovement player;
-	public GameObject gameplayPanel, menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1, tutorialPanel2, defeatPanel, exitPanel, readyMessage, goMessage, pauseMessage;
+	public GameObject gameplayPanel, menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1, tutorialPanel2, defeatPanel, exitPanel, readyMessage, goMessage, pauseMessage, busSpawn, bus;
 
 	// Use this for initialization
 	void Start () {
@@ -22,6 +22,7 @@ public class GameControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
+
 		if(Input.GetKeyDown(KeyCode.R))
 		{
 			//GameSpeed ++;
@@ -124,7 +125,7 @@ public class GameControl : MonoBehaviour {
 	public void togglePause()
 	{
 		if (currentGameState == GameState.MainMenu) {
-			currentGameState = GameState.Pause;
+			//currentGameState = GameState.Pause;
 		}else{
 			if(UIToggle.current.value == true)
 			{
@@ -141,24 +142,28 @@ public class GameControl : MonoBehaviour {
 		
 	}
 
-
+	private void SpawnBus()
+	{
+		Instantiate(bus , busSpawn.gameObject.transform.position , busSpawn.gameObject.transform.rotation); 
+	}
 
 	public void checkCreditsControl()
 	{
 		if (UIButton.current.name == "controls_button") {
 			creditsPanel.GetComponent<TweenPosition> ().PlayReverse ();
-			controlsPanel.GetComponent<TweenPosition> ().Play ();
+			controlsPanel.GetComponent<TweenPosition> ().PlayForward ();
 		}
 		if(UIButton.current.name == "credits_button")
 		{
 			controlsPanel.GetComponent<TweenPosition> ().PlayReverse ();
-			creditsPanel.GetComponent<TweenPosition> ().Play ();
+			creditsPanel.GetComponent<TweenPosition> ().PlayForward ();
 		}
 
 	}
 
 	public void checkReadyGo()
 	{
+
 		readyMessage.GetComponent<TweenScale> ().ResetToBeginning();
 		readyMessage.GetComponent<TweenScale> ().PlayForward();
 	}
@@ -179,7 +184,7 @@ public class GameControl : MonoBehaviour {
 	public void GameStart()
 	{
 		//PlayerPrefs.DeleteAll ();
-		StartCoroutine(playDelay (0.5f));
+		StartCoroutine(playDelay (1.0f));
 		NGUITools.SetActive( menuPanel,false);
 		controlsPanel.GetComponent<TweenPosition> ().PlayReverse ();
 		//NGUITools.SetActive( controlsPanel,false);
@@ -194,6 +199,8 @@ public class GameControl : MonoBehaviour {
 		//Makes sure the score label is set to zero after a restart
 		UILabel score = GameObject.Find("score_value").GetComponent<UILabel>();
 		score.text = "0";
+
+		SpawnBus ();
 		
 	} 
 

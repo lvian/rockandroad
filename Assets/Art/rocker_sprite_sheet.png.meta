@@ -81,8 +81,8 @@ TextureImporter:
     - name: rocker_sprite_sheet_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 335
+        x: 2
+        y: 815
         width: 12
         height: 25
       alignment: 0
@@ -92,7 +92,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 15
-        y: 335
+        y: 815
         width: 12
         height: 25
       alignment: 0
@@ -102,7 +102,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 30
-        y: 335
+        y: 815
         width: 12
         height: 25
       alignment: 0
@@ -112,7 +112,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 43
-        y: 335
+        y: 815
         width: 12
         height: 25
       alignment: 0
@@ -121,8 +121,8 @@ TextureImporter:
     - name: rocker_sprite_sheet_4
       rect:
         serializedVersion: 2
-        x: 57
-        y: 335
+        x: 56
+        y: 815
         width: 12
         height: 25
       alignment: 0
@@ -132,7 +132,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 70
-        y: 335
+        y: 815
         width: 12
         height: 25
       alignment: 0
@@ -142,7 +142,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2
-        y: 307
+        y: 787
         width: 9
         height: 25
       alignment: 0
@@ -152,7 +152,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 26
-        y: 307
+        y: 787
         width: 9
         height: 25
       alignment: 0
@@ -162,7 +162,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 73
-        y: 306
+        y: 786
         width: 14
         height: 25
       alignment: 0
@@ -172,7 +172,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 88
-        y: 306
+        y: 786
         width: 11
         height: 25
       alignment: 0
@@ -181,8 +181,8 @@ TextureImporter:
     - name: rocker_sprite_sheet_10
       rect:
         serializedVersion: 2
-        x: 112
-        y: 308
+        x: 111
+        y: 786
         width: 14
         height: 25
       alignment: 0
@@ -192,7 +192,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 136
-        y: 306
+        y: 786
         width: 11
         height: 25
       alignment: 0
@@ -202,7 +202,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 98
+        y: 576
         width: 60
         height: 60
       alignment: 0
@@ -212,49 +212,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 60
-        y: 98
+        y: 576
         width: 60
         height: 60
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: rocker_sprite_sheet_16
-      rect:
-        serializedVersion: 2
-        x: 126
-        y: 335
-        width: 12
-        height: 24
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: rocker_sprite_sheet_17
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 335
-        width: 12
-        height: 24
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: rocker_sprite_sheet_18
-      rect:
-        serializedVersion: 2
-        x: 99
-        y: 335
-        width: 12
-        height: 24
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: rocker_sprite_sheet_19
-      rect:
-        serializedVersion: 2
-        x: 85
-        y: 335
-        width: 12
-        height: 24
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -262,7 +222,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 216
+        y: 696
         width: 60
         height: 60
       alignment: 0
@@ -272,7 +232,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 60
-        y: 216
+        y: 696
         width: 60
         height: 60
       alignment: 0
@@ -282,7 +242,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 120
-        y: 216
+        y: 696
         width: 60
         height: 60
       alignment: 0
@@ -292,7 +252,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 180
-        y: 216
+        y: 696
         width: 60
         height: 60
       alignment: 0
@@ -302,17 +262,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 240
-        y: 216
-        width: 60
-        height: 60
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: rocker_sprite_sheet_23
-      rect:
-        serializedVersion: 2
-        x: 300
-        y: 216
+        y: 696
         width: 60
         height: 60
       alignment: 0
@@ -322,7 +272,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 120
-        y: 98
+        y: 576
         width: 60
         height: 60
       alignment: 9
@@ -332,10 +282,20 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 180
-        y: 98
+        y: 576
         width: 60
         height: 60
       alignment: 9
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: rocker_sprite_sheet_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 465
+        width: 256
+        height: 111
+      alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 

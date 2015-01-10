@@ -165,6 +165,9 @@
      <Compile Include="Assets\Scripts\background\RendererExtensions.cs" />
      <Compile Include="Assets\Scripts\background\background.cs" />
      <Compile Include="Assets\Scripts\background\backgroundHorizon.cs" />
+     <Compile Include="Assets\Scripts\bus\BusSmoke.cs" />
+     <Compile Include="Assets\Scripts\bus\bus.cs" />
+     <Compile Include="Assets\Scripts\bus\busExhaust.cs" />
      <Compile Include="Assets\Scripts\spawner\BlockSpawner.cs" />
      <Compile Include="Assets\Scripts\spawner\BlocksDB.cs" />
      <Compile Include="Assets\Scripts\spawner\GridSpawner.cs" />
