@@ -8,6 +8,7 @@ public class BusSmoke : MonoBehaviour {
 	private TweenAlpha tweenAlpha;
 	private TweenScale tweenScale;
 	private TweenPosition tweenPosition;
+	protected float speedCompensate;
 	// Use this for initialization
 	void Start () {
 		//Subscribing to receive event stateChanged from GameControll, if so, calls gameStateChanged	
@@ -21,10 +22,18 @@ public class BusSmoke : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
+		if( gc.currentGameState == GameControl.GameState.MainMenu)
+		{
+			speedCompensate = 0;
+		}
+		if( gc.currentGameState == GameControl.GameState.Play)
+		{
+			speedCompensate = 5;
+		}
 		if(gc.currentGameState == GameControl.GameState.Play)
 		{
 			Vector3 movement = new Vector3(
-				0 ,
+				- speedCompensate,
 				0.5f ,
 				0);
 			

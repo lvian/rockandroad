@@ -51,22 +51,7 @@ public class GameControl : MonoBehaviour {
 				exitGameplay();
 			}	
 		}
-		
-		if(gameState == GameState.Pause)
-		{
-			
-		}
-		
-		if(gameState == GameState.Defeat)
-		{
-			//show defeat panel, with total points and info about how to restart the level or exit
-		}
-		
-		if(gameState == GameState.Victory)
-		{
-			//show victory panel, with total points and other related stuff
-		}
-				
+					
 	
 	}
 

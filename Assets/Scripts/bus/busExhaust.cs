@@ -8,7 +8,7 @@ public class busExhaust : MonoBehaviour {
 	protected GameControl gc;
 	// Use this for initialization
 	void Start () {
-		lastSmoke = 0;
+		lastSmoke = 0.1f;
 		//Subscribing to receive event stateChanged from GameControll, if so, calls gameStateChanged	
 		gc = GameObject.Find("GameControl").GetComponent<GameControl>();
 
@@ -18,9 +18,9 @@ public class busExhaust : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if(gc.currentGameState == GameControl.GameState.Play)
+		if(gc.currentGameState == GameControl.GameState.Play || gc.currentGameState == GameControl.GameState.MainMenu )
 		{
-			if(lastSmoke >= 0.25f)
+			if(lastSmoke >= 0.20f)
 			{
 				GameObject smk = (GameObject) Instantiate(smoke[0], gameObject.transform.position , gameObject.transform.rotation); 
 				//smk.transform.parent = gameObject.transform;

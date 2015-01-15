@@ -5,6 +5,7 @@ public class bus : MonoBehaviour {
 
 	protected Vector2 speed;
 	protected GameControl gc;
+	protected float speedCompensate;
 	// Use this for initialization
 
 	private Animator anim;
@@ -21,11 +22,20 @@ public class bus : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		if( gc.currentGameState == GameControl.GameState.MainMenu)
+		{
+			speedCompensate = speed.x * 2;
+		}
+		if( gc.currentGameState == GameControl.GameState.Play)
+		{
+			speedCompensate = speed.x * 1.25f;
+		}
 		if(gc.currentGameState == GameControl.GameState.Play || gc.currentGameState == GameControl.GameState.MainMenu )
 		{
 			anim.speed = 1;
+
 			Vector3 movement = new Vector3(
-				speed.x * 2 ,
+				speedCompensate ,
 				0 ,
 				0);
 			
@@ -47,7 +57,7 @@ public class bus : MonoBehaviour {
 	}
 
 	void gameStateChanged(float gs)
-	{
+	{	
 		speed = new Vector2(gs, 0);
 	}
 }
