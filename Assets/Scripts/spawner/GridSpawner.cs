@@ -12,6 +12,7 @@ public class GridSpawner : MonoBehaviour {
 	public Vector2 speed;
 	public float timer;
 	public int tileCounter;
+	public int goalTiles;
 
 	public BlocksDB blocksClass;
 	private BlockSpawner bs;
@@ -53,6 +54,9 @@ public class GridSpawner : MonoBehaviour {
 	void Update () {
 		if(gc.currentGameState != GameControl.GameState.Play)
 			return;
+		if(goalTiles == tileCounter){
+			gc.currentGameState = GameControl.GameState.Victory;
+		}
 		if(timer <= 0){
 			if(gridColumn == gridSize){
 				spawnColumn(generateTransitoryColumn(st, nd));

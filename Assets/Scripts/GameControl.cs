@@ -9,12 +9,13 @@ public class GameControl : MonoBehaviour {
 	public int gameSpeed;
 	private GameState gameState;
 	private Playermovement player;
-	public GameObject gameplayPanel, menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1, tutorialPanel2, defeatPanel, exitPanel, readyMessage, goMessage, pauseMessage, busSpawn, bus;
+	private GridSpawner spawner;
+	public GameObject gameplayPanel, menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1, tutorialPanel2, defeatPanel, exitPanel, readyMessage, goMessage, pauseMessage, victoryPanel, busSpawn, bus;
 
 	// Use this for initialization
 	void Start () {
 		player = GameObject.Find("Player").GetComponent<Playermovement>();
-
+		spawner = GameObject.Find("Spawners").GetComponent<GridSpawner>();
 		gameState = GameState.MainMenu;
 		mainCamera.GetComponent<AudioSource>().Play();
 	}
@@ -27,7 +28,6 @@ public class GameControl : MonoBehaviour {
 		{
 			//GameSpeed ++;
 		}
-		
 		if(Input.GetKeyDown(KeyCode.F))
 		{
 			//GameSpeed --;
@@ -36,14 +36,10 @@ public class GameControl : MonoBehaviour {
 		{
 		
 		}
-
-
-		
 		if(gameState == GameState.GameMenu)
 		{
 					
 		}
-		
 		if(gameState == GameState.Play)
 		{
 			if(Input.GetKeyDown(KeyCode.Escape))
@@ -51,8 +47,10 @@ public class GameControl : MonoBehaviour {
 				exitGameplay();
 			}	
 		}
-					
-	
+		if(gameState == GameState.Victory)
+		{
+			checkVictoryPanel();
+		}
 	}
 
 	public int GameSpeed {
@@ -109,8 +107,8 @@ public class GameControl : MonoBehaviour {
 
 	public void togglePause()
 	{
-		if (currentGameState == GameState.MainMenu) {
-			//currentGameState = GameState.Pause;
+		if (currentGameState != GameState.Play) {
+			return;
 		}else{
 			if(UIToggle.current.value == true)
 			{
@@ -144,6 +142,11 @@ public class GameControl : MonoBehaviour {
 			creditsPanel.GetComponent<TweenPosition> ().PlayForward ();
 		}
 
+	}
+
+	public void checkVictoryPanel()
+	{
+		victoryPanel.GetComponent<TweenPosition> ().PlayForward ();
 	}
 
 	public void checkReadyGo()
@@ -261,6 +264,7 @@ public class GameControl : MonoBehaviour {
 		player.resetPLayerPosition ();
 		player.points = 0;
 		player.multiplier = 1;
+		spawner.tileCounter = 0;
 
 		player.energy = PlayerPrefs.GetFloat("defaultEnergy");
 		player.adjustEnergy ();
@@ -280,10 +284,11 @@ public class GameControl : MonoBehaviour {
 		{
 			Destroy (mp);
 		}
-		if (UIButton.current.name.Equals ("main_button") || UIButton.current.name.Equals ("yes_button")) 
+		if (UIButton.current.name.Equals ("main_button") || UIButton.current.name.Equals ("yes_button") || UIButton.current.name.Equals("main_menu_button")) 
 		{
 			MainMenu();
-		} else if (UIButton.current.name.Equals ("restart_button"))
+		}
+		else if (UIButton.current.name.Equals ("restart_button"))
 		{
 			GameStart();
 		}
