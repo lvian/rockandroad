@@ -10,7 +10,7 @@ public class GameControl : MonoBehaviour {
 	private GameState gameState;
 	private Playermovement player;
 	private GridSpawner spawner;
-	public GameObject gameplayPanel, menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1, tutorialPanel2, defeatPanel, exitPanel, readyMessage, goMessage, pauseMessage, victoryPanel, busSpawn, bus;
+	public GameObject gameplayPanel, menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1, tutorialPanel2, defeatPanel, exitPanel, readyMessage, goMessage, pauseMessage, busSpawn, bus;
 
 	// Use this for initialization
 	void Start () {
@@ -46,10 +46,6 @@ public class GameControl : MonoBehaviour {
 			{
 				exitGameplay();
 			}	
-		}
-		if(gameState == GameState.Victory)
-		{
-			checkVictoryPanel();
 		}
 	}
 
@@ -142,11 +138,6 @@ public class GameControl : MonoBehaviour {
 			creditsPanel.GetComponent<TweenPosition> ().PlayForward ();
 		}
 
-	}
-
-	public void checkVictoryPanel()
-	{
-		victoryPanel.GetComponent<TweenPosition> ().PlayForward ();
 	}
 
 	public void checkReadyGo()
@@ -284,7 +275,7 @@ public class GameControl : MonoBehaviour {
 		{
 			Destroy (mp);
 		}
-		if (UIButton.current.name.Equals ("main_button") || UIButton.current.name.Equals ("yes_button") || UIButton.current.name.Equals("main_menu_button")) 
+		if (UIButton.current.name.Equals ("main_button") || UIButton.current.name.Equals ("yes_button")) 
 		{
 			MainMenu();
 		}
