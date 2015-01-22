@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{FADE24F6-8125-09DD-AA20-9920C3219BD6}</ProjectGuid>
+	<ProjectGuid>{4BFE66DA-DBF1-1E78-98C9-6B59702D3C1D}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -39,45 +39,13 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>D:/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>D:/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\EquipItems.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\EquipRandomItem.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\UICursor.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\UIEquipmentSlot.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\UIItemSlot.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\UIItemStorage.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\UIStorageSlot.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\System\InvAttachmentPoint.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\System\InvBaseItem.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\System\InvDatabase.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\System\InvEquipment.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\System\InvGameItem.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\System\InvStat.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\ChatInput.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\DownloadTexture.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\EnvelopContent.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\ExampleDragDropItem.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\ExampleDragDropSurface.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\LagPosition.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\LagRotation.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\LoadLevelOnClick.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\LookAtTarget.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\OpenURLOnClick.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\PanWithMouse.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\PlayIdleAnimations.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\SetColorOnSelection.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\Spin.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\SpinWithMouse.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\Tutorial5.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\UISliderColors.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\WindowAutoYaw.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\WindowDragTilt.cs" />
      <Compile Include="Assets\NGUI\Scripts\Interaction\LanguageSelection.cs" />
      <Compile Include="Assets\NGUI\Scripts\Interaction\TypewriterEffect.cs" />
      <Compile Include="Assets\NGUI\Scripts\Interaction\UIButton.cs" />
@@ -181,12 +149,10 @@
      <Compile Include="Assets\NGUI\Scripts\UI\UITexture.cs" />
      <Compile Include="Assets\NGUI\Scripts\UI\UITooltip.cs" />
      <Compile Include="Assets\NGUI\Scripts\UI\UIViewport.cs" />
-     <Compile Include="Assets\Scripts\Background\RendererExtensions.cs" />
-     <Compile Include="Assets\Scripts\Background\background.cs" />
-     <Compile Include="Assets\Scripts\Background\backgroundHorizon.cs" />
      <Compile Include="Assets\Scripts\Flow\GameFlow.cs" />
      <Compile Include="Assets\Scripts\Flow\Level1Flow.cs" />
      <Compile Include="Assets\Scripts\GameControl.cs" />
+     <Compile Include="Assets\Scripts\MusicControl.cs" />
      <Compile Include="Assets\Scripts\Objects\ConeObestacle.cs" />
      <Compile Include="Assets\Scripts\Objects\HealthBoost.cs" />
      <Compile Include="Assets\Scripts\Objects\MovableObstacle.cs" />
@@ -197,34 +163,28 @@
      <Compile Include="Assets\Scripts\Objects\TireObestacle.cs" />
      <Compile Include="Assets\Scripts\Objects\TrashObstacle.cs" />
      <Compile Include="Assets\Scripts\Playermovement.cs" />
-     <Compile Include="Assets\Scripts\Spawner\BlockSpawner.cs" />
-     <Compile Include="Assets\Scripts\Spawner\BlocksDB.cs" />
-     <Compile Include="Assets\Scripts\Spawner\GridSpawner.cs" />
-     <Compile Include="Assets\Scripts\Spawner\MapBlock.cs" />
-     <Compile Include="Assets\Scripts\Spawner\MapEvent.cs" />
+     <Compile Include="Assets\Scripts\background\RendererExtensions.cs" />
+     <Compile Include="Assets\Scripts\background\background.cs" />
+     <Compile Include="Assets\Scripts\background\backgroundHorizon.cs" />
      <Compile Include="Assets\Scripts\bus\BusSmoke.cs" />
      <Compile Include="Assets\Scripts\bus\bus.cs" />
      <Compile Include="Assets\Scripts\bus\busExhaust.cs" />
-     <None Include="Assets\NGUI\Examples\Shaders\Unlit - Depth Cutout.shader" />
+     <Compile Include="Assets\Scripts\spawner\BlockSpawner.cs" />
+     <Compile Include="Assets\Scripts\spawner\BlocksDB.cs" />
+     <Compile Include="Assets\Scripts\spawner\GridSpawner.cs" />
+     <Compile Include="Assets\Scripts\spawner\MapBlock.cs" />
+     <Compile Include="Assets\Scripts\spawner\MapEvent.cs" />
      <None Include="Assets\NGUI\ReadMe - 3.7.8.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text 2.shader" />
      <None Include="Assets\Font\open-window_metal-mania\OFL.txt" />
-     <None Include="Assets\NGUI\Examples\Models\Orc\Orc Skin.shader" />
-     <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo20.txt" />
-     <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo14.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text 1.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored (TextureClip).shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (Packed) (TextureClip).shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored 2.shader" />
-     <None Include="Assets\NGUI\Examples\Shaders\Unlit - Masked Colored.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 3.shader" />
-     <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo18.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (TextureClip).shader" />
-     <None Include="Assets\NGUI\Examples\Atlases\SciFi\SciFi Font - Header.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored 1.shader" />
-     <None Include="Assets\NGUI\Examples\Atlases\Fantasy\Fantasy Font - Normal.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored 3.shader" />
-     <None Include="Assets\NGUI\Examples\Atlases\Refractive\Refractive Font - Normal.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 2.shader" />
      <None Include="Assets\Font\rock-font.fnt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text 3.shader" />
@@ -236,24 +196,17 @@
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed 3.shader" />
-     <None Include="Assets\NGUI\Examples\Shaders\Unlit - Additive Colored.shader" />
-     <None Include="Assets\NGUI\Examples\Atlases\Refractive\Refractive Font - Header.txt" />
-     <None Include="Assets\NGUI\Examples\Shaders\Refractive.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text (TextureClip).shader" />
-     <None Include="Assets\NGUI\Examples\Shaders\Unlit - Depth.shader" />
-     <None Include="Assets\NGUI\Examples\Atlases\SciFi\SciFi Font - Normal.txt" />
-     <None Include="Assets\NGUI\Examples\Models\Orc Armor\Orc Armor.shader" />
-     <None Include="Assets\NGUI\Examples\Resources\Localization.txt" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="ICSharpCode.SharpZipLib">
- <HintPath>C:/Users/Caco/Documents/rockn-road/Assets/plugins/ICSharpCode.SharpZipLib.dll</HintPath>
+ <HintPath>D:/Projects/Rock'n Road/Assets/plugins/ICSharpCode.SharpZipLib.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{FE047DF4-AD5C-BF07-1E94-F0C590010220}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{9736DFC5-0B3F-63E6-55A0-48AE80295B21}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

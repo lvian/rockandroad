@@ -11,13 +11,15 @@ public class GameControl : MonoBehaviour {
 	private Playermovement player;
 	private GridSpawner spawner;
 	public GameObject gameplayPanel, menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1, tutorialPanel2, defeatPanel, exitPanel, readyMessage, goMessage, pauseMessage, victoryPanel, busSpawn, bus;
+	private MusicControl musicControl;
 
 	// Use this for initialization
 	void Start () {
 		player = GameObject.Find("Player").GetComponent<Playermovement>();
 		spawner = GameObject.Find("Spawners").GetComponent<GridSpawner>();
 		gameState = GameState.MainMenu;
-		mainCamera.GetComponent<AudioSource>().Play();
+		musicControl = mainCamera.GetComponent<MusicControl>();
+		musicControl.startMusic ();
 	}
 	
 	// Update is called once per frame
@@ -82,8 +84,6 @@ public class GameControl : MonoBehaviour {
 	
 	public void pause()
 	{
-	//	NGUITools.SetActive( exitPanel,false);
-	//	NGUITools.SetActive( gameplayPanel,true);
 		if(currentGameState == GameState.Pause)
 		{
 			NGUITools.SetActive( gameplayPanel,true);
@@ -107,9 +107,8 @@ public class GameControl : MonoBehaviour {
 
 	public void togglePause()
 	{
-		if (currentGameState != GameState.Play) {
-			return;
-		}else{
+		if (currentGameState != GameState.MainMenu) 
+		{
 			if(UIToggle.current.value == true)
 			{
 				currentGameState = GameState.Pause;
@@ -160,17 +159,19 @@ public class GameControl : MonoBehaviour {
 	{
 		if(UIToggle.current.value == true)
 		{
-			AudioListener.volume = 0;
+			musicControl.audio.volume = 0;
 		}
 		else
 		{
-			AudioListener.volume = 1;
+			musicControl.audio.volume = 0.5f;
 		}
 		
 	}
 		
 	public void GameStart()
 	{
+		musicControl.restartMusic ();
+		//StartCoroutine(musicControl.fadeOutInMusic());
 		//PlayerPrefs.DeleteAll ();
 		StartCoroutine(playDelay (1.0f));
 		NGUITools.SetActive( menuPanel,false);
@@ -189,6 +190,7 @@ public class GameControl : MonoBehaviour {
 		score.text = "0";
 
 		SpawnBus ();
+
 		
 	} 
 
@@ -203,7 +205,6 @@ public class GameControl : MonoBehaviour {
 		NGUITools.SetActive( gameplayPanel,false);
 		NGUITools.SetActive( defeatPanel,false);
 		NGUITools.SetActive( exitPanel,false);
-		//mainCamera.GetComponent<AudioSource>().Play();
 		
 	}
 
@@ -265,6 +266,8 @@ public class GameControl : MonoBehaviour {
 		player.points = 0;
 		player.multiplier = 1;
 		spawner.tileCounter = 0;
+
+		musicControl.restartMusic ();
 
 		player.energy = PlayerPrefs.GetFloat("defaultEnergy");
 		player.adjustEnergy ();
