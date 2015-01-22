@@ -164,7 +164,7 @@ public class GameControl : MonoBehaviour {
 		
 	public void GameStart()
 	{
-		musicControl.restartMusic ();
+		StartCoroutine( musicControl.gameStart ());
 		//StartCoroutine(musicControl.fadeOutInMusic());
 		//PlayerPrefs.DeleteAll ();
 		StartCoroutine(playDelay (1.0f));
@@ -261,7 +261,7 @@ public class GameControl : MonoBehaviour {
 		player.multiplier = 1;
 		spawner.tileCounter = 0;
 
-		musicControl.restartMusic ();
+		//musicControl.restartMusic ();
 
 		player.energy = PlayerPrefs.GetFloat("defaultEnergy");
 		player.adjustEnergy ();

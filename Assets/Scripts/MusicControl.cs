@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MusicControl : MonoBehaviour {
 
-	public AudioClip music1,music2,music3;
+	public AudioClip music1,music2,music3, gameStartSound;
 	public float fadeTime;
 	private bool restarting;
 	private AudioSource audios;
@@ -15,12 +15,7 @@ public class MusicControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(restarting)
-		{
-			
 
-
-		}
 
 	}
 	public void startMusic(){
@@ -33,17 +28,24 @@ public class MusicControl : MonoBehaviour {
 	public IEnumerator fadeOutInMusic(float fade = 3f)
 	{
 		yield return StartCoroutine(DoFadeOut (fade));
-		audios.Stop ();
-		audios.Play ();
+		audios.Stop();
+		audios.Play();
 		yield return StartCoroutine(DoFadeIn (fade));
 	}
 
 	public void restartMusic ()
 	{
-		audios.Stop ();
-		audios.Play ();
+		audios.Stop();
+		audios.Play();
 	}
 
+	public IEnumerator gameStart ()
+	{
+		audios.Stop ();
+		audios.PlayOneShot (gameStartSound);
+		yield return new WaitForSeconds(gameStartSound.length);
+		audios.Play();
+	}
 
 	public void FadeIn(float fade)
 	{
