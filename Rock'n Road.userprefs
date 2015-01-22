@@ -1,12 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MusicControl.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GameControl.cs">
     <Files>
       <File FileName="Assets\Scripts\bus\bus.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GameControl.cs" Line="23" Column="3" />
+      <File FileName="Assets\Scripts\GameControl.cs" Line="14" Column="196" />
       <File FileName="Assets\Scripts\Objects\HealthBoost.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Objects\ConeObestacle.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\spawner\GridSpawner.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\spawner\GridSpawner.cs" Line="140" Column="1" />
       <File FileName="Assets\Scripts\background\background.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Objects\Obstacle.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\spawner\BlocksDB.cs" Line="1" Column="1" />
@@ -16,7 +16,7 @@
       <File FileName="Assets\Scripts\bus\busExhaust.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\bus\BusSmoke.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Playermovement.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MusicControl.cs" Line="81" Column="3" />
+      <File FileName="Assets\Scripts\MusicControl.cs" Line="43" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
