@@ -6,12 +6,11 @@ public class Playermovement : MonoBehaviour {
 
 	static int UP_ONE_LANE = 1;
 	static int DOWN_ONE_LANE = -1;
-	
-	//TODO Player states
-	public int points = 0;
-	public int multiplier = 1;
-	//public int health;
-	public float energy;
+
+	private int score = 0;
+	private int multiplier = 1;
+	private float energy = 100;
+
 	public float invulTime;
 	public float laneChangeSpeed;
 	private bool isInvul;
@@ -21,8 +20,6 @@ public class Playermovement : MonoBehaviour {
 	public GameObject[] lanes;
 	public float speed;
 	public GameObject healthbar;
-	//public GameObject[] healthDisks;
-	//private int previousLane;
 	public Dictionary<string,Effect> effects;
 	private float energyTimer;
 	private int currentLane;
@@ -33,9 +30,6 @@ public class Playermovement : MonoBehaviour {
 	private BoxCollider2D movementDelimiter;
 	private UIProgressBar pg;
 
-	
-	
-			
 	// Use this for initialization
 	void Start () {
 		//Subscribing to receive event stateChanged from GameControll, if so, calls gameStateChanged	
@@ -92,7 +86,12 @@ public class Playermovement : MonoBehaviour {
 		}
 	}
 
-	
+	public void FixedUpdate() {
+		
+		anim.SetInteger("Speed", gameControl.gameSpeed);
+		anim.SetInteger("GameState", (int)gameControl.currentGameState);
+	}
+
 	private void moveTo()
 	{
 		if(isMoving)
@@ -101,11 +100,8 @@ public class Playermovement : MonoBehaviour {
 		}
 	
 	}
-	
-	
-	
-	private void checkInput(){
 
+	private void checkInput(){
 		if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
 		{
 			move(UP_ONE_LANE);
@@ -114,12 +110,10 @@ public class Playermovement : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
 		{
 			move (DOWN_ONE_LANE);
-		}
-
-		
+		}		
 	}
 
-	void animateAlpha (){
+	private void animateAlpha (){
 		float duration = .1f;
 		float lerp = Mathf.PingPong (Time.time, duration) / duration;
 
@@ -137,7 +131,6 @@ public class Playermovement : MonoBehaviour {
 			currentLane  += nextLane;
 			isMoving = true;
 		}
-						
 	}
 
 	public void resetPLayerPosition()
@@ -146,8 +139,7 @@ public class Playermovement : MonoBehaviour {
 		isMoving = true;
 		
 	}
-	
-	
+
 	void OnTriggerEnter2D(Collider2D other) {
 		//Player hit an obstacle
 		if(other.gameObject.tag == "Obstacles")
@@ -158,34 +150,13 @@ public class Playermovement : MonoBehaviour {
 			}
 		}
 		
-		//Player got an energy increase
-		if(other.gameObject.tag == "healthBoost")
+		//Player hit by powerup
+		if(other.gameObject.tag == "PowerUp")
 		{
-			//We could have disabled the collider and avoided this whole 'check for hit thing'
-			HealthBoost hb = other.gameObject.GetComponent<HealthBoost>();
+			SpawnableObject obj = other.gameObject.GetComponent<SpawnableObject>();
 			other.collider2D.enabled = false;
 			Destroy(other.gameObject);
-			energy += hb.points;
-			if(energy > 100)
-			{
-				energy = 100;
-				this.adjustEnergy();
-			}
-			givePoints(hb.points);
-			//coroutine not needed atm
-			//StartCoroutine("gotAHealthBoost");
-		}
-		if(other.gameObject.tag == "multiplier")
-		{
-			//We could have disabled the collider and avoided this whole 'check for hit thing'
-			Multiplier mp = other.gameObject.GetComponent<Multiplier>();
-			other.collider2D.enabled = false;
-			Destroy(other.gameObject);
-			multiplier ++;
-			givePoints(mp.points);
-			adjustMultiplier();
-			//coroutine not needed atm
-			//StartCoroutine("gotAHealthBoost");
+			obj.onCollide(this);
 		}
 	}
 	
@@ -194,11 +165,10 @@ public class Playermovement : MonoBehaviour {
 			yield break;
 		if(!isBeingHit)
 		{	
-			multiplier = 1;
-			adjustMultiplier();
+			Multiplier = 1;
 			isBeingHit = true;
 			obj.onCollide(this);
-			this.adjustEnergy();
+
 			//play damage animation here
 			if(energy <= 0)
 			{
@@ -212,7 +182,10 @@ public class Playermovement : MonoBehaviour {
 				yield return new WaitForSeconds(invulTime);
 				isInvul = false;
 				Color c = new Color(
-					renderer.material.color.r, renderer.material.color.g, renderer.material.color.b, 1f);
+					renderer.material.color.r, 
+					renderer.material.color.g, 
+					renderer.material.color.b, 1f
+				);
 				renderer.material.color = c;
 				StartCoroutine(hitByObstacle(null));
 			}
@@ -228,59 +201,36 @@ public class Playermovement : MonoBehaviour {
 		}
 	}
 
-
-	public float Energy {
-		get {
-			return energy;
-		}
-		set {
-			energy = value;
-		}
-	}
-
-	public void adjustEnergy() {
-		pg.value = this.energy / 100;
-		//Debug.Log (pg.value);
+	private void adjustEnergy() {
+		pg.value = energy / 100;
 
 	}
 
 	public void adjustMultiplier() {
 		UILabel mp = GameObject.Find("scoremultiplier_value").GetComponent<UILabel>();
-		mp.text = "x " +multiplier.ToString();
-		
+		mp.text = "x " + Multiplier.ToString();
 	}
 	
 	public void givePoints(int pts) {
 		if(energy > 0)
 		{
-			points += pts * multiplier;
-			UILabel score = GameObject.Find("score_value").GetComponent<UILabel>();
-			score.text = points.ToString();
-			}
+			Score += pts * multiplier;
+		}
 	}
-
-
 
 	IEnumerator energyDecay ()
 	{
 		energyTimer += Time.deltaTime;
 		if(energyTimer >= 1)
 		{
-			this.energy --;
-			if(energy <= 0)
+			Energy--;
+			if(Energy <= 0)
 			{
 				yield return new WaitForSeconds(1f);
 				StartCoroutine(hitByObstacle(null));
 			}
 			energyTimer = 0;
-			adjustEnergy();
 		}
-	}
-
-	public void FixedUpdate() {
-		
-		anim.SetInteger("Speed", gameControl.gameSpeed);
-		anim.SetInteger("GameState", (int)gameControl.currentGameState);
 	}
 
 	public void addEffect(Effect e){
@@ -309,5 +259,36 @@ public class Playermovement : MonoBehaviour {
 			}
 		}
 	}
+
+	public int Score {
+		get {
+			return score;
+		}
+		set {
+			score = value;
+			UILabel _score = GameObject.Find("score_value").GetComponent<UILabel>();
+			_score.text = score.ToString();
+		}
+	}
 	
+	public int Multiplier {
+		get {
+			return multiplier;
+		}
+		set {
+			multiplier = value;
+			adjustMultiplier();
+			
+		}
+	}
+	
+	public float Energy {
+		get {
+			return energy;
+		}
+		set {
+			energy = value;
+			adjustEnergy();
+		}
+	}
 }

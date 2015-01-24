@@ -19,7 +19,7 @@ public class Multiplier : PowerUp {
 
 	public override void onCollide (Playermovement p)
 	{
-		throw new System.NotImplementedException ();
+		p.Multiplier++;
 	}
 
 	#endregion

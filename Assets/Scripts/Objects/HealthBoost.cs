@@ -20,7 +20,11 @@ public class HealthBoost : PowerUp {
 
 	public override void onCollide (Playermovement p)
 	{
-		throw new System.NotImplementedException ();
+		if(p.Energy + healthAmount > 100)
+			p.Energy = 100;
+		else
+			p.Energy += healthAmount;
+		p.givePoints(points);
 	}
 
 	#endregion

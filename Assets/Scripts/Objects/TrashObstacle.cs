@@ -18,7 +18,7 @@ public class TrashObstacle : SpawnableObject {
 
 	public override void onCollide (Playermovement p)
 	{
-		p.energy -= 10;
+		p.Energy -= 10;
 	}
 
 	#endregion

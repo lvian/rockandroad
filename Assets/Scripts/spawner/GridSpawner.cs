@@ -29,6 +29,14 @@ public class GridSpawner : MonoBehaviour {
 	private int gridSize;
 	private int currentTrigger;
 
+	public enum DifficultyTriggers{
+		_1,
+		_2 = 1000,
+		_3 = 300,
+		_4 = 350,
+		_5 = 550,
+	}
+
 	// Use this for initialization
 	void Start () {
 		//Subscribing to receive event stateChanged from GameControll, if so, calls gameStateChanged	
@@ -38,16 +46,8 @@ public class GridSpawner : MonoBehaviour {
 		speed = new Vector2(gc.GameSpeed , 0);
 		timer = 2f;
 
-		level1 = new Level1DB();
-		level2 = new Level2DB();
-		level3 = new Level3DB();
-
 		bs = BlockSpawner.Instance;
-		blocks = level1.blocks;
-		if(blocks == null){
-			level1 = new Level1DB();
-			blocks = level1.blocks;
-		}
+		blocks = new Level1DB().blocks;
 
 		st = blocks[bs.randomInfluencedIndex(blocks)];
 		nd = blocks[bs.randomInfluencedIndex(blocks)];
@@ -57,10 +57,10 @@ public class GridSpawner : MonoBehaviour {
 		gridSize = st.grid.GetLength(1);
 		tileCounter = 0;
 		tileCountTriggers = new Queue();
-		tileCountTriggers.Enqueue(20);
-		tileCountTriggers.Enqueue(50);
-		tileCountTriggers.Enqueue(350);
-		tileCountTriggers.Enqueue(550);
+		tileCountTriggers.Enqueue((int)DifficultyTriggers._2);
+		tileCountTriggers.Enqueue((int)DifficultyTriggers._3);
+		tileCountTriggers.Enqueue((int)DifficultyTriggers._4);
+		tileCountTriggers.Enqueue((int)DifficultyTriggers._5);
 		currentTrigger = (int) tileCountTriggers.Dequeue();
 	}
 	
@@ -151,11 +151,11 @@ public class GridSpawner : MonoBehaviour {
 	void changeDifficulty(){
 		if(tileCounter == currentTrigger){
 			switch(tileCounter){
-			case 20:
-				blocks = level2.blocks;
+			case (int)DifficultyTriggers._2:
+				blocks = new Level2DB().blocks;
 				break;
-			case 50:
-				blocks = level3.blocks;
+			case (int)DifficultyTriggers._3:
+				blocks = new Level3DB().blocks;
 				break;
 			}
 			currentTrigger = (int) tileCountTriggers.Dequeue();

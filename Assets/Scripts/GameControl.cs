@@ -232,14 +232,14 @@ public class GameControl : MonoBehaviour {
 		score.text = "0";
 		NGUITools.SetActive( gameplayPanel,false);
 
-		if(player.points > PlayerPrefs.GetInt("topScore"))
+		if(player.Score > PlayerPrefs.GetInt("topScore"))
 		{
-			PlayerPrefs.SetInt("topScore",player.points );
+			PlayerPrefs.SetInt("topScore",player.Score );
 		}
 		NGUITools.SetActive( defeatPanel,true);
 		UILabel defeatScore = GameObject.Find("defeat_score_value").GetComponent<UILabel>();
 		UILabel topScore = GameObject.Find("top_score_value").GetComponent<UILabel>();
-		defeatScore.text = player.points.ToString();
+		defeatScore.text = player.Score.ToString();
 		topScore.text = PlayerPrefs.GetInt("topScore").ToString();
 
 	}
@@ -257,15 +257,14 @@ public class GameControl : MonoBehaviour {
 	{
 		gameState = GameState.GameRestart;
 		player.resetPLayerPosition ();
-		player.points = 0;
-		player.multiplier = 1;
+		player.Score = 0;
+		player.Multiplier = 1;
 		spawner.tileCounter = 0;
 
 		//musicControl.restartMusic ();
 
-		player.energy = PlayerPrefs.GetFloat("defaultEnergy");
+		player.Energy = PlayerPrefs.GetFloat("defaultEnergy");
 		player.laneChangeSpeed = PlayerPrefs.GetFloat("defaultLaneChangeSpeed");
-		player.adjustEnergy ();
 
 		GameObject[] multiplier = GameObject.FindGameObjectsWithTag ("multiplier");
 		GameObject[] obstacles = GameObject.FindGameObjectsWithTag ("Obstacles");
