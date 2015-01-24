@@ -167,7 +167,7 @@ public class GameControl : MonoBehaviour {
 		StartCoroutine( musicControl.gameStart ());
 		//StartCoroutine(musicControl.fadeOutInMusic());
 		//PlayerPrefs.DeleteAll ();
-		StartCoroutine(playDelay (1.0f));
+		StartCoroutine(playDelay (1.5f));
 		NGUITools.SetActive( menuPanel,false);
 		controlsPanel.GetComponent<TweenPosition> ().PlayReverse ();
 		//NGUITools.SetActive( controlsPanel,false);
@@ -264,6 +264,7 @@ public class GameControl : MonoBehaviour {
 		//musicControl.restartMusic ();
 
 		player.energy = PlayerPrefs.GetFloat("defaultEnergy");
+		player.laneChangeSpeed = PlayerPrefs.GetFloat("defaultLaneChangeSpeed");
 		player.adjustEnergy ();
 
 		GameObject[] multiplier = GameObject.FindGameObjectsWithTag ("multiplier");

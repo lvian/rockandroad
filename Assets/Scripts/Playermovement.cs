@@ -13,6 +13,7 @@ public class Playermovement : MonoBehaviour {
 	//public int health;
 	public float energy;
 	public float invulTime;
+	public float laneChangeSpeed;
 	private bool isInvul;
 	public GameObject startingPlace;
 	private GameObject scoreValue;
@@ -40,6 +41,7 @@ public class Playermovement : MonoBehaviour {
 		gameControl = GameObject.Find("GameControl").GetComponent<GameControl>();
 
 		PlayerPrefs.SetFloat("defaultEnergy",energy );
+		PlayerPrefs.SetFloat("defaultLaneChangeSpeed",laneChangeSpeed );
 		anim = GetComponent<Animator>();
 	
 		//starting position
@@ -94,7 +96,7 @@ public class Playermovement : MonoBehaviour {
 	{
 		if(isMoving)
 		{
-			transform.position = Vector3.MoveTowards(gameObject.transform.position,lanes[currentLane].transform.position, 0.03f * gameControl.GameSpeed);
+			transform.position = Vector3.MoveTowards(gameObject.transform.position,lanes[currentLane].transform.position, 0.03f * laneChangeSpeed);
 		}
 	
 	}

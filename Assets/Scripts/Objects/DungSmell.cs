@@ -1,14 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BusSmoke : MonoBehaviour {
+public class DungSmell : MonoBehaviour {
 
 	protected GameControl gc;
-	private Animator anim;
 	private TweenAlpha tweenAlpha;
 	private TweenScale tweenScale;
-	private TweenPosition tweenPosition;
-	protected float speedCompensate;
 	// Use this for initialization
 	void Start () {
 		//Subscribing to receive event stateChanged from GameControll, if so, calls gameStateChanged	
@@ -16,25 +13,17 @@ public class BusSmoke : MonoBehaviour {
 
 		tweenAlpha = gameObject.GetComponentInChildren<TweenAlpha>();
 		tweenScale = gameObject.GetComponentInChildren<TweenScale>();
-		tweenPosition = gameObject.GetComponentInChildren<TweenPosition>();
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		if( gc.currentGameState == GameControl.GameState.MainMenu)
-		{
-			speedCompensate = 0;
-		}
-		if( gc.currentGameState == GameControl.GameState.Play)
-		{
-			speedCompensate = 5;
-		}
-		if(gc.currentGameState == GameControl.GameState.Play || gc.currentGameState == GameControl.GameState.MainMenu)
+
+		if(gc.currentGameState == GameControl.GameState.Play)
 		{
 			Vector3 movement = new Vector3(
-				- speedCompensate,
-				0.5f ,
+				0,
+				0.25f ,
 				0);
 			
 			movement *= Time.deltaTime;
@@ -51,7 +40,7 @@ public class BusSmoke : MonoBehaviour {
 			
 	}
 
-	public void DestroySmoke()
+	public void DestroySmell()
 	{
 		Destroy (gameObject);
 	}

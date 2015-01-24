@@ -154,6 +154,8 @@
      <Compile Include="Assets\Scripts\GameControl.cs" />
      <Compile Include="Assets\Scripts\MusicControl.cs" />
      <Compile Include="Assets\Scripts\Objects\ConeObestacle.cs" />
+     <Compile Include="Assets\Scripts\Objects\DungObstacle.cs" />
+     <Compile Include="Assets\Scripts\Objects\DungSmell.cs" />
      <Compile Include="Assets\Scripts\Objects\HealthBoost.cs" />
      <Compile Include="Assets\Scripts\Objects\MovableObstacle.cs" />
      <Compile Include="Assets\Scripts\Objects\Multiplier.cs" />
