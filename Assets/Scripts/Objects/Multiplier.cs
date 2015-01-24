@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Multiplier : Obstacle {
+public class Multiplier : PowerUp {
 	
 	// Use this for initialization
 	public int points = 50;
@@ -15,10 +15,12 @@ public class Multiplier : Obstacle {
 		}
 	}
 
+	#region implemented abstract members of SpawnableObject
 
-	public int Points {
-		get {
-			return points;
-		}
+	public override void onCollide (Playermovement p)
+	{
+		throw new System.NotImplementedException ();
 	}
+
+	#endregion
 }

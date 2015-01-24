@@ -37,4 +37,13 @@ public class DungObstacle : Obstacle {
 			anim.speed = 0;
 		}
 	}
+
+	#region implemented abstract members of SpawnableObject
+
+	public override void onCollide (Playermovement p)
+	{
+		p.addEffect(new DungEffect(p, 2f));
+	}
+
+	#endregion
 }

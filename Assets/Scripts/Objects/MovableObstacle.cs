@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MovableObstacle : Obstacle {
+public abstract class MovableObstacle : Obstacle {
 
 	public bool laneChanger;
 	private bool earlyChange = false,lateChange = false, alreadyChanged = false;

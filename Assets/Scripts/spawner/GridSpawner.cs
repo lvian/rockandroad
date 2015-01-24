@@ -12,8 +12,13 @@ public class GridSpawner : MonoBehaviour {
 	public Vector2 speed;
 	public float timer;
 	public int tileCounter;
+	public Queue tileCountTriggers;
 
-	public BlocksDB blocksClass;
+	private BlocksDB level1;
+	private BlocksDB level2;
+	private BlocksDB level3;
+	private BlocksDB level4;
+	private BlocksDB level5;
 	private BlockSpawner bs;
 	private List<MapBlock> blocks;
 	private MapBlock st; //1st block of tiles
@@ -22,6 +27,7 @@ public class GridSpawner : MonoBehaviour {
 
 	private int gridColumn;
 	private int gridSize;
+	private int currentTrigger;
 
 	// Use this for initialization
 	void Start () {
@@ -32,12 +38,15 @@ public class GridSpawner : MonoBehaviour {
 		speed = new Vector2(gc.GameSpeed , 0);
 		timer = 2f;
 
+		level1 = new Level1DB();
+		level2 = new Level2DB();
+		level3 = new Level3DB();
+
 		bs = BlockSpawner.Instance;
-		blocks = blocksClass.blocks;
+		blocks = level1.blocks;
 		if(blocks == null){
-			GameObject go = GameObject.Find ("BlockDB");
-			blocksClass = go.GetComponent<BlocksDB>();
-			blocks = blocksClass.blocks;
+			level1 = new Level1DB();
+			blocks = level1.blocks;
 		}
 
 		st = blocks[bs.randomInfluencedIndex(blocks)];
@@ -47,6 +56,12 @@ public class GridSpawner : MonoBehaviour {
 		gridColumn = 0;
 		gridSize = st.grid.GetLength(1);
 		tileCounter = 0;
+		tileCountTriggers = new Queue();
+		tileCountTriggers.Enqueue(20);
+		tileCountTriggers.Enqueue(50);
+		tileCountTriggers.Enqueue(350);
+		tileCountTriggers.Enqueue(550);
+		currentTrigger = (int) tileCountTriggers.Dequeue();
 	}
 	
 	// Update is called once per frame
@@ -84,6 +99,7 @@ public class GridSpawner : MonoBehaviour {
 		spawnTile(column[2], 2);
 		spawnTile(column[3], 3);
 		tileCounter++;
+		changeDifficulty();
 	}
 
 	void spawnTile(int tile, int spawner){
@@ -130,6 +146,25 @@ public class GridSpawner : MonoBehaviour {
 			}
 		}
 		return column;
+	}
+
+	void changeDifficulty(){
+		if(tileCounter == currentTrigger){
+			switch(tileCounter){
+			case 20:
+				blocks = level2.blocks;
+				break;
+			case 50:
+				blocks = level3.blocks;
+				break;
+			}
+			currentTrigger = (int) tileCountTriggers.Dequeue();
+		}
+	}
+
+	public void reset(){
+		tileCounter = 0;
+		blocks = level1.blocks;
 	}
 
 	void gameStateChanged(float gs)

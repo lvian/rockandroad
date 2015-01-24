@@ -1,4 +1,4 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PowerUp : SpawnableObject {}
+public abstract class PowerUp : SpawnableObject {}

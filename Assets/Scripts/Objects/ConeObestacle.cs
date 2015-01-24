@@ -14,4 +14,13 @@ public class ConeObestacle : Obstacle {
 			movement(points , sp);
 		}
 	}
+
+	#region implemented abstract members of SpawnableObject
+
+	public override void onCollide (Playermovement p)
+	{
+		p.energy -= 10;
+	}
+
+	#endregion
 }

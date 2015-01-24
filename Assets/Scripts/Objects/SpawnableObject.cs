@@ -57,6 +57,8 @@ public abstract class SpawnableObject : MonoBehaviour {
 	
 	}
 
+	public abstract void onCollide(Playermovement p);
+
 	
 	void gameStateChanged(float gs)
 	{

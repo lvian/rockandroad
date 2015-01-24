@@ -26,4 +26,13 @@ public class TireObestacle : MovableObstacle {
 			anim.speed = 0;
 		}
 	}
+
+	#region implemented abstract members of SpawnableObject
+
+	public override void onCollide (Playermovement p)
+	{
+		p.energy -= 10;
+	}
+
+	#endregion
 }

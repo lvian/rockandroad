@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HealthBoost : Obstacle {
+public class HealthBoost : PowerUp {
 	
 	// Use this for initialization
 	public int points = 15;
@@ -16,16 +16,12 @@ public class HealthBoost : Obstacle {
 		}
 	}
 
+	#region implemented abstract members of SpawnableObject
 
-	public int HealthAmount {
-		get {
-			return healthAmount;
-		}
+	public override void onCollide (Playermovement p)
+	{
+		throw new System.NotImplementedException ();
 	}
 
-	public int Points {
-		get {
-			return points;
-		}
-	}
+	#endregion
 }

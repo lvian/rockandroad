@@ -23,6 +23,7 @@ public class Playermovement : MonoBehaviour {
 	public GameObject healthbar;
 	//public GameObject[] healthDisks;
 	//private int previousLane;
+	public Dictionary<string,Effect> effects;
 	private float energyTimer;
 	private int currentLane;
 	private bool isMoving;
@@ -57,7 +58,7 @@ public class Playermovement : MonoBehaviour {
 		isBeingHit = false;
 		isInvul = false;
 
-		
+		effects = new Dictionary<string,Effect>();
 	}
 	
 	// Update is called once per frame
@@ -67,8 +68,8 @@ public class Playermovement : MonoBehaviour {
 		{
 			anim.speed = 1;
 			checkInput();
-
 			moveTo();
+			updateEffects();
 			StartCoroutine(energyDecay());
 		} else if (gameControl.currentGameState == GameControl.GameState.Pause)
 		{
@@ -153,7 +154,7 @@ public class Playermovement : MonoBehaviour {
 		{
 			if(!isBeingHit)
 			{ 
-				StartCoroutine("hitByObstacle");
+				StartCoroutine(hitByObstacle(other.GetComponent<SpawnableObject>()));
 			}
 		}
 		
@@ -164,13 +165,13 @@ public class Playermovement : MonoBehaviour {
 			HealthBoost hb = other.gameObject.GetComponent<HealthBoost>();
 			other.collider2D.enabled = false;
 			Destroy(other.gameObject);
-			energy += hb.HealthAmount;
+			energy += hb.points;
 			if(energy > 100)
 			{
 				energy = 100;
 				this.adjustEnergy();
 			}
-			givePoints(hb.Points);
+			givePoints(hb.points);
 			//coroutine not needed atm
 			//StartCoroutine("gotAHealthBoost");
 		}
@@ -181,14 +182,14 @@ public class Playermovement : MonoBehaviour {
 			other.collider2D.enabled = false;
 			Destroy(other.gameObject);
 			multiplier ++;
-			givePoints(mp.Points);
+			givePoints(mp.points);
 			adjustMultiplier();
 			//coroutine not needed atm
 			//StartCoroutine("gotAHealthBoost");
 		}
 	}
 	
-	IEnumerator hitByObstacle() {
+	IEnumerator hitByObstacle(SpawnableObject obj) {
 		if(gameControl.currentGameState != GameControl.GameState.Play) // ??? Reacess!
 			yield break;
 		if(!isBeingHit)
@@ -196,14 +197,14 @@ public class Playermovement : MonoBehaviour {
 			multiplier = 1;
 			adjustMultiplier();
 			isBeingHit = true;
-			energy -= 10;
+			obj.onCollide(this);
 			this.adjustEnergy();
 			//play damage animation here
 			if(energy <= 0)
 			{
 				//change timer to something like 'death animation time lenght'
 				yield return new WaitForSeconds(1f);
-				StartCoroutine(hitByObstacle());
+				StartCoroutine(hitByObstacle(null));
 			}
 			else
 			{
@@ -213,7 +214,7 @@ public class Playermovement : MonoBehaviour {
 				Color c = new Color(
 					renderer.material.color.r, renderer.material.color.g, renderer.material.color.b, 1f);
 				renderer.material.color = c;
-				StartCoroutine(hitByObstacle());
+				StartCoroutine(hitByObstacle(null));
 			}
 		}
 		else
@@ -269,7 +270,7 @@ public class Playermovement : MonoBehaviour {
 			if(energy <= 0)
 			{
 				yield return new WaitForSeconds(1f);
-				StartCoroutine(hitByObstacle());
+				StartCoroutine(hitByObstacle(null));
 			}
 			energyTimer = 0;
 			adjustEnergy();
@@ -280,6 +281,33 @@ public class Playermovement : MonoBehaviour {
 		
 		anim.SetInteger("Speed", gameControl.gameSpeed);
 		anim.SetInteger("GameState", (int)gameControl.currentGameState);
+	}
+
+	public void addEffect(Effect e){
+		if(effects.ContainsKey(e.UniqueName)){
+			effects[e.UniqueName].duration = e.duration;
+		}
+		else{
+			effects.Add(e.UniqueName,e);
+			e.onAddEffect();
+		}
+	}
+
+	private void removeEffect(string uName){
+		effects[uName].onRemoveEffect();
+		effects.Remove(uName);
+	}
+
+	private void updateEffects(){
+		List<string> temp = new List<string>(effects.Keys);
+		foreach(string e in temp){
+			if(effects[e].duration <= 0){
+				removeEffect(effects[e].UniqueName);
+			}
+			else{
+				effects[e].duration -= Time.deltaTime;
+			}
+		}
 	}
 	
 }

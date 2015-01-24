@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class TrashObstacle : Obstacle {
+public class TrashObstacle : SpawnableObject {
 
 	// Use this for initialization
 	public int points = 10;
@@ -13,4 +13,13 @@ public class TrashObstacle : Obstacle {
 			movement(points, sp);
 		}
 	}
+
+	#region implemented abstract members of SpawnableObject
+
+	public override void onCollide (Playermovement p)
+	{
+		p.energy -= 10;
+	}
+
+	#endregion
 }

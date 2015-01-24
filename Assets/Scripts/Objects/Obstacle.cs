@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Obstacle : SpawnableObject {}
+public abstract class Obstacle : SpawnableObject {
+}
