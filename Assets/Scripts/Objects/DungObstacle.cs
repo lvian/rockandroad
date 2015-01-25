@@ -42,6 +42,7 @@ public class DungObstacle : Obstacle {
 
 	public override void onCollide (Playermovement p)
 	{
+		p.Energy -= 5;
 		p.addEffect(new DungEffect(p, 2f));
 	}
 

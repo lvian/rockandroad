@@ -165,10 +165,13 @@ public class Playermovement : MonoBehaviour {
 			yield break;
 		if(!isBeingHit)
 		{	
+
 			Multiplier = 1;
 			isBeingHit = true;
-			obj.onCollide(this);
-
+			if(obj)
+			{
+				obj.onCollide(this);
+			}
 			//play damage animation here
 			if(energy <= 0)
 			{

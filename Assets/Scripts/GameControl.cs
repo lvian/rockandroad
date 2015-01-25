@@ -165,14 +165,12 @@ public class GameControl : MonoBehaviour {
 	public void GameStart()
 	{
 		StartCoroutine( musicControl.gameStart ());
-		//StartCoroutine(musicControl.fadeOutInMusic());
-		//PlayerPrefs.DeleteAll ();
+		//Uncomment to test tutorialpanels
+		//PlayerPrefs.DeleteAll (); 
 		StartCoroutine(playDelay (1.5f));
 		NGUITools.SetActive( menuPanel,false);
 		controlsPanel.GetComponent<TweenPosition> ().PlayReverse ();
-		//NGUITools.SetActive( controlsPanel,false);
 		creditsPanel.GetComponent<TweenPosition> ().PlayReverse ();
-		//NGUITools.SetActive( creditsPanel,false);
 		NGUITools.SetActive( gameplayPanel,true);
 		NGUITools.SetActive( tutorialPanel1,false);
 		NGUITools.SetActive( tutorialPanel2,false);
@@ -180,8 +178,8 @@ public class GameControl : MonoBehaviour {
 		//currentGameState = GameState.Play;
 
 		//Makes sure the score label is set to zero after a restart
-		UILabel score = GameObject.Find("score_value").GetComponent<UILabel>();
-		score.text = "0";
+		player.Score = 0;
+		player.Multiplier = 1;
 
 		SpawnBus ();
 
@@ -257,8 +255,7 @@ public class GameControl : MonoBehaviour {
 	{
 		gameState = GameState.GameRestart;
 		player.resetPLayerPosition ();
-		player.Score = 0;
-		player.Multiplier = 1;
+
 		spawner.tileCounter = 0;
 
 		//musicControl.restartMusic ();
@@ -266,21 +263,17 @@ public class GameControl : MonoBehaviour {
 		player.Energy = PlayerPrefs.GetFloat("defaultEnergy");
 		player.laneChangeSpeed = PlayerPrefs.GetFloat("defaultLaneChangeSpeed");
 
-		GameObject[] multiplier = GameObject.FindGameObjectsWithTag ("multiplier");
+		GameObject[] powerup = GameObject.FindGameObjectsWithTag ("PowerUp");
 		GameObject[] obstacles = GameObject.FindGameObjectsWithTag ("Obstacles");
-		GameObject[] healthBoost = GameObject.FindGameObjectsWithTag ("healthBoost");
+		foreach( GameObject pu in powerup)
+		{
+			Destroy (pu);
+		}
 		foreach( GameObject ob in obstacles)
 		{
 			Destroy (ob);
 		}
-		foreach( GameObject hb in healthBoost)
-		{
-			Destroy (hb);
-		}
-		foreach( GameObject mp in multiplier)
-		{
-			Destroy (mp);
-		}
+
 		if (UIButton.current.name.Equals ("main_button") || UIButton.current.name.Equals ("yes_button")) 
 		{
 			MainMenu();
