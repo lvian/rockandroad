@@ -60,8 +60,8 @@ public class MusicControl : MonoBehaviour {
 	private IEnumerator DoFadeIn(float fade)
 	{
 		float t = 0;
-		while(audios.volume < 0.5) {
-			audios.volume = Mathf.Lerp(0.0f, 0.5f, t / fade);
+		while(audios.volume < 0.25) {
+			audios.volume = Mathf.Lerp(0.0f, 0.25f, t / fade);
 			t+=Time.deltaTime;
 			yield return null;
 		}     
@@ -72,7 +72,7 @@ public class MusicControl : MonoBehaviour {
 	{
 		float t = 0;
 		while( audios.volume > 0) {
-			audios.volume = Mathf.Lerp(0.5f, 0.0f, t / fade);
+			audios.volume = Mathf.Lerp(0.25f, 0.0f, t / fade);
 			t+=Time.deltaTime;
 			yield return null;
 		}     

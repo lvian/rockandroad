@@ -11,6 +11,7 @@ public class Playermovement : MonoBehaviour {
 	private int multiplier = 1;
 	private float energy = 100;
 
+	public AudioClip[] playerHitSound;
 	public float invulTime;
 	public float laneChangeSpeed;
 	private bool isInvul;
@@ -170,6 +171,7 @@ public class Playermovement : MonoBehaviour {
 			isBeingHit = true;
 			if(obj)
 			{
+				transform.audio.PlayOneShot(playerHitSound[0]);
 				obj.onCollide(this);
 			}
 			//play damage animation here

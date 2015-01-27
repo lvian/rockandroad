@@ -21,7 +21,7 @@ public class GameControl : MonoBehaviour {
 		player = GameObject.Find("Player").GetComponent<Playermovement>();
 		spawner = GameObject.Find("Spawners").GetComponent<GridSpawner>();
 		gameState = GameState.MainMenu;
-		musicControl = mainCamera.GetComponent<MusicControl>();
+		musicControl = GameObject.Find("MusicControl").GetComponent<MusicControl>();
 		musicControl.startMusic ();
 	}
 	
@@ -153,11 +153,13 @@ public class GameControl : MonoBehaviour {
 	{
 		if(UIToggle.current.value == true)
 		{
+			mainCamera.audio.volume = 0;
 			musicControl.audio.volume = 0;
 		}
 		else
 		{
-			musicControl.audio.volume = 0.5f;
+			mainCamera.audio.volume = 0.5f;
+			musicControl.audio.volume = 0.25f;
 		}
 		
 	}
