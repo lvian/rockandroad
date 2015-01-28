@@ -7,6 +7,7 @@ public class TireObestacle : MovableObstacle {
 	public int points = 15;
 	public float sp = 1.3f;
 
+
 	private Animator anim;
 	// Update is called once per frame
 
@@ -32,6 +33,7 @@ public class TireObestacle : MovableObstacle {
 	public override void onCollide (Playermovement p)
 	{
 		p.Energy -= 10;
+		NGUITools.PlaySound(hitSound, 0.5f);
 	}
 
 	#endregion

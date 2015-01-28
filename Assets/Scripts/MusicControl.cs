@@ -5,6 +5,7 @@ public class MusicControl : MonoBehaviour {
 
 	public AudioClip music1,music2,music3, gameStartSound;
 	public float fadeTime;
+	public float musicVolume;
 	private bool restarting;
 	private AudioSource audios;
 	// Use this for initialization
@@ -60,8 +61,8 @@ public class MusicControl : MonoBehaviour {
 	private IEnumerator DoFadeIn(float fade)
 	{
 		float t = 0;
-		while(audios.volume < 0.25) {
-			audios.volume = Mathf.Lerp(0.0f, 0.25f, t / fade);
+		while(audios.volume < musicVolume) {
+			audios.volume = Mathf.Lerp(0.0f, musicVolume, t / fade);
 			t+=Time.deltaTime;
 			yield return null;
 		}     
@@ -72,7 +73,7 @@ public class MusicControl : MonoBehaviour {
 	{
 		float t = 0;
 		while( audios.volume > 0) {
-			audios.volume = Mathf.Lerp(0.25f, 0.0f, t / fade);
+			audios.volume = Mathf.Lerp(musicVolume, 0.0f, t / fade);
 			t+=Time.deltaTime;
 			yield return null;
 		}     

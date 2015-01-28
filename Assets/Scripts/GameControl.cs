@@ -11,18 +11,22 @@ public class GameControl : MonoBehaviour {
 	private Playermovement player;
 	private GridSpawner spawner;
 
-	public GameObject gameplayPanel, menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1, tutorialPanel2, defeatPanel, exitPanel, readyMessage, goMessage, pauseMessage, busSpawn, bus;
+	public GameObject gameplayPanel, menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1, tutorialPanel2, defeatPanel, exitPanel, readyMessage, goMessage, pauseMessage, busSpawn, bus, muteButton1, muteButton2;
 	private MusicControl musicControl;
 
-
+	void Awake(){
+		musicControl = GameObject.Find("MusicControl").GetComponent<MusicControl>();
+	}
 
 	// Use this for initialization
 	void Start () {
 		player = GameObject.Find("Player").GetComponent<Playermovement>();
 		spawner = GameObject.Find("Spawners").GetComponent<GridSpawner>();
 		gameState = GameState.MainMenu;
-		musicControl = GameObject.Find("MusicControl").GetComponent<MusicControl>();
+		//musicControl = GameObject.Find("MusicControl").GetComponent<MusicControl>();
 		musicControl.startMusic ();
+		UIEventListener.Get(muteButton1).onClick += toggleSound;
+		UIEventListener.Get(muteButton2).onClick += toggleSound;
 	}
 	
 	// Update is called once per frame
@@ -149,19 +153,23 @@ public class GameControl : MonoBehaviour {
 		readyMessage.GetComponent<TweenScale> ().PlayForward();
 	}
 
-	public void toggleSound()
+	public void toggleSound(GameObject ob)
 	{
-		if(UIToggle.current.value == true)
+		UIToggle tog = ob.GetComponent<UIToggle> ();
+		if(tog.value == true)
 		{
 			mainCamera.audio.volume = 0;
 			musicControl.audio.volume = 0;
+			muteButton1.GetComponent<UIToggle>().value = true;
+			muteButton2.GetComponent<UIToggle>().value = true;
 		}
 		else
 		{
 			mainCamera.audio.volume = 0.5f;
-			musicControl.audio.volume = 0.25f;
+			musicControl.audio.volume = musicControl.musicVolume;
+			muteButton1.GetComponent<UIToggle>().value = false;
+			muteButton2.GetComponent<UIToggle>().value = false;
 		}
-		
 	}
 		
 	public void GameStart()

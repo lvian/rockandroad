@@ -11,7 +11,8 @@ public abstract class SpawnableObject : MonoBehaviour {
 	public float spawnChance;
 	public GameObject[] lanes;
 	public int spawnLane;
-	
+	public AudioClip hitSound;
+
 	// Use this for initialization
 	public virtual void Start () {
 
