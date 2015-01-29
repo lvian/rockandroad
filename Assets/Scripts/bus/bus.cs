@@ -15,7 +15,7 @@ public class bus : MonoBehaviour {
 		gc = GameObject.Find("GameControl").GetComponent<GameControl>();
 		gc.stateChanged += gameStateChanged;
 
-		speed = new Vector2(gc.GameSpeed, gc.GameSpeed);
+		speed = new Vector2(5f, 5f);
 		anim = gameObject.GetComponentInChildren<Animator>();
 	}
 	

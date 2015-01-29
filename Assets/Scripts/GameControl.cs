@@ -11,7 +11,7 @@ public class GameControl : MonoBehaviour {
 	private Playermovement player;
 	private GridSpawner spawner;
 
-	public GameObject gameplayPanel, menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1, tutorialPanel2, defeatPanel, exitPanel, readyMessage, goMessage, pauseMessage, busSpawn, bus, muteButton1, muteButton2;
+	public GameObject gameplayPanel, menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1, tutorialPanel2, defeatPanel, exitPanel, readyMessage, goMessage, pauseMessage, recordMessage,busSpawn, bus, muteButton1, muteButton2, pauseButton;
 	private MusicControl musicControl;
 
 	void Awake(){
@@ -23,7 +23,6 @@ public class GameControl : MonoBehaviour {
 		player = GameObject.Find("Player").GetComponent<Playermovement>();
 		spawner = GameObject.Find("Spawners").GetComponent<GridSpawner>();
 		gameState = GameState.MainMenu;
-		//musicControl = GameObject.Find("MusicControl").GetComponent<MusicControl>();
 		musicControl.startMusic ();
 		UIEventListener.Get(muteButton1).onClick += toggleSound;
 		UIEventListener.Get(muteButton2).onClick += toggleSound;
@@ -89,6 +88,9 @@ public class GameControl : MonoBehaviour {
 	{
 		if(currentGameState == GameState.Pause)
 		{
+			UIToggle tog = pauseButton.GetComponent<UIToggle> ();
+			tog.value = false;
+			NGUITools.SetActive(pauseMessage, false);
 			NGUITools.SetActive( gameplayPanel,true);
 			NGUITools.SetActive( exitPanel,false);
 			checkReadyGo();
@@ -120,6 +122,7 @@ public class GameControl : MonoBehaviour {
 			else 
 			{
 				NGUITools.SetActive(pauseMessage, false);
+				NGUITools.SetActive(exitPanel, false);
 				checkReadyGo();
 				StartCoroutine(playDelay(1f));
 			}
@@ -191,6 +194,7 @@ public class GameControl : MonoBehaviour {
 		player.Score = 0;
 		player.Multiplier = 1;
 
+		readyMessage.GetComponent<TweenScale> ().PlayForward ();
 		SpawnBus ();
 
 		
@@ -252,12 +256,21 @@ public class GameControl : MonoBehaviour {
 
 	}
 
+	public IEnumerator NewRecord (){
+		NGUITools.SetActive (recordMessage, true);
+		yield return new WaitForSeconds (3f);
+		NGUITools.SetActive (recordMessage, false);
 
+	}
 	public void exitGameplay ()
 	{
-		pause ();
-
-		NGUITools.SetActive( gameplayPanel,false);
+		if(gameState == GameState.Play)
+		{
+			pause ();
+		}
+		UIToggle tog = pauseButton.GetComponent<UIToggle> ();
+		tog.value = true;
+		//NGUITools.SetActive( gameplayPanel,false);
 		NGUITools.SetActive( exitPanel,true);
 	}
 
@@ -268,7 +281,7 @@ public class GameControl : MonoBehaviour {
 
 		spawner.tileCounter = 0;
 
-		//musicControl.restartMusic ();
+		NGUITools.SetActive(pauseMessage, false);
 
 		player.Energy = PlayerPrefs.GetFloat("defaultEnergy");
 		player.laneChangeSpeed = PlayerPrefs.GetFloat("defaultLaneChangeSpeed");

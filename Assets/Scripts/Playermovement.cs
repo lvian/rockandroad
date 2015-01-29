@@ -30,6 +30,7 @@ public class Playermovement : MonoBehaviour {
 	private Animator anim;
 	private BoxCollider2D movementDelimiter;
 	private UIProgressBar pg;
+	private bool brokeRecord;
 
 	// Use this for initialization
 	void Start () {
@@ -52,7 +53,7 @@ public class Playermovement : MonoBehaviour {
 		isMoving = false;
 		isBeingHit = false;
 		isInvul = false;
-
+		brokeRecord = false;
 		effects = new Dictionary<string,Effect>();
 	}
 	
@@ -273,6 +274,20 @@ public class Playermovement : MonoBehaviour {
 			score = value;
 			UILabel _score = GameObject.Find("score_value").GetComponent<UILabel>();
 			_score.text = score.ToString();
+			checkRecord();
+		}
+	}
+
+	void checkRecord ()
+	{
+		int sc =  PlayerPrefs.GetInt("topScore");
+		if(sc > 0 && !brokeRecord)
+		{
+			if( Score > sc )
+			{
+				StartCoroutine(gameControl.NewRecord());
+				brokeRecord = true;
+			}
 		}
 	}
 	
