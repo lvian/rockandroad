@@ -20,7 +20,7 @@ public class GridSpawner : MonoBehaviour {
 	private BlocksDB level4;
 	private BlocksDB level5;
 	private BlockSpawner bs;
-	private List<MapBlock> blocks;
+	private BlocksDB blocksDB;
 	private MapBlock st; //1st block of tiles
 	private MapBlock nd; //2nd block of tiles
 	private MapBlock rd; //3rd block of tiles
@@ -30,8 +30,8 @@ public class GridSpawner : MonoBehaviour {
 	private int currentTrigger;
 
 	public enum DifficultyTriggers{
-		_1,
-		_2 = 1000,
+		_1 = 0,
+		_2 = 50,
 		_3 = 300,
 		_4 = 350,
 		_5 = 550,
@@ -47,11 +47,11 @@ public class GridSpawner : MonoBehaviour {
 		timer = 2f;
 
 		bs = BlockSpawner.Instance;
-		blocks = new Level1DB().blocks;
+		blocksDB = new Level1DB();
 
-		st = blocks[bs.randomInfluencedIndex(blocks)];
-		nd = blocks[bs.randomInfluencedIndex(blocks)];
-		rd = blocks[bs.randomInfluencedIndex(blocks)];
+		st = blocksDB.blocks[bs.randomInfluencedIndex(blocksDB.blocks)];
+		nd = blocksDB.blocks[bs.randomInfluencedIndex(blocksDB.blocks)];
+		rd = blocksDB.blocks[bs.randomInfluencedIndex(blocksDB.blocks)];
 
 		gridColumn = 0;
 		gridSize = st.grid.GetLength(1);
@@ -73,7 +73,7 @@ public class GridSpawner : MonoBehaviour {
 				spawnColumn(generateTransitoryColumn(st, nd));
 				st = nd;
 				nd = rd;
-				rd = blocks[bs.randomInfluencedIndex(blocks)];
+				rd = blocksDB.blocks[bs.randomInfluencedIndex(blocksDB.blocks)];
 				gridColumn = 0;
 				gridSize = st.grid.GetLength(1);
 			}
@@ -152,19 +152,36 @@ public class GridSpawner : MonoBehaviour {
 		if(tileCounter == currentTrigger){
 			switch(tileCounter){
 			case (int)DifficultyTriggers._2:
-				blocks = new Level2DB().blocks;
+				blocksDB = new Level2DB();
 				break;
 			case (int)DifficultyTriggers._3:
-				blocks = new Level3DB().blocks;
+				blocksDB = new Level3DB();
+				break;
+			default:
 				break;
 			}
 			currentTrigger = (int) tileCountTriggers.Dequeue();
+			nd = blocksDB.blocks[bs.randomInfluencedIndex(blocksDB.blocks)];
+			rd = blocksDB.blocks[bs.randomInfluencedIndex(blocksDB.blocks)];
 		}
 	}
 
 	public void reset(){
 		tileCounter = 0;
-		blocks = level1.blocks;
+		blocksDB = new Level1DB();
+
+		st = blocksDB.blocks[bs.randomInfluencedIndex(blocksDB.blocks)];
+		nd = blocksDB.blocks[bs.randomInfluencedIndex(blocksDB.blocks)];
+		rd = blocksDB.blocks[bs.randomInfluencedIndex(blocksDB.blocks)];
+		gridColumn = 0;
+		gridSize = st.grid.GetLength(1);
+
+		tileCountTriggers.Clear();
+		tileCountTriggers.Enqueue((int)DifficultyTriggers._2);
+		tileCountTriggers.Enqueue((int)DifficultyTriggers._3);
+		tileCountTriggers.Enqueue((int)DifficultyTriggers._4);
+		tileCountTriggers.Enqueue((int)DifficultyTriggers._5);
+		currentTrigger = (int) tileCountTriggers.Dequeue();
 	}
 
 	void gameStateChanged(float gs)
