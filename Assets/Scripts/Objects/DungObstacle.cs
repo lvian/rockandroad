@@ -44,6 +44,7 @@ public class DungObstacle : Obstacle {
 	{
 		p.Energy -= 5;
 		p.addEffect(new DungEffect(p, 2f));
+		NGUITools.PlaySound(hitSound, 0.5f);
 	}
 
 	#endregion

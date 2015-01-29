@@ -20,6 +20,7 @@ public class Multiplier : PowerUp {
 	public override void onCollide (Playermovement p)
 	{
 		p.Multiplier++;
+		NGUITools.PlaySound(hitSound, 0.5f);
 	}
 
 	#endregion

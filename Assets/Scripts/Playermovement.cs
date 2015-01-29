@@ -171,7 +171,7 @@ public class Playermovement : MonoBehaviour {
 			isBeingHit = true;
 			if(obj)
 			{
-				//transform.audio.PlayOneShot(playerHitSound[0]);
+				NGUITools.PlaySound(playerHitSound[0], 0.5f);
 				obj.onCollide(this);
 			}
 			//play damage animation here

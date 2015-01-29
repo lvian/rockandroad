@@ -19,6 +19,7 @@ public class TrashObstacle : SpawnableObject {
 	public override void onCollide (Playermovement p)
 	{
 		p.Energy -= 10;
+		NGUITools.PlaySound(hitSound, 0.5f);
 	}
 
 	#endregion
