@@ -1,22 +1,22 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GameControl.cs">
     <Files>
-      <File FileName="Assets\Scripts\GameControl.cs" Line="102" Column="39" />
+      <File FileName="Assets\Scripts\GameControl.cs" Line="190" Column="5" />
       <File FileName="Assets\Scripts\Objects\HealthBoost.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Objects\TireObestacle.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\MusicControl.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\bus\bus.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Objects\ConeObestacle.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\spawner\GridSpawner.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\spawner\GridSpawner.cs" Line="194" Column="23" />
       <File FileName="Assets\Scripts\background\background.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Objects\Obstacle.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\spawner\BlocksDB.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Objects\SpawnableObject.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Objects\MovableObstacle.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\bus\busExhaust.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\bus\BusSmoke.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Playermovement.cs" Line="259" Column="29" />
+      <File FileName="Assets\Scripts\bus\BusSmoke.cs" Line="24" Column="3" />
+      <File FileName="Assets\Scripts\Playermovement.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Objects\DungObstacle.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Objects\DungSmell.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Objects\Effects\Effect.cs" Line="1" Column="1" />

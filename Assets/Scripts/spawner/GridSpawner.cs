@@ -188,4 +188,11 @@ public class GridSpawner : MonoBehaviour {
 	{
 		speed = new Vector2(gs, 0);
 	}
+
+	public int TileCounter {
+		get {
+			return tileCounter;
+		}
+	}
+
 }

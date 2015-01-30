@@ -259,8 +259,12 @@ public class GameControl : MonoBehaviour {
 		NGUITools.SetActive( defeatPanel,true);
 		UILabel defeatScore = GameObject.Find("defeat_score_value").GetComponent<UILabel>();
 		UILabel topScore = GameObject.Find("top_score_value").GetComponent<UILabel>();
+		UILabel distance = GameObject.Find("distance_value").GetComponent<UILabel>();
 		defeatScore.text = player.Score.ToString();
 		topScore.text = PlayerPrefs.GetInt("topScore").ToString();
+
+		GridSpawner gs = GameObject.Find ("Spawners").GetComponent<GridSpawner> ();
+		distance.text = gs.TileCounter.ToString();
 
 	}
 
