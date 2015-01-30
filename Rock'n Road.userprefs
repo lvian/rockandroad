@@ -1,28 +1,28 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Playermovement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GameControl.cs">
     <Files>
-      <File FileName="Assets\Scripts\Objects\HealthBoost.cs" Line="28" Column="39" />
-      <File FileName="Assets\Scripts\Objects\TireObestacle.cs" Line="36" Column="39" />
-      <File FileName="Assets\Scripts\GameControl.cs" Line="308" Column="1" />
+      <File FileName="Assets\Scripts\GameControl.cs" Line="102" Column="39" />
+      <File FileName="Assets\Scripts\Objects\HealthBoost.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Objects\TireObestacle.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\MusicControl.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\bus\bus.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Objects\ConeObestacle.cs" Line="23" Column="39" />
-      <File FileName="Assets\Scripts\spawner\GridSpawner.cs" Line="175" Column="1" />
+      <File FileName="Assets\Scripts\Objects\ConeObestacle.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\spawner\GridSpawner.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\background\background.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Objects\Obstacle.cs" Line="6" Column="1" />
-      <File FileName="Assets\Scripts\spawner\BlocksDB.cs" Line="13" Column="1" />
-      <File FileName="Assets\Scripts\Objects\SpawnableObject.cs" Line="69" Column="2" />
-      <File FileName="Assets\Scripts\Objects\MovableObstacle.cs" Line="73" Column="1" />
+      <File FileName="Assets\Scripts\Objects\Obstacle.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\spawner\BlocksDB.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Objects\SpawnableObject.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Objects\MovableObstacle.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\bus\busExhaust.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\bus\BusSmoke.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Playermovement.cs" Line="174" Column="50" />
-      <File FileName="Assets\Scripts\Objects\DungObstacle.cs" Line="47" Column="39" />
+      <File FileName="Assets\Scripts\Playermovement.cs" Line="259" Column="29" />
+      <File FileName="Assets\Scripts\Objects\DungObstacle.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Objects\DungSmell.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Objects\Effects\Effect.cs" Line="23" Column="1" />
-      <File FileName="Assets\Scripts\Objects\Effects\DungEffect.cs" Line="25" Column="1" />
-      <File FileName="Assets\Scripts\Objects\Multiplier.cs" Line="23" Column="39" />
-      <File FileName="Assets\Scripts\Objects\TrashObstacle.cs" Line="22" Column="3" />
+      <File FileName="Assets\Scripts\Objects\Effects\Effect.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Objects\Effects\DungEffect.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Objects\Multiplier.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Objects\TrashObstacle.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

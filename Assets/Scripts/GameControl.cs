@@ -107,6 +107,8 @@ public class GameControl : MonoBehaviour {
 	IEnumerator playDelay(float waitTime) {
 		yield return new WaitForSeconds(waitTime);
 		currentGameState = GameState.Play;
+		UIToggle tg = pauseButton.GetComponent<UIToggle>();
+		tg.enabled = true;
 		
 	}
 
@@ -114,18 +116,23 @@ public class GameControl : MonoBehaviour {
 	{
 		if (currentGameState != GameState.MainMenu) 
 		{
-			if(UIToggle.current.value == true)
-			{
-				currentGameState = GameState.Pause;
-				NGUITools.SetActive(pauseMessage, true);
-			}
-			else 
-			{
-				NGUITools.SetActive(pauseMessage, false);
-				NGUITools.SetActive(exitPanel, false);
-				checkReadyGo();
-				StartCoroutine(playDelay(1f));
-			}
+
+				if(UIToggle.current.value == true)
+				{
+					currentGameState = GameState.Pause;
+					NGUITools.SetActive(pauseMessage, true);
+				}
+				else 
+				{
+					NGUITools.SetActive(pauseMessage, false);
+					NGUITools.SetActive(exitPanel, false);
+					UIToggle tg = pauseButton.GetComponent<UIToggle>();
+					Debug.Log (tg.enabled);
+					tg.enabled = false;
+					Debug.Log (tg.enabled);
+					checkReadyGo();
+					StartCoroutine(playDelay(1f));
+				}
 		}
 		
 	}
@@ -154,6 +161,7 @@ public class GameControl : MonoBehaviour {
 
 		readyMessage.GetComponent<TweenScale> ().ResetToBeginning();
 		readyMessage.GetComponent<TweenScale> ().PlayForward();
+
 	}
 
 	public void toggleSound(GameObject ob)
