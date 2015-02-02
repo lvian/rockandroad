@@ -11,7 +11,7 @@ public class GameControl : MonoBehaviour {
 	private Playermovement player;
 	private GridSpawner spawner;
 
-	public GameObject gameplayPanel, menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1, tutorialPanel2, defeatPanel, exitPanel, readyMessage, goMessage, pauseMessage, recordMessage,busSpawn, bus, muteButton1, muteButton2, pauseButton;
+	public GameObject gameplayPanel, menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1, tutorialPanel2, defeatPanel, exitPanel, readyMessage, goMessage, pauseMessage, recordMessage,busSpawn, bus, muteButton1, muteButton2, pauseButton, scorePanel, scorePanelGrid, scoredGridItenBase;
 	private MusicControl musicControl;
 
 	void Awake(){
@@ -35,6 +35,7 @@ public class GameControl : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.R))
 		{
 			//GameSpeed ++;
+			highScore();
 		}
 		if(Input.GetKeyDown(KeyCode.F))
 		{
@@ -146,12 +147,21 @@ public class GameControl : MonoBehaviour {
 	{
 		if (UIButton.current.name == "controls_button") {
 			creditsPanel.GetComponent<TweenPosition> ().PlayReverse ();
+			scorePanel.GetComponent<TweenPosition> ().PlayReverse ();
 			controlsPanel.GetComponent<TweenPosition> ().PlayForward ();
 		}
 		if(UIButton.current.name == "credits_button")
 		{
 			controlsPanel.GetComponent<TweenPosition> ().PlayReverse ();
+			scorePanel.GetComponent<TweenPosition> ().PlayReverse ();
 			creditsPanel.GetComponent<TweenPosition> ().PlayForward ();
+		}
+		if(UIButton.current.name == "scoreboardButton")
+		{
+
+			controlsPanel.GetComponent<TweenPosition> ().PlayReverse ();
+			creditsPanel.GetComponent<TweenPosition> ().PlayReverse ();
+			highScore();
 		}
 
 	}
@@ -264,7 +274,7 @@ public class GameControl : MonoBehaviour {
 		topScore.text = PlayerPrefs.GetInt("topScore").ToString();
 
 		GridSpawner gs = GameObject.Find ("Spawners").GetComponent<GridSpawner> ();
-		distance.text = gs.TileCounter.ToString();
+		distance.text = gs.TileCounter.ToString() + " m";
 
 	}
 
@@ -285,6 +295,43 @@ public class GameControl : MonoBehaviour {
 		//NGUITools.SetActive( gameplayPanel,false);
 		NGUITools.SetActive( exitPanel,true);
 	}
+	public void highScore()
+	{
+		string[] scores = loadScore ();
+
+		char[] delimiter = {';'};
+		int n = 1;
+	
+		while (scorePanelGrid.transform.childCount > 0)
+		{
+			NGUITools.Destroy(scorePanelGrid.transform.GetChild(0).gameObject);
+		}
+		foreach( string score in scores)
+		{
+			GameObject sc = NGUITools.AddChild(scorePanelGrid , scoredGridItenBase);
+			string[] s = score.Split(delimiter);
+			sc.transform.FindChild("ItenNumber").GetComponent<UILabel>().text = n.ToString();
+			sc.transform.FindChild("ItenName").GetComponent<UILabel>().text = s[1];
+			sc.transform.FindChild("ItenScore").GetComponent<UILabel>().text = s[2];
+			sc.transform.FindChild("ItenDistance").GetComponent<UILabel>().text = s[3];
+			sc.SetActive(true);
+			n++;
+		}
+
+		scorePanelGrid.GetComponent<UIGrid> ().enabled = true;
+
+		scorePanel.GetComponent<TweenPosition> ().PlayForward ();
+	}
+
+
+	protected string[] loadScore()
+	{
+		string[] scoreLines = System.IO.File.ReadAllLines ("assets/scoreboard.txt");
+
+		return scoreLines;
+	}
+
+
 
 	public void gameReset()
 	{
