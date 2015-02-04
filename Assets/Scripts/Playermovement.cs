@@ -23,6 +23,9 @@ public class Playermovement : MonoBehaviour {
 	public GameObject healthbar;
 	public Dictionary<string,Effect> effects;
 	public GameObject floatingText;
+	public GameObject energyTextSpawner;
+	public GameObject scoreTextSpawner;
+	public GameObject multiplierTextSpawner;
 	private float energyTimer;
 	private int currentLane;
 	private bool isMoving;
@@ -221,6 +224,7 @@ public class Playermovement : MonoBehaviour {
 	public void givePoints(int pts) {
 		if(energy > 0)
 		{
+			popScoreText("+" + pts * multiplier, Color.blue);
 			Score += pts * multiplier;
 		}
 	}
@@ -281,8 +285,24 @@ public class Playermovement : MonoBehaviour {
 	}
 
 
-	public void popFloatingText(string text, Color color){
-		GameObject go = (GameObject) GameObject.Instantiate(floatingText, transform.position, Quaternion.identity);
+	public void popEnergyText(string text, Color color){
+		GameObject go = (GameObject) GameObject.Instantiate(floatingText, energyTextSpawner.transform.position, Quaternion.identity);
+		FloatingText fText = go.GetComponentInChildren<FloatingText>();
+		fText.text = text;
+		fText.color = color;
+		go.SetActive(true);
+	}
+
+	public void popScoreText(string text, Color color){
+		GameObject go = (GameObject) GameObject.Instantiate(floatingText, scoreTextSpawner.transform.position, Quaternion.identity);
+		FloatingText fText = go.GetComponentInChildren<FloatingText>();
+		fText.text = text;
+		fText.color = color;
+		go.SetActive(true);
+	}
+
+	public void popMultiplierText(string text, Color color){
+		GameObject go = (GameObject) GameObject.Instantiate(floatingText, multiplierTextSpawner.transform.position, Quaternion.identity);
 		FloatingText fText = go.GetComponentInChildren<FloatingText>();
 		fText.text = text;
 		fText.color = color;

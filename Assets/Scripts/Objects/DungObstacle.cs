@@ -4,7 +4,7 @@ using System.Collections;
 public class DungObstacle : Obstacle {
 
 	// Use this for initialization
-	public int points = 10;
+	public int points = 5;
 	public float sp = 1.0f;
 	private Animator anim;
 	public GameObject[] smell;
@@ -42,9 +42,11 @@ public class DungObstacle : Obstacle {
 
 	public override void onCollide (Playermovement p)
 	{
-		p.Energy -= 5;
+		p.popEnergyText("-" + points, Color.red);
+		p.Energy -= points;
 		p.addEffect(new DungEffect(p, 2f));
 		NGUITools.PlaySound(hitSound, 0.5f);
+		p.popEnergyText("SLOW", Color.magenta);
 	}
 
 	#endregion

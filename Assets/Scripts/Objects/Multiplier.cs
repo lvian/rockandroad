@@ -21,6 +21,8 @@ public class Multiplier : PowerUp {
 	{
 		p.Multiplier++;
 		NGUITools.PlaySound(hitSound, 0.5f);
+		p.givePoints(points);
+		p.popMultiplierText("x"+p.Multiplier, Color.green);
 	}
 
 	#endregion

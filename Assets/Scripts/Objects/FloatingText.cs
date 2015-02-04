@@ -4,15 +4,18 @@ using System.Collections;
 public class FloatingText : MonoBehaviour {
 
 	protected GameControl gc;
+
 	private Animator anim;
 	private TweenAlpha tweenAlpha;
 	private TweenScale tweenScale;
+	private TweenPosition tweenPosition;
 	private TextMesh textMesh;
 	private MeshRenderer textObject;
 
 	public float speedCompensate;
 	public string text;
 	public Color color;
+
 	// Use this for initialization
 	void Start () {
 		//Subscribing to receive event stateChanged from GameControll, if so, calls gameStateChanged	
@@ -20,14 +23,14 @@ public class FloatingText : MonoBehaviour {
 		
 		tweenAlpha = gameObject.GetComponentInChildren<TweenAlpha>();
 		tweenScale = gameObject.GetComponentInChildren<TweenScale>();
-		Debug.Log(text);
+		tweenPosition = gameObject.GetComponentInChildren<TweenPosition>();
 		textMesh = gameObject.GetComponentInChildren<TextMesh>();
 		textMesh.color = color;
 		textMesh.text = text;
 
 		textObject = gameObject.GetComponentInChildren<MeshRenderer>();
-		textObject.sortingLayerID = 6;
-		textObject.sortingOrder = 6;
+		textObject.sortingLayerID = 8;
+		textObject.sortingOrder = 8;
 	}
 	
 	// Update is called once per frame
@@ -35,31 +38,17 @@ public class FloatingText : MonoBehaviour {
 	{
 		if(!enabled)
 			return;
-		if( gc.currentGameState == GameControl.GameState.MainMenu)
+		if(gc.currentGameState == GameControl.GameState.Play )
 		{
-			speedCompensate = 0;
-		}
-		if( gc.currentGameState == GameControl.GameState.Play)
-		{
-			speedCompensate = 5;
-		}
-		if(gc.currentGameState == GameControl.GameState.Play || gc.currentGameState == GameControl.GameState.MainMenu)
-		{
-			Vector3 movement = new Vector3(
-				- speedCompensate,
-				0.5f ,
-				0);
-			
-			movement *= Time.deltaTime;
-			
-			transform.Translate(movement);
 			tweenAlpha.enabled = true;
 			tweenScale.enabled = true;
+			tweenPosition.enabled = true;
 			
 		}else if (gc.currentGameState == GameControl.GameState.Pause)
 		{
 			tweenAlpha.enabled = false;
 			tweenScale.enabled = false;
+			tweenPosition.enabled = false;
 		}
 		
 	}
