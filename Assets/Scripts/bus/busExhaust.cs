@@ -22,7 +22,7 @@ public class busExhaust : MonoBehaviour {
 		{
 			if(lastSmoke >= 0.20f)
 			{
-				GameObject smk = (GameObject) Instantiate(smoke[0], gameObject.transform.position , gameObject.transform.rotation); 
+				Instantiate(smoke[0], gameObject.transform.position , gameObject.transform.rotation); 
 				//smk.transform.parent = gameObject.transform;
 				lastSmoke = 0;
 

@@ -20,6 +20,7 @@ public class ConeObestacle : Obstacle {
 	public override void onCollide (Playermovement p)
 	{
 		p.Energy -= 10;
+		p.popFloatingText("-10", Color.black);
 		NGUITools.PlaySound(hitSound, 0.5f);
 	}
 

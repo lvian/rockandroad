@@ -22,6 +22,7 @@ public class Playermovement : MonoBehaviour {
 	public float speed;
 	public GameObject healthbar;
 	public Dictionary<string,Effect> effects;
+	public GameObject floatingText;
 	private float energyTimer;
 	private int currentLane;
 	private bool isMoving;
@@ -163,7 +164,7 @@ public class Playermovement : MonoBehaviour {
 	}
 	
 	IEnumerator hitByObstacle(SpawnableObject obj) {
-		if(gameControl.currentGameState != GameControl.GameState.Play) // ??? Reacess!
+		if(gameControl.currentGameState != GameControl.GameState.Play)
 			yield break;
 		if(!isBeingHit)
 		{	
@@ -266,18 +267,6 @@ public class Playermovement : MonoBehaviour {
 		}
 	}
 
-	public int Score {
-		get {
-			return score;
-		}
-		set {
-			score = value;
-			UILabel _score = GameObject.Find("score_value").GetComponent<UILabel>();
-			_score.text = score.ToString();
-			checkRecord();
-		}
-	}
-
 	void checkRecord ()
 	{
 		int sc =  PlayerPrefs.GetInt("topScore");
@@ -288,6 +277,27 @@ public class Playermovement : MonoBehaviour {
 				StartCoroutine(gameControl.NewRecord());
 				brokeRecord = true;
 			}
+		}
+	}
+
+
+	public void popFloatingText(string text, Color color){
+		GameObject go = (GameObject) GameObject.Instantiate(floatingText, transform.position, Quaternion.identity);
+		FloatingText fText = go.GetComponentInChildren<FloatingText>();
+		fText.text = text;
+		fText.color = color;
+		go.SetActive(true);
+	}
+
+	public int Score {
+		get {
+			return score;
+		}
+		set {
+			score = value;
+			UILabel _score = GameObject.Find("score_value").GetComponent<UILabel>();
+			_score.text = score.ToString();
+			checkRecord();
 		}
 	}
 	
