@@ -32,7 +32,8 @@ public class TireObestacle : MovableObstacle {
 
 	public override void onCollide (Playermovement p)
 	{
-		p.Energy -= 10;
+		p.Energy -= points;
+		p.popEnergyText("-" + points, Color.red);
 		NGUITools.PlaySound(hitSound, 0.5f);
 	}
 

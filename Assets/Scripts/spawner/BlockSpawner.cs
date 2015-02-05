@@ -28,6 +28,7 @@ public class BlockSpawner {
 		foreach(SpawnableObject i in items){
 			sum += i.spawnChance;
 		}
+
 		return sum;
 	}
 	

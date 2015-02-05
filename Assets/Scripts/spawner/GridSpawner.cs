@@ -5,9 +5,11 @@ using System.Collections.Generic;
 public class GridSpawner : MonoBehaviour {
 
 	protected GameControl gc;
+	protected Playermovement player;
 	public SpawnableObject[] staticObstacles;
 	public SpawnableObject[] movableObstacles;
 	public SpawnableObject[] powerUps;
+	public SpawnableObject multiplier;
 	public GameObject[] spawnPoints;
 	public Vector2 speed;
 	public float timer;
@@ -28,6 +30,7 @@ public class GridSpawner : MonoBehaviour {
 	private int gridColumn;
 	private int gridSize;
 	private int currentTrigger;
+	private int multiplierCounter;
 
 	public enum DifficultyTriggers{
 		_1 = 0,
@@ -41,6 +44,7 @@ public class GridSpawner : MonoBehaviour {
 	void Start () {
 		//Subscribing to receive event stateChanged from GameControll, if so, calls gameStateChanged	
 		gc = GameObject.Find("GameControl").GetComponent<GameControl>();
+		player = GameObject.Find("Player").GetComponent<Playermovement>();
 		gc.stateChanged += gameStateChanged;
 		
 		speed = new Vector2(gc.GameSpeed , 0);
@@ -62,6 +66,7 @@ public class GridSpawner : MonoBehaviour {
 		tileCountTriggers.Enqueue((int)DifficultyTriggers._4);
 		tileCountTriggers.Enqueue((int)DifficultyTriggers._5);
 		currentTrigger = (int) tileCountTriggers.Dequeue();
+		multiplierCounter = 30;
 	}
 	
 	// Update is called once per frame
@@ -99,19 +104,27 @@ public class GridSpawner : MonoBehaviour {
 		spawnTile(column[2], 2);
 		spawnTile(column[3], 3);
 		tileCounter++;
+		multiplierCounter--;
 		changeDifficulty();
 	}
 
 	void spawnTile(int tile, int spawner){
 		switch(tile){
+		case 0:
+			if(multiplierCounter <= 0){
+				GameObject obs = (GameObject) Instantiate(multiplier.gameObject, spawnPoints[spawner].transform.position, spawnPoints[spawner].transform.rotation); 
+				obs.transform.parent = spawnPoints[spawner].transform;
+				multiplierCounter = 30;
+			}
+			break;
 		case 1:
 			int rand = bs.randomInfluencedIndex(staticObstacles);
-			GameObject obs = (GameObject) Instantiate(staticObstacles[rand].gameObject , spawnPoints[spawner].transform.position , spawnPoints[spawner].transform.rotation); 
+			GameObject obs = (GameObject) Instantiate(staticObstacles[rand].gameObject, spawnPoints[spawner].transform.position, spawnPoints[spawner].transform.rotation); 
 			obs.transform.parent = spawnPoints[spawner].transform;
 			break;
 		case 2:
 			rand = bs.randomInfluencedIndex(movableObstacles);
-			obs = (GameObject) Instantiate(movableObstacles[rand].gameObject , spawnPoints[spawner].transform.position , spawnPoints[spawner].transform.rotation); 
+			obs = (GameObject) Instantiate(movableObstacles[rand].gameObject, spawnPoints[spawner].transform.position, spawnPoints[spawner].transform.rotation); 
 			obs.transform.parent = spawnPoints[spawner].transform;
 			SpawnableObject so = obs.GetComponent<SpawnableObject>();
 			so.lanes = spawnPoints;
@@ -119,7 +132,7 @@ public class GridSpawner : MonoBehaviour {
 			break;
 		case 3:
 			rand = bs.randomInfluencedIndex(powerUps);
-			obs = (GameObject) Instantiate(powerUps[rand].gameObject , spawnPoints[spawner].transform.position , spawnPoints[spawner].transform.rotation); 
+			obs = (GameObject) Instantiate(powerUps[rand].gameObject, spawnPoints[spawner].transform.position, spawnPoints[spawner].transform.rotation); 
 			obs.transform.parent = spawnPoints[spawner].transform;
 			break;
 		default:
@@ -128,6 +141,7 @@ public class GridSpawner : MonoBehaviour {
 	}
 
 	int[] generateTransitoryColumn(MapBlock previous, MapBlock next){
+		defineHealthBoostPriority();
 		int[] column = new int[4] {0, 0, 0, 0};
 		for(int r = 0; r < previous.grid.GetLength(0); r++){
 			int _prev = previous.grid[r,previous.grid.GetLength(1) - 1];
@@ -163,6 +177,25 @@ public class GridSpawner : MonoBehaviour {
 			currentTrigger = (int) tileCountTriggers.Dequeue();
 			nd = blocksDB.blocks[bs.randomInfluencedIndex(blocksDB.blocks)];
 			rd = blocksDB.blocks[bs.randomInfluencedIndex(blocksDB.blocks)];
+		}
+	}
+
+	private void defineHealthBoostPriority(){
+		//70 35 15
+		if(player.Energy >= 70){
+			powerUps[0].spawnChance = 100;
+			powerUps[1].spawnChance = 25;
+			powerUps[2].spawnChance = 5;
+		}
+		else if(player.Energy >= 30){
+			powerUps[0].spawnChance = 25;
+			powerUps[1].spawnChance = 100;
+			powerUps[2].spawnChance = 5;
+		}
+		else if(player.Energy < 30){
+			powerUps[0].spawnChance = 5;
+			powerUps[1].spawnChance = 25;
+			powerUps[2].spawnChance = 100;
 		}
 	}
 

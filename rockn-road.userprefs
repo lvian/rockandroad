@@ -1,10 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Playermovement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Spawner\GridSpawner.cs">
     <Files>
-      <File FileName="Assets\Scripts\Playermovement.cs" Line="285" Column="1" />
-      <File FileName="Assets\Scripts\Objects\FloatingText.cs" Line="19" Column="25" />
-      <File FileName="Assets\Scripts\Objects\ConeObestacle.cs" Line="23" Column="41" />
+      <File FileName="Assets\Scripts\Spawner\GridSpawner.cs" Line="186" Column="33" />
+      <File FileName="Assets\Scripts\GameControl.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Spawner\BlockSpawner.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
