@@ -26,6 +26,8 @@ public class Playermovement : MonoBehaviour {
 	public GameObject energyTextSpawner;
 	public GameObject scoreTextSpawner;
 	public GameObject multiplierTextSpawner;
+	public GameObject floatingTextParent;
+	public Camera GUICamera, sceneCamera;
 	private float energyTimer;
 	private int currentLane;
 	private bool isMoving;
@@ -35,7 +37,7 @@ public class Playermovement : MonoBehaviour {
 	private BoxCollider2D movementDelimiter;
 	private UIProgressBar pg;
 	private bool brokeRecord;
-
+	private Vector3 scoreTextPosition, multiplierTextPosition, energyTextPosition, effectTextPosition; 
 	// Use this for initialization
 	void Start () {
 		//Subscribing to receive event stateChanged from GameControll, if so, calls gameStateChanged	
@@ -49,6 +51,15 @@ public class Playermovement : MonoBehaviour {
 		firstLane--;
 		Vector3 pos = new Vector3(lanes[firstLane].transform.position.x,lanes[firstLane].transform.position.y, gameObject.gameObject.transform.position.z);
 		gameObject.transform.position = pos;
+
+		//Generate GUI position for score and multiplier
+		scoreTextPosition = sceneCamera.WorldToViewportPoint(scoreTextSpawner.transform.position);
+		scoreTextPosition = GUICamera.ViewportToWorldPoint (scoreTextPosition);
+		energyTextPosition = sceneCamera.WorldToViewportPoint(energyTextSpawner.transform.position);
+		energyTextPosition = GUICamera.ViewportToWorldPoint (energyTextPosition);
+		multiplierTextPosition = sceneCamera.WorldToViewportPoint(multiplierTextSpawner.transform.position);
+		multiplierTextPosition = GUICamera.ViewportToWorldPoint (multiplierTextPosition);
+
 
 		energyTimer = Time.time;
 		anim = GetComponent<Animator>();
@@ -284,9 +295,22 @@ public class Playermovement : MonoBehaviour {
 		}
 	}
 
+	public void popEffectText(string text, Color color){
+		//GameObject go = (GameObject) GameObject.Instantiate(floatingText, energyTextPosition, Quaternion.identity );
+		GameObject go = NGUITools.AddChild (floatingTextParent, floatingText); 
+		effectTextPosition = sceneCamera.WorldToViewportPoint(transform.position);
+		effectTextPosition = GUICamera.ViewportToWorldPoint (effectTextPosition);
+		go.transform.localPosition = go.transform.parent.InverseTransformPoint(effectTextPosition);
+		FloatingText fText = go.GetComponentInChildren<FloatingText>();
+		fText.text = text;
+		fText.color = color;
+		go.SetActive(true);
+	}
 
 	public void popEnergyText(string text, Color color){
-		GameObject go = (GameObject) GameObject.Instantiate(floatingText, energyTextSpawner.transform.position, Quaternion.identity);
+		//GameObject go = (GameObject) GameObject.Instantiate(floatingText, energyTextPosition, Quaternion.identity );
+		GameObject go = NGUITools.AddChild (floatingTextParent, floatingText); 
+		go.transform.localPosition = go.transform.parent.InverseTransformPoint(energyTextPosition);
 		FloatingText fText = go.GetComponentInChildren<FloatingText>();
 		fText.text = text;
 		fText.color = color;
@@ -294,7 +318,9 @@ public class Playermovement : MonoBehaviour {
 	}
 
 	public void popScoreText(string text, Color color){
-		GameObject go = (GameObject) GameObject.Instantiate(floatingText, scoreTextSpawner.transform.position, Quaternion.identity);
+		//GameObject go = (GameObject) GameObject.Instantiate(floatingText, scoreTextPosition, Quaternion.identity );
+		GameObject go = NGUITools.AddChild (floatingTextParent, floatingText); 
+		go.transform.localPosition = go.transform.parent.InverseTransformPoint(scoreTextPosition);
 		FloatingText fText = go.GetComponentInChildren<FloatingText>();
 		fText.text = text;
 		fText.color = color;
@@ -302,7 +328,9 @@ public class Playermovement : MonoBehaviour {
 	}
 
 	public void popMultiplierText(string text, Color color){
-		GameObject go = (GameObject) GameObject.Instantiate(floatingText, multiplierTextSpawner.transform.position, Quaternion.identity);
+		//GameObject go = (GameObject) GameObject.Instantiate(floatingText, multiplierTextPosition, Quaternion.identity );
+		GameObject go = NGUITools.AddChild (floatingTextParent, floatingText);
+		go.transform.localPosition = go.transform.parent.InverseTransformPoint(multiplierTextPosition);
 		FloatingText fText = go.GetComponentInChildren<FloatingText>();
 		fText.text = text;
 		fText.color = color;

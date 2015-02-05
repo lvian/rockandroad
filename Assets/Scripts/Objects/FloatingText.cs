@@ -7,10 +7,9 @@ public class FloatingText : MonoBehaviour {
 
 	private Animator anim;
 	private TweenAlpha tweenAlpha;
-	private TweenScale tweenScale;
 	private TweenPosition tweenPosition;
-	private TextMesh textMesh;
-	private MeshRenderer textObject;
+	private UILabel uiLabel;
+
 
 	public float speedCompensate;
 	public string text;
@@ -22,15 +21,12 @@ public class FloatingText : MonoBehaviour {
 		gc = GameObject.Find("GameControl").GetComponent<GameControl>();
 		
 		tweenAlpha = gameObject.GetComponentInChildren<TweenAlpha>();
-		tweenScale = gameObject.GetComponentInChildren<TweenScale>();
 		tweenPosition = gameObject.GetComponentInChildren<TweenPosition>();
-		textMesh = gameObject.GetComponentInChildren<TextMesh>();
-		textMesh.color = color;
-		textMesh.text = text;
 
-		textObject = gameObject.GetComponentInChildren<MeshRenderer>();
-		textObject.sortingLayerID = 8;
-		textObject.sortingOrder = 8;
+		uiLabel = gameObject.GetComponentInChildren<UILabel>();
+		uiLabel.color = color;
+		uiLabel.text = text;
+
 	}
 	
 	// Update is called once per frame
@@ -41,13 +37,11 @@ public class FloatingText : MonoBehaviour {
 		if(gc.currentGameState == GameControl.GameState.Play )
 		{
 			tweenAlpha.enabled = true;
-			//tweenScale.enabled = true;
 			tweenPosition.enabled = true;
 			
 		}else if (gc.currentGameState == GameControl.GameState.Pause)
 		{
 			tweenAlpha.enabled = false;
-			//tweenScale.enabled = false;
 			tweenPosition.enabled = false;
 		}
 		

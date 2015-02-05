@@ -46,7 +46,7 @@ public class DungObstacle : Obstacle {
 		p.Energy -= points;
 		p.addEffect(new DungEffect(p, 2f));
 		NGUITools.PlaySound(hitSound, 0.5f);
-		p.popEnergyText("SLOW", Color.magenta);
+		p.popEffectText("SLOW", Color.magenta);
 	}
 
 	#endregion
