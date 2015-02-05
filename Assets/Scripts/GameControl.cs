@@ -35,7 +35,7 @@ public class GameControl : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.R))
 		{
 			//GameSpeed ++;
-			highScore();
+			//highScore();
 		}
 		if(Input.GetKeyDown(KeyCode.F))
 		{
@@ -297,6 +297,8 @@ public class GameControl : MonoBehaviour {
 	}
 	public void highScore()
 	{
+		//Disabled until a real scoreboard is implemented
+		/*
 		string[] scores = loadScore ();
 
 		char[] delimiter = {';'};
@@ -319,7 +321,7 @@ public class GameControl : MonoBehaviour {
 		}
 
 		scorePanelGrid.GetComponent<UIGrid> ().enabled = true;
-
+		*/
 		scorePanel.GetComponent<TweenPosition> ().PlayForward ();
 	}
 

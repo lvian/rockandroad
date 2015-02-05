@@ -41,13 +41,13 @@ public class FloatingText : MonoBehaviour {
 		if(gc.currentGameState == GameControl.GameState.Play )
 		{
 			tweenAlpha.enabled = true;
-			tweenScale.enabled = true;
+			//tweenScale.enabled = true;
 			tweenPosition.enabled = true;
 			
 		}else if (gc.currentGameState == GameControl.GameState.Pause)
 		{
 			tweenAlpha.enabled = false;
-			tweenScale.enabled = false;
+			//tweenScale.enabled = false;
 			tweenPosition.enabled = false;
 		}
 		

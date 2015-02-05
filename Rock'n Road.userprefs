@@ -1,8 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GameControl.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Playermovement.cs">
     <Files>
-      <File FileName="Assets\Scripts\GameControl.cs" Line="164" Column="16" />
+      <File FileName="Assets\Scripts\GameControl.cs" Line="200" Column="3" />
       <File FileName="Assets\Scripts\Objects\HealthBoost.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Objects\TireObestacle.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\MusicControl.cs" Line="1" Column="1" />
@@ -16,13 +16,14 @@
       <File FileName="Assets\Scripts\Objects\MovableObstacle.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\bus\busExhaust.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\bus\BusSmoke.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Playermovement.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Playermovement.cs" Line="288" Column="19" />
       <File FileName="Assets\Scripts\Objects\DungObstacle.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Objects\DungSmell.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Objects\Effects\Effect.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Objects\Effects\DungEffect.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Objects\Multiplier.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Objects\TrashObstacle.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Objects\FloatingText.cs" Line="4" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
