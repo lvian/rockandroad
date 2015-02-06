@@ -42,8 +42,9 @@ public class DungObstacle : Obstacle {
 
 	public override void onCollide (Playermovement p)
 	{
-		p.popEnergyText("-" + points, Color.red);
-		p.Energy -= points;
+		p.popEnergyText("-" + 5, Color.red);
+		//Changed because it already slows, so the damage can be lower
+		p.Energy -= 5;
 		p.addEffect(new DungEffect(p, 2f));
 		NGUITools.PlaySound(hitSound, 0.5f);
 		p.popEffectText("SLOW", Color.magenta);

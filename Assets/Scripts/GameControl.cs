@@ -11,7 +11,7 @@ public class GameControl : MonoBehaviour {
 	private Playermovement player;
 	private GridSpawner spawner;
 
-	public GameObject gameplayPanel, menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1, tutorialPanel2, defeatPanel, exitPanel, readyMessage, goMessage, pauseMessage, recordMessage,busSpawn, bus, muteButton1, muteButton2, pauseButton, scorePanel, scorePanelGrid, scoredGridItenBase;
+	public GameObject gameplayPanel, menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1, tutorialPanel2, defeatPanel, exitPanel, readyMessage, goMessage, pauseMessage, recordMessage,busSpawn, bus, muteButton1, muteButton2, pauseButton, scorePanel, scorePanelGrid, scoredGridItenBase, blockPanel;
 	private MusicControl musicControl;
 
 	void Awake(){
@@ -110,6 +110,8 @@ public class GameControl : MonoBehaviour {
 		currentGameState = GameState.Play;
 		UIToggle tg = pauseButton.GetComponent<UIToggle>();
 		tg.enabled = true;
+		NGUITools.SetActive( blockPanel,false);
+		
 		
 	}
 
@@ -202,7 +204,6 @@ public class GameControl : MonoBehaviour {
 		NGUITools.SetActive( menuPanel,false);
 		controlsPanel.GetComponent<TweenPosition> ().PlayReverse ();
 		creditsPanel.GetComponent<TweenPosition> ().PlayReverse ();
-		NGUITools.SetActive( gameplayPanel,true);
 		NGUITools.SetActive( tutorialPanel1,false);
 		NGUITools.SetActive( tutorialPanel2,false);
 		NGUITools.SetActive( defeatPanel,false);
@@ -234,13 +235,15 @@ public class GameControl : MonoBehaviour {
 
 	public void Tutorial()
 	{
+		NGUITools.SetActive( blockPanel,true);
+		NGUITools.SetActive( gameplayPanel,true);
 		//PlayerPrefs.SetString("MyString", "MyValue");
 		if (PlayerPrefs.GetInt ("skipTutorial") == 1)
 		{
 			GameStart ();
 		} else
 		{
-			NGUITools.SetActive (menuPanel, false);
+			//NGUITools.SetActive (menuPanel, false);
 			//NGUITools.SetActive (controlsPanel, false);
 			//NGUITools.SetActive (creditsPanel, false);
 			NGUITools.SetActive (tutorialPanel1, true);
@@ -260,7 +263,9 @@ public class GameControl : MonoBehaviour {
 		currentGameState = GameState.Defeat;
 		UILabel score = GameObject.Find("score_value").GetComponent<UILabel>();
 		score.text = "0";
-		NGUITools.SetActive( gameplayPanel,false);
+
+		//NGUITools.SetActive( gameplayPanel,false);
+		NGUITools.SetActive( blockPanel,true);
 
 		if(player.Score > PlayerPrefs.GetInt("topScore"))
 		{
@@ -337,6 +342,7 @@ public class GameControl : MonoBehaviour {
 
 	public void gameReset()
 	{
+		NGUITools.SetActive( blockPanel,false);
 		gameState = GameState.GameRestart;
 		player.resetPLayerPosition ();
 

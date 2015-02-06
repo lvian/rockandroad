@@ -34,7 +34,7 @@ public class FloatingText : MonoBehaviour {
 	{
 		if(!enabled)
 			return;
-		if(gc.currentGameState == GameControl.GameState.Play )
+		if(gc.currentGameState != GameControl.GameState.Pause )
 		{
 			tweenAlpha.enabled = true;
 			tweenPosition.enabled = true;

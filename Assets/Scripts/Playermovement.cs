@@ -235,7 +235,7 @@ public class Playermovement : MonoBehaviour {
 	public void givePoints(int pts) {
 		if(energy > 0)
 		{
-			popScoreText("+" + pts * multiplier, Color.blue);
+			popScoreText("+" + pts * multiplier, new Color(1,1, 1));
 			Score += pts * multiplier;
 		}
 	}
