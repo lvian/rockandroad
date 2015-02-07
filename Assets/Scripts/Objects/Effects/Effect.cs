@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public abstract class Effect {
 	private string uniqueName;
 	public float duration;
-	public Playermovement target;
+	public Player target;
 
 	public Effect(string name){
 		this.uniqueName = name;

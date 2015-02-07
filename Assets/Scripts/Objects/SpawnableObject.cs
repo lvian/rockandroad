@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public abstract class SpawnableObject : MonoBehaviour {
@@ -6,7 +6,7 @@ public abstract class SpawnableObject : MonoBehaviour {
 	protected Vector2 speed;
 	public Vector2 direction = new Vector2(-1, 0);
 	protected GameControl gc;
-	protected Playermovement pm;
+	protected Player pm;
 	protected bool pointsAwarded = false;
 	public float spawnChance;
 	public GameObject[] lanes;
@@ -20,7 +20,7 @@ public abstract class SpawnableObject : MonoBehaviour {
 		gc = GameObject.Find("GameControl").GetComponent<GameControl>();
 		gc.stateChanged += gameStateChanged;
 		
-		pm = GameObject.Find("Player").GetComponent<Playermovement>();
+		pm = GameObject.Find("Player").GetComponent<Player>();
 		//Makes sure the obstacle starts with current game speed
 		speed = new Vector2(gc.GameSpeed, gc.GameSpeed);
 		spawnChance = .5f;
@@ -58,7 +58,7 @@ public abstract class SpawnableObject : MonoBehaviour {
 	
 	}
 
-	public abstract void onCollide(Playermovement p);
+	public abstract void onCollide(Player p);
 
 	
 	void gameStateChanged(float gs)

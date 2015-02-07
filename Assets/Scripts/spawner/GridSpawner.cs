@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class GridSpawner : MonoBehaviour {
 
 	protected GameControl gc;
-	protected Playermovement player;
+	protected Player player;
 	public SpawnableObject[] staticObstacles;
 	public SpawnableObject[] movableObstacles;
 	public SpawnableObject[] powerUps;
@@ -44,7 +44,7 @@ public class GridSpawner : MonoBehaviour {
 	void Start () {
 		//Subscribing to receive event stateChanged from GameControll, if so, calls gameStateChanged	
 		gc = GameObject.Find("GameControl").GetComponent<GameControl>();
-		player = GameObject.Find("Player").GetComponent<Playermovement>();
+		player = GameObject.Find("Player").GetComponent<Player>();
 		gc.stateChanged += gameStateChanged;
 		
 		speed = new Vector2(gc.GameSpeed , 0);

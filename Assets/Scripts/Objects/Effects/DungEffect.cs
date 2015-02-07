@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class DungEffect : Effect {
 
-	public DungEffect(Playermovement target, float duration) : base("DungEffect"){
+	public DungEffect(Player target, float duration) : base("DungEffect"){
 		this.target = target;
 		this.duration = duration;
 	}

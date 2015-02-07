@@ -40,7 +40,7 @@ public class DungObstacle : Obstacle {
 
 	#region implemented abstract members of SpawnableObject
 
-	public override void onCollide (Playermovement p)
+	public override void onCollide (Player p)
 	{
 		p.popEnergyText("-" + 5, Color.red);
 		//Changed because it already slows, so the damage can be lower

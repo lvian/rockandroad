@@ -18,7 +18,7 @@ public class HealthBoost : PowerUp {
 
 	#region implemented abstract members of SpawnableObject
 
-	public override void onCollide (Playermovement p)
+	public override void onCollide (Player p)
 	{
 		if(p.Energy + healthAmount > 100)
 			p.Energy = 100;

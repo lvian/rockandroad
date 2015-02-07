@@ -8,11 +8,12 @@ public class GameControl : MonoBehaviour {
 	
 	public int gameSpeed;
 	private GameState gameState;
-	private Playermovement player;
+	private Player player;
 	private GridSpawner spawner;
 
 	public GameObject gameplayPanel, menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1, tutorialPanel2, defeatPanel, exitPanel, readyMessage, goMessage, pauseMessage, recordMessage,busSpawn, bus, muteButton1, muteButton2, pauseButton, scorePanel, scorePanelGrid, scoredGridItenBase, blockPanel;
 	private MusicControl musicControl;
+	private bool pauseLock;
 
 	void Awake(){
 		musicControl = GameObject.Find("MusicControl").GetComponent<MusicControl>();
@@ -20,12 +21,13 @@ public class GameControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		player = GameObject.Find("Player").GetComponent<Playermovement>();
+		player = GameObject.Find("Player").GetComponent<Player>();
 		spawner = GameObject.Find("Spawners").GetComponent<GridSpawner>();
 		gameState = GameState.MainMenu;
 		musicControl.startMusic ();
 		UIEventListener.Get(muteButton1).onClick += toggleSound;
 		UIEventListener.Get(muteButton2).onClick += toggleSound;
+		pauseLock = false;
 	}
 	
 	// Update is called once per frame
@@ -54,7 +56,29 @@ public class GameControl : MonoBehaviour {
 			if(Input.GetKeyDown(KeyCode.Escape))
 			{
 				exitGameplay();
-			}	
+			}
+			if(Input.GetKeyDown(KeyCode.Space) && !pauseLock)
+			{
+				UIToggle uiToogle = pauseButton.GetComponent<UIToggle>();
+				uiToogle.SendMessage("OnClick");
+				pauseLock = true;
+			}
+			if(Input.GetKeyUp(KeyCode.Space))
+			{
+				pauseLock = false;
+			}
+		}
+		if(gameState == GameState.Pause){
+			if(Input.GetKeyUp(KeyCode.Space) && !pauseLock)
+			{
+				UIToggle uiToogle = pauseButton.GetComponent<UIToggle>();
+				uiToogle.SendMessage("OnClick");
+				pauseLock = true;
+			}
+			if(Input.GetKeyUp(KeyCode.Space))
+			{
+				pauseLock = false;
+			}
 		}
 	}
 
@@ -119,23 +143,20 @@ public class GameControl : MonoBehaviour {
 	{
 		if (currentGameState != GameState.MainMenu) 
 		{
-
-				if(UIToggle.current.value == true)
-				{
-					currentGameState = GameState.Pause;
-					NGUITools.SetActive(pauseMessage, true);
-				}
-				else 
-				{
-					NGUITools.SetActive(pauseMessage, false);
-					NGUITools.SetActive(exitPanel, false);
-					UIToggle tg = pauseButton.GetComponent<UIToggle>();
-					Debug.Log (tg.enabled);
-					tg.enabled = false;
-					Debug.Log (tg.enabled);
-					checkReadyGo();
-					StartCoroutine(playDelay(1f));
-				}
+			if(UIToggle.current.value == true)
+			{
+				currentGameState = GameState.Pause;
+				NGUITools.SetActive(pauseMessage, true);
+			}
+			else 
+			{
+				NGUITools.SetActive(pauseMessage, false);
+				NGUITools.SetActive(exitPanel, false);
+				UIToggle tg = pauseButton.GetComponent<UIToggle>();
+				tg.enabled = false;
+				checkReadyGo();
+				StartCoroutine(playDelay(1f));
+			}
 		}
 		
 	}

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Multiplier : PowerUp {
@@ -17,7 +17,7 @@ public class Multiplier : PowerUp {
 
 	#region implemented abstract members of SpawnableObject
 
-	public override void onCollide (Playermovement p)
+	public override void onCollide (Player p)
 	{
 		p.Multiplier++;
 		NGUITools.PlaySound(hitSound, 0.5f);

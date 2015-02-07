@@ -17,7 +17,7 @@ public class ConeObestacle : Obstacle {
 
 	#region implemented abstract members of SpawnableObject
 
-	public override void onCollide (Playermovement p)
+	public override void onCollide (Player p)
 	{
 		p.Energy -= points;
 		p.popEnergyText("-" + points, Color.red);
