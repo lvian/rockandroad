@@ -55,6 +55,7 @@ TextureImporter:
     21300100: rocker_sprite_sheet_39
     21300102: rocker_sprite_sheet_40
     21300104: rocker_sprite_sheet_41
+    21300106: rocker_sprite_sheet_42
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -517,6 +518,16 @@ TextureImporter:
         y: 720
         width: 60
         height: 120
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: rocker_sprite_sheet_42
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 780
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

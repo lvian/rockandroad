@@ -151,7 +151,8 @@
      <Compile Include="Assets\NGUI\Scripts\UI\UIViewport.cs" />
      <Compile Include="Assets\Scripts\GameControl.cs" />
      <Compile Include="Assets\Scripts\MusicControl.cs" />
-     <Compile Include="Assets\Scripts\Objects\BottleObestacle.cs" />
+     <Compile Include="Assets\Scripts\Objects\BottleObstacle.cs" />
+     <Compile Include="Assets\Scripts\Objects\CartObstacle.cs" />
      <Compile Include="Assets\Scripts\Objects\ConeObestacle.cs" />
      <Compile Include="Assets\Scripts\Objects\DungObstacle.cs" />
      <Compile Include="Assets\Scripts\Objects\DungSmell.cs" />
@@ -166,7 +167,7 @@
      <Compile Include="Assets\Scripts\Objects\SpawnableObject.cs" />
      <Compile Include="Assets\Scripts\Objects\TireObestacle.cs" />
      <Compile Include="Assets\Scripts\Objects\TrashObstacle.cs" />
-     <Compile Include="Assets\Scripts\Objects\TrestleObestacle.cs" />
+     <Compile Include="Assets\Scripts\Objects\TrestleObstacle.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\background\RendererExtensions.cs" />
      <Compile Include="Assets\Scripts\background\background.cs" />

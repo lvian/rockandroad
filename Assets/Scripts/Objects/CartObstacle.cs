@@ -1,12 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
-public class BottleObestacle : MovableObstacle {
+public class CartObstacle : MovableObstacle {
 
 	// Use this for initialization
-	public int points = 25;
-	public float sp = 1.5f;
-
+	public int points = 15;
+	public float sp = 1.2f;
 
 
 	private Animator anim;
@@ -33,13 +32,9 @@ public class BottleObestacle : MovableObstacle {
 
 	public override void onCollide (Player p)
 	{
-		p.addEffect(new DungEffect(p, 2f));
-		p.Energy -= 15;
-		p.popEnergyText("-" + 15, Color.red);
+		p.Energy -= points;
+		p.popEnergyText("-" + points, Color.red);
 		NGUITools.PlaySound(hitSound, 0.5f);
-		p.popEffectText("SLOW", Color.magenta);
-		GetComponentInChildren<Animator> ().enabled = false;
-		GetComponentInChildren<SpriteRenderer> ().enabled = false;
 	}
 
 	#endregion
