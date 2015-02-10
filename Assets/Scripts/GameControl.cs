@@ -367,7 +367,7 @@ public class GameControl : MonoBehaviour {
 		gameState = GameState.GameRestart;
 		player.resetPLayerPosition ();
 
-		spawner.tileCounter = 0;
+		spawner.reset();
 
 		NGUITools.SetActive(pauseMessage, false);
 

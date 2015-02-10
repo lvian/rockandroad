@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Level4DB : MonoBehaviour {
+public class Level4DB : BlocksDB {
 
 	// Use this for initialization
 	void Start () {

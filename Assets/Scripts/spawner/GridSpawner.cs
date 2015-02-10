@@ -6,23 +6,20 @@ public class GridSpawner : MonoBehaviour {
 
 	protected GameControl gc;
 	protected Player player;
-	public SpawnableObject[] staticObstacles;
-	public SpawnableObject[] movableObstacles;
-	public SpawnableObject[] powerUps;
-	public SpawnableObject multiplier;
 	public GameObject[] spawnPoints;
 	public Vector2 speed;
 	public float timer;
 	public int tileCounter;
+	public bool isDouble;
 	public Queue tileCountTriggers;
 
-	private BlocksDB level1;
-	private BlocksDB level2;
-	private BlocksDB level3;
-	private BlocksDB level4;
-	private BlocksDB level5;
+	private Difficulty level1;
+	private Difficulty level2;
+	private Difficulty level3;
+	private Difficulty level4;
+	private Difficulty level5;
 	private BlockSpawner bs;
-	private BlocksDB blocksDB;
+	public Difficulty difficulty;
 	private MapBlock st; //1st block of tiles
 	private MapBlock nd; //2nd block of tiles
 	private MapBlock rd; //3rd block of tiles
@@ -35,7 +32,7 @@ public class GridSpawner : MonoBehaviour {
 	public enum DifficultyTriggers{
 		_1 = 0,
 		_2 = 50,
-		_3 = 300,
+		_3 = 250,
 		_4 = 350,
 		_5 = 550,
 	}
@@ -46,16 +43,22 @@ public class GridSpawner : MonoBehaviour {
 		gc = GameObject.Find("GameControl").GetComponent<GameControl>();
 		player = GameObject.Find("Player").GetComponent<Player>();
 		gc.stateChanged += gameStateChanged;
+
+		level1 = GameObject.Find("Level1").GetComponent<Level1>();
+		level2 = GameObject.Find("Level2").GetComponent<Level2>();
+		level3 = GameObject.Find("Level3").GetComponent<Level3>();
+		//level4 = GameObject.Find("Level4").GetComponent<Level4>();
+		//level5 = GameObject.Find("Level5").GetComponent<Level5>();
 		
 		speed = new Vector2(gc.GameSpeed , 0);
 		timer = 2f;
 
 		bs = BlockSpawner.Instance;
-		blocksDB = new Level1DB();
+		difficulty = level1;
 
-		st = blocksDB.blocks[bs.randomInfluencedIndex(blocksDB.blocks)];
-		nd = blocksDB.blocks[bs.randomInfluencedIndex(blocksDB.blocks)];
-		rd = blocksDB.blocks[bs.randomInfluencedIndex(blocksDB.blocks)];
+		st = difficulty.blocks[bs.randomInfluencedIndex(difficulty.blocks)];
+		nd = difficulty.blocks[bs.randomInfluencedIndex(difficulty.blocks)];
+		rd = difficulty.blocks[bs.randomInfluencedIndex(difficulty.blocks)];
 
 		gridColumn = 0;
 		gridSize = st.grid.GetLength(1);
@@ -78,7 +81,7 @@ public class GridSpawner : MonoBehaviour {
 				spawnColumn(generateTransitoryColumn(st, nd));
 				st = nd;
 				nd = rd;
-				rd = blocksDB.blocks[bs.randomInfluencedIndex(blocksDB.blocks)];
+				rd = difficulty.blocks[bs.randomInfluencedIndex(difficulty.blocks)];
 				gridColumn = 0;
 				gridSize = st.grid.GetLength(1);
 			}
@@ -99,40 +102,93 @@ public class GridSpawner : MonoBehaviour {
 	}
 
 	void spawnColumn(int[] column){
-		spawnTile(column[0], 0);
-		spawnTile(column[1], 1);
-		spawnTile(column[2], 2);
-		spawnTile(column[3], 3);
+		int index = isDoubleObstaclePossible(column);
+		//Random.Range(0f, 100f) < 10f && 
+
+		if(index >= 0 && Random.Range(0f, 100f) > 50f && difficulty.doubleObjects.Length > 0){
+			Debug.Log(index + " {" + column[0] + "," + column[1] +"," + column[2]+"," + column[3] + "}");
+			switch(index){
+			case 1:
+				isDouble = true;
+				spawnTile(column[1], 1);
+				spawnTile(column[2], 2);
+				spawnTile(column[3], 3);
+				break;
+			case 2:
+				spawnTile(column[0], 0);
+				isDouble = true;
+				spawnTile(column[1], 1);
+				spawnTile(column[3], 3);
+				break;
+			case 3:
+				spawnTile(column[0], 0);
+				spawnTile(column[1], 1);
+				isDouble = true;
+				spawnTile(column[2], 2);
+				break;
+			}
+		}
+		else{
+			spawnTile(column[0], 0);
+			spawnTile(column[1], 1);
+			spawnTile(column[2], 2);
+			spawnTile(column[3], 3);
+		}
 		tileCounter++;
 		multiplierCounter--;
 		changeDifficulty();
 	}
 
+	int isDoubleObstaclePossible(int[] column){
+		bool tmp = false;
+		for(int c = 0; c < 4; c++){
+			if(column[c] == 1){
+				if(!tmp)
+					tmp = true;
+				else
+					return c;
+			}
+			else
+				tmp = false;
+		}
+		return -1;
+	}
+
 	void spawnTile(int tile, int spawner){
+		int rand = 0;
+		GameObject obs = null;
 		switch(tile){
 		case 0:
 			if(multiplierCounter <= 0){
-				GameObject obs = (GameObject) Instantiate(multiplier.gameObject, spawnPoints[spawner].transform.position, spawnPoints[spawner].transform.rotation); 
+				obs = (GameObject) Instantiate(difficulty.multiplierObjects[0].gameObject, spawnPoints[spawner].transform.position, spawnPoints[spawner].transform.rotation); 
 				obs.transform.parent = spawnPoints[spawner].transform;
 				multiplierCounter = 30;
 			}
 			break;
 		case 1:
-			int rand = bs.randomInfluencedIndex(staticObstacles);
-			GameObject obs = (GameObject) Instantiate(staticObstacles[rand].gameObject, spawnPoints[spawner].transform.position, spawnPoints[spawner].transform.rotation); 
-			obs.transform.parent = spawnPoints[spawner].transform;
+			if(!isDouble){
+				rand = bs.randomInfluencedIndex(difficulty.staticObjects);
+				obs = (GameObject) Instantiate(difficulty.staticObjects[rand].gameObject, spawnPoints[spawner].transform.position, spawnPoints[spawner].transform.rotation); 
+				obs.transform.parent = spawnPoints[spawner].transform;
+			}
+			else{
+				rand = bs.randomInfluencedIndex(difficulty.doubleObjects);
+				obs = (GameObject) Instantiate(difficulty.doubleObjects[rand].gameObject, spawnPoints[spawner].transform.position, spawnPoints[spawner].transform.rotation); 
+				obs.transform.parent = spawnPoints[spawner].transform;
+				isDouble = false;
+			}
 			break;
 		case 2:
-			rand = bs.randomInfluencedIndex(movableObstacles);
-			obs = (GameObject) Instantiate(movableObstacles[rand].gameObject, spawnPoints[spawner].transform.position, spawnPoints[spawner].transform.rotation); 
+			rand = bs.randomInfluencedIndex(difficulty.movableObjects);
+			obs = (GameObject) Instantiate(difficulty.movableObjects[rand].gameObject, spawnPoints[spawner].transform.position, spawnPoints[spawner].transform.rotation); 
 			obs.transform.parent = spawnPoints[spawner].transform;
 			SpawnableObject so = obs.GetComponent<SpawnableObject>();
 			so.lanes = spawnPoints;
 			so.spawnLane = spawner;
 			break;
 		case 3:
-			rand = bs.randomInfluencedIndex(powerUps);
-			obs = (GameObject) Instantiate(powerUps[rand].gameObject, spawnPoints[spawner].transform.position, spawnPoints[spawner].transform.rotation); 
+			rand = bs.randomInfluencedIndex(difficulty.powerUpObjects);
+			obs = (GameObject) Instantiate(difficulty.powerUpObjects[rand].gameObject, spawnPoints[spawner].transform.position, spawnPoints[spawner].transform.rotation); 
 			obs.transform.parent = spawnPoints[spawner].transform;
 			break;
 		default:
@@ -166,46 +222,46 @@ public class GridSpawner : MonoBehaviour {
 		if(tileCounter == currentTrigger){
 			switch(tileCounter){
 			case (int)DifficultyTriggers._2:
-				blocksDB = new Level2DB();
+				difficulty = level2;
 				break;
 			case (int)DifficultyTriggers._3:
-				blocksDB = new Level3DB();
+				difficulty = level3;
 				break;
 			default:
 				break;
 			}
 			currentTrigger = (int) tileCountTriggers.Dequeue();
-			nd = blocksDB.blocks[bs.randomInfluencedIndex(blocksDB.blocks)];
-			rd = blocksDB.blocks[bs.randomInfluencedIndex(blocksDB.blocks)];
+			nd = difficulty.blocks[bs.randomInfluencedIndex(difficulty.blocks)];
+			rd = difficulty.blocks[bs.randomInfluencedIndex(difficulty.blocks)];
 		}
 	}
 
 	private void defineHealthBoostPriority(){
 		//70 35 15
 		if(player.Energy >= 70){
-			powerUps[0].spawnChance = 100;
-			powerUps[1].spawnChance = 25;
-			powerUps[2].spawnChance = 5;
+			difficulty.powerUpObjects[0].spawnChance = 100;
+			difficulty.powerUpObjects[1].spawnChance = 25;
+			difficulty.powerUpObjects[2].spawnChance = 5;
 		}
 		else if(player.Energy >= 30){
-			powerUps[0].spawnChance = 25;
-			powerUps[1].spawnChance = 100;
-			powerUps[2].spawnChance = 5;
+			difficulty.powerUpObjects[0].spawnChance = 25;
+			difficulty.powerUpObjects[1].spawnChance = 100;
+			difficulty.powerUpObjects[2].spawnChance = 5;
 		}
 		else if(player.Energy < 30){
-			powerUps[0].spawnChance = 5;
-			powerUps[1].spawnChance = 25;
-			powerUps[2].spawnChance = 100;
+			difficulty.powerUpObjects[0].spawnChance = 5;
+			difficulty.powerUpObjects[1].spawnChance = 25;
+			difficulty.powerUpObjects[2].spawnChance = 100;
 		}
 	}
 
 	public void reset(){
 		tileCounter = 0;
-		blocksDB = new Level1DB();
+		difficulty = level1;
 
-		st = blocksDB.blocks[bs.randomInfluencedIndex(blocksDB.blocks)];
-		nd = blocksDB.blocks[bs.randomInfluencedIndex(blocksDB.blocks)];
-		rd = blocksDB.blocks[bs.randomInfluencedIndex(blocksDB.blocks)];
+		st = difficulty.blocks[bs.randomInfluencedIndex(difficulty.blocks)];
+		nd = difficulty.blocks[bs.randomInfluencedIndex(difficulty.blocks)];
+		rd = difficulty.blocks[bs.randomInfluencedIndex(difficulty.blocks)];
 		gridColumn = 0;
 		gridSize = st.grid.GetLength(1);
 

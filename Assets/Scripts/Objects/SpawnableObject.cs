@@ -9,6 +9,7 @@ public abstract class SpawnableObject : MonoBehaviour {
 	protected Player pm;
 	protected bool pointsAwarded = false;
 	public float spawnChance;
+	public bool isDouble = false;
 	public GameObject[] lanes;
 	public int spawnLane;
 	public AudioClip hitSound;
