@@ -1,7 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Objects\CartObstacle.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Objects\BoxObestacle.cs">
     <Files>
+      <File FileName="Assets\Scripts\Objects\BoxObestacle.cs" Line="4" Column="17" />
+      <File FileName="Assets\Scripts\Objects\CartObstacle.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Player.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GameControl.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Objects\HealthBoost.cs" Line="1" Column="1" />
@@ -10,8 +12,7 @@
       <File FileName="Assets\Scripts\Objects\TrashObstacle.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Objects\FloatingText.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Objects\DungObstacle.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Objects\BottleObstacle.cs" Line="4" Column="22" />
-      <File FileName="Assets\Scripts\Objects\CartObstacle.cs" Line="17" Column="32" />
+      <File FileName="Assets\Scripts\Objects\BottleObstacle.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
