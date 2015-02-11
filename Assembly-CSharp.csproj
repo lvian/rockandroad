@@ -171,6 +171,7 @@
      <Compile Include="Assets\Scripts\Objects\TrestleObstacle.cs" />
      <Compile Include="Assets\Scripts\Objects\VaseObstacle.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
+     <Compile Include="Assets\Scripts\SiteLock.cs" />
      <Compile Include="Assets\Scripts\background\RendererExtensions.cs" />
      <Compile Include="Assets\Scripts\background\background.cs" />
      <Compile Include="Assets\Scripts\background\backgroundHorizon.cs" />
