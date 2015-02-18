@@ -33,7 +33,7 @@ public class GameControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-
+		//Debug.Log ("mute 2 "+muteButton2.GetComponentInChildren<UISprite>());
 		if(Input.GetKeyDown(KeyCode.R))
 		{
 			//GameSpeed ++;
@@ -199,7 +199,6 @@ public class GameControl : MonoBehaviour {
 
 	public void toggleSound(GameObject ob)
 	{
-		UIToggle tog = ob.GetComponent<UIToggle> ();
 		if(tog.value == true)
 		{
 			mainCamera.audio.volume = 0;

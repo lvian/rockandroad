@@ -106,7 +106,6 @@ public class GridSpawner : MonoBehaviour {
 		//Random.Range(0f, 100f) < 10f && 
 
 		if(index >= 0 && Random.Range(0f, 100f) > 50f && difficulty.doubleObjects.Length > 0){
-			Debug.Log(index + " {" + column[0] + "," + column[1] +"," + column[2]+"," + column[3] + "}");
 			switch(index){
 			case 1:
 				isDouble = true;

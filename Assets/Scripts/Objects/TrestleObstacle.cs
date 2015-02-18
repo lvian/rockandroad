@@ -19,7 +19,6 @@ public class TrestleObstacle : Obstacle {
 
 	public override void onCollide (Player p)
 	{
-		Debug.Log ("teste");
 		p.Energy -= 10;
 		p.popEnergyText("-" + 10, Color.red);
 		NGUITools.PlaySound(hitSound, 0.5f);

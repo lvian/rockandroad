@@ -38,6 +38,8 @@ public class Player : MonoBehaviour {
 	private UIProgressBar pg;
 	private bool brokeRecord;
 	private Vector3 scoreTextPosition, multiplierTextPosition, energyTextPosition, effectTextPosition; 
+
+
 	// Use this for initialization
 	void Start () {
 		//Subscribing to receive event stateChanged from GameControll, if so, calls gameStateChanged	
@@ -59,7 +61,6 @@ public class Player : MonoBehaviour {
 		energyTextPosition = GUICamera.ViewportToWorldPoint (energyTextPosition);
 		multiplierTextPosition = sceneCamera.WorldToViewportPoint(multiplierTextSpawner.transform.position);
 		multiplierTextPosition = GUICamera.ViewportToWorldPoint (multiplierTextPosition);
-
 
 		energyTimer = Time.time;
 		anim = GetComponent<Animator>();
@@ -114,6 +115,12 @@ public class Player : MonoBehaviour {
 		if(isMoving)
 		{
 			transform.position = Vector3.MoveTowards(gameObject.transform.position,lanes[currentLane].transform.position, 0.03f * laneChangeSpeed);
+			if(Vector3.Distance(gameObject.transform.position , lanes[currentLane].transform.position ) <= 0)
+			{
+				isMoving = false;
+				transform.rotation = new Quaternion( 0f, 0f, 0f, 1);
+			}
+
 		}
 	
 	}
@@ -122,11 +129,14 @@ public class Player : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
 		{
 			move(UP_ONE_LANE);
-		}
+			transform.rotation = new Quaternion( 0f, 0.1f,0.1f , 1); 
+ 		}
 		
 		if(Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
 		{
 			move (DOWN_ONE_LANE);
+			transform.rotation = new Quaternion( 0f, -0.1f,-0.1f , 1);
+
 		}		
 	}
 

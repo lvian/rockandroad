@@ -11,7 +11,6 @@ public class SiteLock : MonoBehaviour {
 		{
 			string url = Application.absoluteURL.Split('/')[2];
 			bool foundGoodSite = false;
-			Debug.Log(url);
 			for (int i = 0; i < allowedSites.Length; i++)
 			{
 				if (url.IndexOf(allowedSites[i]) >= 0 && url.IndexOf(allowedSites[i]) == (url.Length - allowedSites[i].Length))
