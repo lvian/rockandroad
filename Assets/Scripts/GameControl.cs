@@ -199,6 +199,7 @@ public class GameControl : MonoBehaviour {
 
 	public void toggleSound(GameObject ob)
 	{
+		UIToggle tog = ob.GetComponent<UIToggle> ();
 		if(tog.value == true)
 		{
 			mainCamera.audio.volume = 0;
