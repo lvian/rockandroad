@@ -387,6 +387,7 @@ public class GameControl : MonoBehaviour {
 
 		if (UIButton.current.name.Equals ("main_button") || UIButton.current.name.Equals ("yes_button")) 
 		{
+			musicControl.restartMusic();
 			MainMenu();
 		}
 		else if (UIButton.current.name.Equals ("restart_button"))
