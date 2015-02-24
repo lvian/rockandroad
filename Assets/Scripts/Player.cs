@@ -39,7 +39,6 @@ public class Player : MonoBehaviour {
 	private bool brokeRecord;
 	private Vector3 scoreTextPosition, multiplierTextPosition, energyTextPosition, effectTextPosition; 
 
-
 	// Use this for initialization
 	void Start () {
 		//Subscribing to receive event stateChanged from GameControll, if so, calls gameStateChanged	
@@ -105,7 +104,6 @@ public class Player : MonoBehaviour {
 	}
 
 	public void FixedUpdate() {
-		
 		anim.SetInteger("Speed", gameControl.gameSpeed);
 		anim.SetInteger("GameState", (int)gameControl.currentGameState);
 	}
@@ -120,9 +118,7 @@ public class Player : MonoBehaviour {
 				isMoving = false;
 				transform.rotation = new Quaternion( 0f, 0f, 0f, 1);
 			}
-
 		}
-	
 	}
 
 	private void checkInput(){
@@ -188,11 +184,10 @@ public class Player : MonoBehaviour {
 	}
 	
 	IEnumerator hitByObstacle(SpawnableObject obj) {
-		if(gameControl.currentGameState != GameControl.GameState.Play)
-			yield break;
+		//if(gameControl.currentGameState != GameControl.GameState.Play)
+			//yield break;
 		if(!isBeingHit)
 		{	
-
 			Multiplier = 1;
 			isBeingHit = true;
 			if(obj)
