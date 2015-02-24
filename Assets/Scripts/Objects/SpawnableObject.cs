@@ -13,6 +13,9 @@ public abstract class SpawnableObject : MonoBehaviour {
 	public GameObject[] lanes;
 	public int spawnLane;
 	public AudioClip hitSound;
+	public bool isHit = false;
+	protected Vector3 adjustPosition;
+	public GameObject objectsSmoke;
 
 	// Use this for initialization
 	public virtual void Start () {

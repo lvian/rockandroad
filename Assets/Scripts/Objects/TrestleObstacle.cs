@@ -12,6 +12,14 @@ public class TrestleObstacle : Obstacle {
 		if(gc.currentGameState == GameControl.GameState.Play)
 		{
 			movement(points , sp);
+			if(isHit)
+			{
+				transform.GetChild(0).position = Vector3.MoveTowards(transform.GetChild(0).position ,new Vector3(transform.position.x + adjustPosition.x,
+				                                                                                                 adjustPosition.y,
+				                                                                                                 adjustPosition.z),
+				                                                                                                 4 *  Time.deltaTime);
+				transform.GetComponentInChildren<TweenRotation>().PlayForward();
+			}
 		}
 	}
 
@@ -22,6 +30,9 @@ public class TrestleObstacle : Obstacle {
 		p.Energy -= 10;
 		p.popEnergyText("-" + 10, Color.red);
 		NGUITools.PlaySound(hitSound, 0.5f);
+		isHit = true;
+		adjustPosition = new Vector3( 0.5f , transform.GetChild(0).position.y + 0.3f, transform.GetChild(0).position.z + transform.position.z );
+
 	}
 
 	#endregion

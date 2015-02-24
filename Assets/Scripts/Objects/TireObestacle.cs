@@ -35,6 +35,8 @@ public class TireObestacle : MovableObstacle {
 		p.Energy -= points;
 		p.popEnergyText("-" + points, Color.red);
 		NGUITools.PlaySound(hitSound, 0.5f);
+		changeLane ();
+		transform.GetComponent<TweenRotation> ().PlayForward ();
 	}
 
 	#endregion

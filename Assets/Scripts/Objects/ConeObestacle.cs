@@ -12,6 +12,11 @@ public class ConeObestacle : Obstacle {
 		if(gc.currentGameState == GameControl.GameState.Play)
 		{
 			movement(points , sp);
+			if(isHit)
+			{
+				transform.GetChild(0).position = Vector3.MoveTowards(transform.GetChild(0).position ,transform.position + adjustPosition ,  5 *Time.deltaTime);
+				transform.GetComponentInChildren<TweenRotation>().PlayForward();
+			}
 		}
 	}
 
@@ -22,6 +27,8 @@ public class ConeObestacle : Obstacle {
 		p.Energy -= points;
 		p.popEnergyText("-" + points, Color.red);
 		NGUITools.PlaySound(hitSound, 0.5f);
+		isHit = true;
+		adjustPosition = new Vector3( 0.5f , - 0.25f, transform.position.z );
 	}
 
 	#endregion

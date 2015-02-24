@@ -48,7 +48,6 @@ public class MusicControl : MonoBehaviour {
 		audios.Stop ();
 		audios.PlayOneShot (gameStartSound);
 		yield return new WaitForSeconds(gameStartSound.length);
-		Debug.Log (currentSong);
 		audios.clip = gameMusics[currentSong];
 		if (currentSong < 2) {
 			currentSong ++;

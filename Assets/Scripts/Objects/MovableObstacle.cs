@@ -56,7 +56,7 @@ public abstract class MovableObstacle : Obstacle {
 			
 	}
 
-	private void changeLane()
+	protected void changeLane()
 	{
 		float v = lanes [spawnLane].transform.position.y;
 		int l = Random.Range (0, 4);

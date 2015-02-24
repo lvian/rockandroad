@@ -21,6 +21,10 @@ public class TrashObstacle : SpawnableObject {
 		p.Energy -= points;
 		p.popEnergyText("-" + points, Color.red);
 		NGUITools.PlaySound(hitSound, 0.5f);
+
+		GameObject go = (GameObject) GameObject.Instantiate (objectsSmoke, transform.position, transform.rotation);
+		go.GetComponentInChildren<SpriteRenderer> ().color = new Color( 0.6f, 0.6f, 0.6f, 1f);
+
 	}
 
 	#endregion
