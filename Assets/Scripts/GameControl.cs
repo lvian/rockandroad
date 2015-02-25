@@ -256,6 +256,7 @@ public class GameControl : MonoBehaviour {
 
 	public void Tutorial()
 	{
+		GA.API.Design.NewEvent ("Pressed Play Button");
 		NGUITools.SetActive( blockPanel,true);
 		NGUITools.SetActive( gameplayPanel,true);
 		//PlayerPrefs.SetString("MyString", "MyValue");
@@ -285,6 +286,7 @@ public class GameControl : MonoBehaviour {
 		UILabel score = GameObject.Find("score_value").GetComponent<UILabel>();
 		score.text = "0";
 
+
 		//NGUITools.SetActive( gameplayPanel,false);
 		NGUITools.SetActive( blockPanel,true);
 
@@ -301,6 +303,7 @@ public class GameControl : MonoBehaviour {
 
 		GridSpawner gs = GameObject.Find ("Spawners").GetComponent<GridSpawner> ();
 		distance.text = gs.TileCounter.ToString() + " m";
+		GA.API.Design.NewEvent ("Distance when defeat" , gs.TileCounter);
 
 	}
 

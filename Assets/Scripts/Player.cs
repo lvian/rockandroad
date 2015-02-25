@@ -101,6 +101,9 @@ public class Player : MonoBehaviour {
 		if(isInvul){
 			animateAlpha();
 		}
+		if (gameControl.currentGameState == GameControl.GameState.Defeat) {
+			transform.rotation = new Quaternion( 0f, 0f, 0f, 1);
+		}
 	}
 
 	public void FixedUpdate() {
@@ -124,15 +127,14 @@ public class Player : MonoBehaviour {
 	private void checkInput(){
 		if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
 		{
-			move(UP_ONE_LANE);
 			transform.rotation = new Quaternion( 0f, 0.1f,0.1f , 1); 
+			move(UP_ONE_LANE);
  		}
 		
 		if(Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
 		{
-			move (DOWN_ONE_LANE);
 			transform.rotation = new Quaternion( 0f, -0.1f,-0.1f , 1);
-
+			move (DOWN_ONE_LANE);
 		}		
 	}
 
@@ -153,6 +155,9 @@ public class Player : MonoBehaviour {
 			//previousLane = currentLane;
 			currentLane  += nextLane;
 			isMoving = true;
+		} else
+		{
+			transform.rotation = new Quaternion( 0f, 0f, 0f, 1);
 		}
 	}
 
@@ -160,6 +165,7 @@ public class Player : MonoBehaviour {
 	{
 		currentLane  = firstLane;
 		isMoving = true;
+		transform.rotation = new Quaternion( 0f, 0f, 0f, 1);
 		
 	}
 
