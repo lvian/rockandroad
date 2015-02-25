@@ -184,8 +184,8 @@ public class Player : MonoBehaviour {
 	}
 	
 	IEnumerator hitByObstacle(SpawnableObject obj) {
-		//if(gameControl.currentGameState != GameControl.GameState.Play)
-			//yield break;
+		if(gameControl.currentGameState == GameControl.GameState.Defeat)
+			yield break;
 		if(!isBeingHit)
 		{	
 			Multiplier = 1;

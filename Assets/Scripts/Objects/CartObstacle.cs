@@ -22,8 +22,8 @@ public class CartObstacle : MovableObstacle {
 		{
 			anim.speed = 1;
 			movement(points, sp);
-		}else if (gc.currentGameState == GameControl.GameState.Pause)
-		{
+		}
+		else {
 			anim.speed = 0;
 		}
 	}

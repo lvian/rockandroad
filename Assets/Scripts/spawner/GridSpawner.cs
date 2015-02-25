@@ -31,8 +31,8 @@ public class GridSpawner : MonoBehaviour {
 
 	public enum DifficultyTriggers{
 		_1 = 0,
-		_2 = 50,
-		_3 = 250,
+		_2 = 10,
+		_3 = 30,
 		_4 = 350,
 		_5 = 550,
 	}
