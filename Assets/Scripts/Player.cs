@@ -101,6 +101,14 @@ public class Player : MonoBehaviour {
 		if(isInvul){
 			animateAlpha();
 		}
+		else{
+			Color c = new Color(
+				renderer.material.color.r, 
+				renderer.material.color.g, 
+				renderer.material.color.b, 1f
+				);
+			renderer.material.color = c;
+		}
 		if (gameControl.currentGameState == GameControl.GameState.Defeat) {
 			transform.rotation = new Quaternion( 0f, 0f, 0f, 1);
 		}
