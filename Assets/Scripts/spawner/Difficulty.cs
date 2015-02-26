@@ -7,6 +7,6 @@ public abstract class Difficulty : MonoBehaviour{
 	public SpawnableObject[] staticObjects;
 	public SpawnableObject[] doubleObjects;
 	public SpawnableObject[] movableObjects;
+	public SpawnableObject[] enthusiasmObjects;
 	public SpawnableObject[] powerUpObjects;
-	public SpawnableObject[] multiplierObjects;
 }

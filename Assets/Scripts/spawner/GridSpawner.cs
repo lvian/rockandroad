@@ -27,7 +27,7 @@ public class GridSpawner : MonoBehaviour {
 	private int gridColumn;
 	private int gridSize;
 	private int currentTrigger;
-	private int multiplierCounter;
+	private int powerUpCounter;
 
 	public enum DifficultyTriggers{
 		_1 = 0,
@@ -69,7 +69,7 @@ public class GridSpawner : MonoBehaviour {
 		tileCountTriggers.Enqueue((int)DifficultyTriggers._4);
 		tileCountTriggers.Enqueue((int)DifficultyTriggers._5);
 		currentTrigger = (int) tileCountTriggers.Dequeue();
-		multiplierCounter = 30;
+		powerUpCounter = 30;
 	}
 	
 	// Update is called once per frame
@@ -134,7 +134,7 @@ public class GridSpawner : MonoBehaviour {
 			spawnTile(column[3], 3);
 		}
 		tileCounter++;
-		multiplierCounter--;
+		powerUpCounter--;
 		changeDifficulty();
 	}
 
@@ -158,10 +158,11 @@ public class GridSpawner : MonoBehaviour {
 		GameObject obs = null;
 		switch(tile){
 		case 0:
-			if(multiplierCounter <= 0){
-				obs = (GameObject) Instantiate(difficulty.multiplierObjects[0].gameObject, spawnPoints[spawner].transform.position, spawnPoints[spawner].transform.rotation); 
+			if(powerUpCounter <= 0){
+				rand = bs.randomInfluencedIndex(difficulty.powerUpObjects);
+				obs = (GameObject) Instantiate(difficulty.powerUpObjects[rand].gameObject, spawnPoints[spawner].transform.position, spawnPoints[spawner].transform.rotation); 
 				obs.transform.parent = spawnPoints[spawner].transform;
-				multiplierCounter = 30;
+				powerUpCounter = 30;
 			}
 			break;
 		case 1:
@@ -186,8 +187,8 @@ public class GridSpawner : MonoBehaviour {
 			so.spawnLane = spawner;
 			break;
 		case 3:
-			rand = bs.randomInfluencedIndex(difficulty.powerUpObjects);
-			obs = (GameObject) Instantiate(difficulty.powerUpObjects[rand].gameObject, spawnPoints[spawner].transform.position, spawnPoints[spawner].transform.rotation); 
+			rand = bs.randomInfluencedIndex(difficulty.enthusiasmObjects);
+			obs = (GameObject) Instantiate(difficulty.enthusiasmObjects[rand].gameObject, spawnPoints[spawner].transform.position, spawnPoints[spawner].transform.rotation); 
 			obs.transform.parent = spawnPoints[spawner].transform;
 			break;
 		default:
@@ -238,19 +239,19 @@ public class GridSpawner : MonoBehaviour {
 	private void defineHealthBoostPriority(){
 		//70 35 15
 		if(player.Energy >= 70){
-			difficulty.powerUpObjects[0].spawnChance = 100;
-			difficulty.powerUpObjects[1].spawnChance = 25;
-			difficulty.powerUpObjects[2].spawnChance = 5;
+			difficulty.enthusiasmObjects[0].spawnChance = 100;
+			difficulty.enthusiasmObjects[1].spawnChance = 25;
+			difficulty.enthusiasmObjects[2].spawnChance = 5;
 		}
 		else if(player.Energy >= 30){
-			difficulty.powerUpObjects[0].spawnChance = 25;
-			difficulty.powerUpObjects[1].spawnChance = 100;
-			difficulty.powerUpObjects[2].spawnChance = 5;
+			difficulty.enthusiasmObjects[0].spawnChance = 25;
+			difficulty.enthusiasmObjects[1].spawnChance = 100;
+			difficulty.enthusiasmObjects[2].spawnChance = 5;
 		}
 		else if(player.Energy < 30){
-			difficulty.powerUpObjects[0].spawnChance = 5;
-			difficulty.powerUpObjects[1].spawnChance = 25;
-			difficulty.powerUpObjects[2].spawnChance = 100;
+			difficulty.enthusiasmObjects[0].spawnChance = 5;
+			difficulty.enthusiasmObjects[1].spawnChance = 25;
+			difficulty.enthusiasmObjects[2].spawnChance = 100;
 		}
 	}
 

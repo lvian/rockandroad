@@ -192,7 +192,7 @@ public class Player : MonoBehaviour {
 	IEnumerator hitByObstacle(SpawnableObject obj) {
 		if(gameControl.currentGameState == GameControl.GameState.Defeat)
 			yield break;
-		if(!isBeingHit)
+		if(!isBeingHit && !isInvul)
 		{	
 			Multiplier = 1;
 			isBeingHit = true;
@@ -376,6 +376,15 @@ public class Player : MonoBehaviour {
 		set {
 			energy = value;
 			adjustEnergy();
+		}
+	}
+
+	public bool IsInvul {
+		get {
+			return isInvul;
+		}
+		set {
+			isInvul = value;
 		}
 	}
 }
