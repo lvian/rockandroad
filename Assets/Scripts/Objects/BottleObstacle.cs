@@ -40,6 +40,7 @@ public class BottleObstacle : MovableObstacle {
 		p.popEffectText("SLOW", Color.magenta);
 		GetComponentInChildren<Animator> ().enabled = false;
 		GetComponentInChildren<SpriteRenderer> ().enabled = false;
+		transform.GetChild (1).GetComponent<SpriteRenderer> ().enabled = false;
 	}
 
 	#endregion
