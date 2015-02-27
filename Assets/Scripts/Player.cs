@@ -70,6 +70,9 @@ public class Player : MonoBehaviour {
 		isInvul = false;
 		brokeRecord = false;
 		effects = new Dictionary<string,Effect>();
+
+		// Set the sorting layer of the particle system.
+		transform.GetComponentInChildren<ParticleSystem> ().renderer.sortingOrder = 5;
 	}
 	
 	// Update is called once per frame
@@ -129,6 +132,18 @@ public class Player : MonoBehaviour {
 				isMoving = false;
 				transform.rotation = new Quaternion( 0f, 0f, 0f, 1);
 			}
+		}
+	}
+
+	public void activateParticleSystem(bool st)
+	{
+		// Set the sorting layer of the particle system.
+		if (st)
+		{
+			transform.GetComponentInChildren<ParticleSystem> ().Play();
+		}
+		else{
+			transform.GetComponentInChildren<ParticleSystem> ().Stop ();
 		}
 	}
 
