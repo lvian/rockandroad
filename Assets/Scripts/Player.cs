@@ -137,9 +137,38 @@ public class Player : MonoBehaviour {
 
 	public void activateParticleSystem(bool st)
 	{
+		GameControl.Band b = gameControl.currentBand ;
 		// Set the sorting layer of the particle system.
 		if (st)
 		{
+			if (b == GameControl.Band.Skull) 
+			{
+				transform.GetComponentInChildren<ParticleSystem> ().startColor = new Color(
+					0.5f, 
+					0.4f, 
+					0.95f,
+					1f
+					);
+			}
+			if (b == GameControl.Band.Wing) 
+			{
+				transform.GetComponentInChildren<ParticleSystem> ().startColor = new Color(
+					0.4f, 
+					0.6f, 
+					0.9f,
+					1f
+					);
+			}
+			if (b == GameControl.Band.Kiss) 
+			{
+				
+				transform.GetComponentInChildren<ParticleSystem> ().startColor = new Color(
+					0.75f, 
+					0.75f, 
+					0.3f,
+					1f
+					);
+			}
 			transform.GetComponentInChildren<ParticleSystem> ().Play();
 		}
 		else{

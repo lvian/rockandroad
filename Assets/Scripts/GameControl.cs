@@ -253,7 +253,7 @@ public class GameControl : MonoBehaviour {
 			healthbar.GetComponent<UISprite>().color = new Color(
 				0.4f, 
 				0.6f, 
-				0.8f,
+				0.9f,
 				1f
 				);
 		}
