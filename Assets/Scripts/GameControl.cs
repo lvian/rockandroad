@@ -252,6 +252,7 @@ public class GameControl : MonoBehaviour {
 			band = Band.Kiss;
 			Debug.Log (band);
 		}
+		spawner.Band = band;
 		StartCoroutine( musicControl.gameStart ());
 		//Uncomment to test tutorialpanels
 		//PlayerPrefs.DeleteAll (); 
@@ -297,7 +298,8 @@ public class GameControl : MonoBehaviour {
 		//PlayerPrefs.SetString("MyString", "MyValue");
 		if (PlayerPrefs.GetInt ("skipTutorial") == 1)
 		{
-			GameStart ();
+			selectBand();
+			//GameStart ();
 		} else
 		{
 			//NGUITools.SetActive (menuPanel, false);
@@ -307,7 +309,7 @@ public class GameControl : MonoBehaviour {
 		}
 	} 
 
-	public void swapTutorials()
+	public void SwapTutorials()
 	{
 		NGUITools.SetActive( tutorialPanel1,false);
 		NGUITools.SetActive( tutorialPanel2,true);

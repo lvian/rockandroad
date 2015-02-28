@@ -18,6 +18,7 @@ public class GridSpawner : MonoBehaviour {
 	private Difficulty level3;
 	private Difficulty level4;
 	private Difficulty level5;
+	private GameControl.Band band;
 	private BlockSpawner bs;
 	public Difficulty difficulty;
 	private MapBlock st; //1st block of tiles
@@ -43,10 +44,12 @@ public class GridSpawner : MonoBehaviour {
 		gc = GameObject.Find("GameControl").GetComponent<GameControl>();
 		player = GameObject.Find("Player").GetComponent<Player>();
 		gc.stateChanged += gameStateChanged;
+		
+
 
 		level1 = GameObject.Find("Level1").GetComponent<Level1>();
-		level2 = GameObject.Find("Level2").GetComponent<Level2>();
-		level3 = GameObject.Find("Level3").GetComponent<Level3>();
+		//level2 = GameObject.Find("Level2").GetComponent<Level2>();
+		//level3 = GameObject.Find("Level3").GetComponent<Level3>();
 		//level4 = GameObject.Find("Level4").GetComponent<Level4>();
 		//level5 = GameObject.Find("Level5").GetComponent<Level5>();
 		
@@ -276,6 +279,39 @@ public class GridSpawner : MonoBehaviour {
 	void gameStateChanged(float gs)
 	{
 		speed = new Vector2(gs, 0);
+	}
+
+	public GameControl.Band Band {
+		get {
+			return band;
+		}
+		set {
+			band = value;
+			switch(band){
+			case GameControl.Band.Skull:
+				Debug.Log("Skull");
+				GameObject bandSkull = GameObject.Find("Skull");
+				level1 = bandSkull.GetComponentInChildren<Level1>();
+				level2 = bandSkull.GetComponentInChildren<Level2>();
+				level3 = bandSkull.GetComponentInChildren<Level3>();
+				break;
+			case GameControl.Band.Wing:
+				Debug.Log("Wing");
+				GameObject bandWing = GameObject.Find("Wing");
+				level1 = bandWing.GetComponentInChildren<Level1>();
+				level2 = bandWing.GetComponentInChildren<Level2>();
+				level3 = bandWing.GetComponentInChildren<Level3>();
+				break;
+			case GameControl.Band.Kiss:
+				Debug.Log("Kiss");
+				GameObject bandKiss = GameObject.Find("Kiss");
+				level1 = bandKiss.GetComponentInChildren<Level1>();
+				level2 = bandKiss.GetComponentInChildren<Level2>();
+				level3 = bandKiss.GetComponentInChildren<Level3>();
+				break;
+			}
+			reset();
+		}
 	}
 
 	public int TileCounter {

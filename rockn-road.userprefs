@@ -1,20 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Spawner\GridSpawner.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player.cs">
     <Files>
-      <File FileName="Assets\Scripts\Spawner\GridSpawner.cs" Line="35" Column="11" />
-      <File FileName="Assets\Scripts\Player.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Spawner\Difficulty.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Spawner\Level1.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Spawner\Level2.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Spawner\Level3.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Spawner\BlocksDB.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GameControl.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Objects\SpawnableObject.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Objects\Obstacle.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Objects\MovableObstacle.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Objects\TireObestacle.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Objects\CartObstacle.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Spawner\GridSpawner.cs" Line="313" Column="12" />
+      <File FileName="Assets\Scripts\GameControl.cs" Line="255" Column="23" />
+      <File FileName="Assets\Scripts\Player.cs" Line="235" Column="5" />
+      <File FileName="Assets\Scripts\Objects\Effects\InvulnerabilityEffect.cs" Line="19" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

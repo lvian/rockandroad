@@ -14,7 +14,7 @@ public class Player : MonoBehaviour {
 	public AudioClip[] playerHitSound;
 	public float invulTime;
 	public float laneChangeSpeed;
-	private bool isInvul;
+	public bool isInvul;
 	public GameObject startingPlace;
 	private GameObject scoreValue;
 	public int firstLane;
@@ -231,15 +231,8 @@ public class Player : MonoBehaviour {
 			}
 			else
 			{
-				isInvul = true;
-				yield return new WaitForSeconds(invulTime);
-				isInvul = false;
-				Color c = new Color(
-					renderer.material.color.r, 
-					renderer.material.color.g, 
-					renderer.material.color.b, 1f
-				);
-				renderer.material.color = c;
+				addEffect(new InvulnerabilityEffect(this, invulTime));
+				activateParticleSystem (false);
 				StartCoroutine(hitByObstacle(null));
 			}
 		}
