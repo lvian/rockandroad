@@ -11,7 +11,7 @@ public class GameControl : MonoBehaviour {
 	private Player player;
 	private GridSpawner spawner;
 
-	public GameObject gameplayPanel, menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1, tutorialPanel2, defeatPanel, exitPanel, readyMessage, goMessage, pauseMessage, recordMessage,busSpawn, bus,bussWing,bussKiss, muteButton1, muteButton2, pauseButton, scorePanel, scorePanelGrid, scoredGridItenBase, blockPanel, bandPanel;
+	public GameObject gameplayPanel, menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1, tutorialPanel2, defeatPanel, exitPanel, readyMessage, goMessage, pauseMessage, recordMessage,busSpawn, bus,bussWing,bussKiss, muteButton1, muteButton2, pauseButton, scorePanel, scorePanelGrid, scoredGridItenBase, blockPanel, bandPanel, healthbar;
 	private MusicControl musicControl;
 	private bool pauseLock;
 	private Band band;
@@ -240,18 +240,35 @@ public class GameControl : MonoBehaviour {
 		if (UIButton.current.name.Equals ("skullBandButton")) 
 		{
 			band = Band.Skull;
-				Debug.Log (band);
+			healthbar.GetComponent<UISprite>().color = new Color(
+				0.5f, 
+				0.4f, 
+				0.95f,
+				1f
+				);
 		}
 		if (UIButton.current.name.Equals ("wingBandButton")) 
 		{
 			band = Band.Wing;
-			Debug.Log (band);
+			healthbar.GetComponent<UISprite>().color = new Color(
+				0.4f, 
+				0.6f, 
+				0.8f,
+				1f
+				);
 		}
 		if (UIButton.current.name.Equals ("kissBandButton")) 
 		{
 			band = Band.Kiss;
-			Debug.Log (band);
+
+			healthbar.GetComponent<UISprite>().color = new Color(
+				0.75f, 
+				0.75f, 
+				0.3f,
+				1f
+				);
 		}
+		GA.API.Design.NewEvent ("Band Selected", (float)band);
 		spawner.Band = band;
 		StartCoroutine( musicControl.gameStart ());
 		//Uncomment to test tutorialpanels
@@ -435,6 +452,12 @@ public class GameControl : MonoBehaviour {
 
 		if (UIButton.current.name.Equals ("main_button") || UIButton.current.name.Equals ("yes_button")) 
 		{
+			healthbar.GetComponent<UISprite>().color = new Color(
+				1f, 
+				1f, 
+				1f,
+				1f
+				);
 			musicControl.restartMusic();
 			MainMenu();
 		}
