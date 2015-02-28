@@ -10,10 +10,12 @@ public class MusicControl : MonoBehaviour {
 	private bool restarting;
 	private AudioSource audios;
 	private int currentSong;
+	public GameControl gc;
 	// Use this for initialization
 	void Start () {
 		audios = transform.GetComponent<AudioSource>();
 		currentSong = 0;
+
 	}
 	
 	// Update is called once per frame
@@ -48,7 +50,7 @@ public class MusicControl : MonoBehaviour {
 		audios.Stop ();
 		audios.PlayOneShot (gameStartSound);
 		yield return new WaitForSeconds(gameStartSound.length);
-		audios.clip = gameMusics[currentSong];
+		audios.clip = gameMusics[(int)gc.currentBand];
 		if (currentSong < 2) {
 			currentSong ++;
 		} else {

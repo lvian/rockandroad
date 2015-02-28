@@ -1,29 +1,37 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Text;
 
 public class SiteLock : MonoBehaviour {
 	
-	public string[] allowedSites;
+	/** if it is a webplayer, then the domain must contain any
+	 * one or more of these strings, or it will be redirected */
+	public string[] domainMustContain;
 	
-	void Start () {
-		
-		if (Application.isWebPlayer)
+	/** this is where to redirect the webplayer page if none of
+	 * the strings in domainMustContain are found.
+	 */
+	public string redirectURL;
+	
+	void Awake() {
+		#if UNITY_WEBPLAYER
+		if (domainMustContain.Length > 0)
 		{
-			string url = Application.absoluteURL.Split('/')[2];
-			bool foundGoodSite = false;
-			for (int i = 0; i < allowedSites.Length; i++)
-			{
-				if (url.IndexOf(allowedSites[i]) >= 0 && url.IndexOf(allowedSites[i]) == (url.Length - allowedSites[i].Length))
-				{
-					foundGoodSite = true;
-				}
-			}
+			StringBuilder buf = new StringBuilder();
 			
-			if (foundGoodSite == false)
+			for(int i = 0; i < domainMustContain.Length; i++)
 			{
-				//site is invalid, lock us up!
-				Application.Quit();
+				string domain = domainMustContain[i];
+				
+				if (i > 0)
+				{
+					buf.Append(" && ");
+				}
+				buf.Append("(document.location.host.indexOf('"+domain+"') == -1)");
 			}
+			string criteria = buf.ToString();
+			Application.ExternalEval("if("+criteria+") { document.location='"+redirectURL+"'; }");
 		}
+		#endif
 	}
 }

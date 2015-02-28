@@ -196,7 +196,7 @@ TextureImporter:
     - name: rocker_sprite_sheet_27
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1
         y: 601
         width: 262
         height: 129
@@ -562,6 +562,126 @@ TextureImporter:
         height: 60
       alignment: 0
       pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 660
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 660
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 660
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 600
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 660
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 600
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 660
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 600
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 780
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 720
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 288
+        width: 262
+        height: 129
+      alignment: 9
+      pivot: {x: .5, y: .388779789}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 288
+        width: 262
+        height: 129
+      alignment: 9
+      pivot: {x: .5, y: .388779789}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

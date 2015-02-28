@@ -11,9 +11,10 @@ public class GameControl : MonoBehaviour {
 	private Player player;
 	private GridSpawner spawner;
 
-	public GameObject gameplayPanel, menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1, tutorialPanel2, defeatPanel, exitPanel, readyMessage, goMessage, pauseMessage, recordMessage,busSpawn, bus, muteButton1, muteButton2, pauseButton, scorePanel, scorePanelGrid, scoredGridItenBase, blockPanel;
+	public GameObject gameplayPanel, menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1, tutorialPanel2, defeatPanel, exitPanel, readyMessage, goMessage, pauseMessage, recordMessage,busSpawn, bus,bussWing,bussKiss, muteButton1, muteButton2, pauseButton, scorePanel, scorePanelGrid, scoredGridItenBase, blockPanel, bandPanel;
 	private MusicControl musicControl;
 	private bool pauseLock;
+	private Band band;
 
 	void Awake(){
 		musicControl = GameObject.Find("MusicControl").GetComponent<MusicControl>();
@@ -108,6 +109,12 @@ public class GameControl : MonoBehaviour {
 			gameState = value;
 		}
 	}
+
+	public Band currentBand {
+		get {
+			return band;
+		}
+	}
 	
 	public void pause()
 	{
@@ -163,7 +170,19 @@ public class GameControl : MonoBehaviour {
 
 	private void SpawnBus()
 	{
-		Instantiate(bus , busSpawn.gameObject.transform.position , busSpawn.gameObject.transform.rotation); 
+		if(band == Band.Skull)
+		{
+			Instantiate(bus , busSpawn.gameObject.transform.position , busSpawn.gameObject.transform.rotation); 
+		}
+		if(band == Band.Wing)
+		{
+			Instantiate(bussWing , busSpawn.gameObject.transform.position , busSpawn.gameObject.transform.rotation); 
+		}
+		if(band == Band.Kiss)
+		{
+			Instantiate(bussKiss , busSpawn.gameObject.transform.position , busSpawn.gameObject.transform.rotation); 
+		}
+
 	}
 
 	public void checkCreditsControl()
@@ -218,6 +237,21 @@ public class GameControl : MonoBehaviour {
 		
 	public void GameStart()
 	{
+		if (UIButton.current.name.Equals ("skullBandButton")) 
+		{
+			band = Band.Skull;
+				Debug.Log (band);
+		}
+		if (UIButton.current.name.Equals ("wingBandButton")) 
+		{
+			band = Band.Wing;
+			Debug.Log (band);
+		}
+		if (UIButton.current.name.Equals ("kissBandButton")) 
+		{
+			band = Band.Kiss;
+			Debug.Log (band);
+		}
 		StartCoroutine( musicControl.gameStart ());
 		//Uncomment to test tutorialpanels
 		//PlayerPrefs.DeleteAll (); 
@@ -225,6 +259,7 @@ public class GameControl : MonoBehaviour {
 		NGUITools.SetActive( menuPanel,false);
 		controlsPanel.GetComponent<TweenPosition> ().PlayReverse ();
 		creditsPanel.GetComponent<TweenPosition> ().PlayReverse ();
+		NGUITools.SetActive( bandPanel,false);
 		NGUITools.SetActive( tutorialPanel1,false);
 		NGUITools.SetActive( tutorialPanel2,false);
 		NGUITools.SetActive( defeatPanel,false);
@@ -277,6 +312,14 @@ public class GameControl : MonoBehaviour {
 		NGUITools.SetActive( tutorialPanel1,false);
 		NGUITools.SetActive( tutorialPanel2,true);
 	} 
+
+
+	public void selectBand()
+	{
+		NGUITools.SetActive( bandPanel,true);
+		NGUITools.SetActive( tutorialPanel1,false);
+		NGUITools.SetActive( tutorialPanel2,false);
+	}
 
 
 
@@ -409,4 +452,11 @@ public class GameControl : MonoBehaviour {
 		Defeat,
 		GameRestart
 	}
+
+	public enum Band{
+		Skull,
+		Kiss,
+		Wing
+	}
+
 }
