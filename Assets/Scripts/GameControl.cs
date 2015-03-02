@@ -313,6 +313,9 @@ public class GameControl : MonoBehaviour {
 		NGUITools.SetActive( blockPanel,true);
 		NGUITools.SetActive( gameplayPanel,true);
 		//PlayerPrefs.SetString("MyString", "MyValue");
+		creditsPanel.GetComponent<TweenPosition> ().PlayReverse ();
+		controlsPanel.GetComponent<TweenPosition> ().PlayReverse ();
+		scorePanel.GetComponent<TweenPosition> ().PlayReverse ();
 		if (PlayerPrefs.GetInt ("skipTutorial") == 1)
 		{
 			selectBand();

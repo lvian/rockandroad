@@ -1,28 +1,28 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\spawner\GridSpawner.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GameControl.cs">
     <Files>
-      <File FileName="Assets\Scripts\Player.cs" Line="253" Column="24" />
-      <File FileName="Assets\Scripts\GameControl.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GameControl.cs" Line="323" Column="9" />
+      <File FileName="Assets\Scripts\Player.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\bus\ObjectsSmoke.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\SiteLock.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\bus\bus.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\spawner\Level1.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\spawner\Difficulty.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\spawner\GridSpawner.cs" Line="304" Column="1" />
+      <File FileName="Assets\Scripts\spawner\GridSpawner.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\MusicControl.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Objects\BottleObstacle.cs" Line="39" Column="38" />
-      <File FileName="Assets\Scripts\Objects\BoxObstacle.cs" Line="29" Column="38" />
-      <File FileName="Assets\Scripts\Objects\CartObstacle.cs" Line="37" Column="38" />
-      <File FileName="Assets\Scripts\Objects\ConeObestacle.cs" Line="29" Column="38" />
-      <File FileName="Assets\Scripts\Objects\DungObstacle.cs" Line="49" Column="38" />
-      <File FileName="Assets\Scripts\Objects\HealthBoost.cs" Line="29" Column="38" />
-      <File FileName="Assets\Scripts\Objects\InvunarabilityPowerUp.cs" Line="24" Column="38" />
-      <File FileName="Assets\Scripts\Objects\Multiplier.cs" Line="23" Column="38" />
-      <File FileName="Assets\Scripts\Objects\TireObestacle.cs" Line="37" Column="38" />
-      <File FileName="Assets\Scripts\Objects\TrashObstacle.cs" Line="23" Column="38" />
-      <File FileName="Assets\Scripts\Objects\TrestleObstacle.cs" Line="32" Column="38" />
-      <File FileName="Assets\Scripts\Objects\VaseObstacle.cs" Line="15" Column="26" />
+      <File FileName="Assets\Scripts\Objects\BottleObstacle.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Objects\BoxObstacle.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Objects\CartObstacle.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Objects\ConeObestacle.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Objects\DungObstacle.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Objects\HealthBoost.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Objects\InvunarabilityPowerUp.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Objects\Multiplier.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Objects\TireObestacle.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Objects\TrashObstacle.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Objects\TrestleObstacle.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Objects\VaseObstacle.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
