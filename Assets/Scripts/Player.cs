@@ -15,6 +15,7 @@ public class Player : MonoBehaviour {
 	public float invulTime;
 	public float laneChangeSpeed;
 	public bool isInvul;
+	public bool isHitInvul;
 	public GameObject startingPlace;
 	private GameObject scoreValue;
 	public int firstLane;
@@ -68,6 +69,7 @@ public class Player : MonoBehaviour {
 		isMoving = false;
 		isBeingHit = false;
 		isInvul = false;
+		isHitInvul = false;
 		brokeRecord = false;
 		effects = new Dictionary<string,Effect>();
 
@@ -101,7 +103,7 @@ public class Player : MonoBehaviour {
 				gameControl.gameSpeed = 5;
 			}
 		}
-		if(isInvul){
+		if(isInvul || isHitInvul){
 			animateAlpha();
 		}
 		else{
@@ -244,7 +246,7 @@ public class Player : MonoBehaviour {
 	IEnumerator hitByObstacle(SpawnableObject obj) {
 		if(gameControl.currentGameState == GameControl.GameState.Defeat)
 			yield break;
-		if(!isBeingHit && !isInvul)
+		if(!isBeingHit && !isInvul && !isHitInvul)
 		{	
 			Multiplier = 1;
 			isBeingHit = true;
@@ -260,8 +262,7 @@ public class Player : MonoBehaviour {
 			}
 			else
 			{
-				addEffect(new InvulnerabilityEffect(this, invulTime));
-				activateParticleSystem (false);
+				addEffect(new HitInvulnerabilityEffect(this, invulTime));
 				StartCoroutine(hitByObstacle(null));
 			}
 		}
