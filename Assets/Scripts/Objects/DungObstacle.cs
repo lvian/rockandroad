@@ -46,7 +46,7 @@ public class DungObstacle : Obstacle {
 		//Changed because it already slows, so the damage can be lower
 		p.Energy -= 5;
 		p.addEffect(new DungEffect(p, 2f));
-		NGUITools.PlaySound(hitSound, 0.5f);
+		NGUITools.PlaySound(hitSound, 0.75f);
 		p.popEffectText("SLOW", Color.magenta);
 		transform.localScale = new Vector3( 1.2f , 0.6f , 1f);
 	}

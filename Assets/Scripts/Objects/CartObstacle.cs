@@ -34,7 +34,7 @@ public class CartObstacle : MovableObstacle {
 	{
 		p.Energy -= points;
 		p.popEnergyText("-" + points, Color.red);
-		NGUITools.PlaySound(hitSound, 0.5f);
+		NGUITools.PlaySound(hitSound, 0.75f);
 		changeLane ();
 	}
 

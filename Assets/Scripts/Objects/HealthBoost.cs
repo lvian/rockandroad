@@ -26,7 +26,7 @@ public class HealthBoost : PowerUp {
 			p.Energy += healthAmount;
 		p.givePoints(points);
 		p.popEnergyText("+" + healthAmount, Color.cyan);
-		NGUITools.PlaySound(hitSound, 0.5f);
+		NGUITools.PlaySound(hitSound, 0.75f);
 	}
 
 	#endregion

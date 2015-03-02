@@ -11,7 +11,7 @@ public class GameControl : MonoBehaviour {
 	private Player player;
 	private GridSpawner spawner;
 
-	public GameObject gameplayPanel, menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1, tutorialPanel2, defeatPanel, exitPanel, readyMessage, goMessage, pauseMessage, recordMessage,busSpawn, bus,bussWing,bussKiss, muteButton1, muteButton2, pauseButton, scorePanel, scorePanelGrid, scoredGridItenBase, blockPanel, bandPanel, healthbar;
+	public GameObject gameplayPanel, menuPanel, controlsPanel, creditsPanel, mainCamera, tutorialPanel1, tutorialPanel2, defeatPanel, exitPanel, readyMessage, goMessage, pauseMessage, recordMessage,busSpawn, bus,bussWing,bussKiss, muteButton1, muteButton2, pauseButton, scorePanel, scorePanelGrid, scoredGridItenBase, blockPanel, bandPanel, healthbar,defeatSymbolKiss,defeatSymbolWing,defeatSymbolSkull;
 	private MusicControl musicControl;
 	private bool pauseLock;
 	private Band band;
@@ -348,6 +348,25 @@ public class GameControl : MonoBehaviour {
 		UILabel score = GameObject.Find("score_value").GetComponent<UILabel>();
 		score.text = "0";
 
+		if (band == Band.Skull) {
+			defeatSymbolKiss.SetActive(false);
+			defeatSymbolSkull.SetActive(true);
+			defeatSymbolWing.SetActive(false);
+		}
+		if (band == Band.Kiss) {
+			defeatSymbolKiss.SetActive(true);
+			defeatSymbolSkull.SetActive(false);
+			defeatSymbolWing.SetActive(false);
+		}
+		if (band == Band.Wing) {
+			defeatSymbolKiss.SetActive(false);
+			defeatSymbolSkull.SetActive(false);
+			defeatSymbolWing.SetActive(true);
+		
+			
+		}
+
+		
 
 		//NGUITools.SetActive( gameplayPanel,false);
 		NGUITools.SetActive( blockPanel,true);

@@ -250,7 +250,7 @@ public class Player : MonoBehaviour {
 			isBeingHit = true;
 			if(obj)
 			{
-				NGUITools.PlaySound(playerHitSound[0], 0.5f);
+				NGUITools.PlaySound(playerHitSound[Random.Range(0,playerHitSound.Length)], 0.75f);
 				obj.onCollide(this);
 			}
 			//play damage animation here

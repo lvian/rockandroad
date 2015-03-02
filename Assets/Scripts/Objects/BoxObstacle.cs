@@ -26,7 +26,7 @@ public class BoxObstacle : Obstacle {
 	{
 		p.Energy -= points;
 		p.popEnergyText("-" + points, Color.red);
-		NGUITools.PlaySound(hitSound, 0.5f);
+		NGUITools.PlaySound(hitSound, 0.75f);
 		isHit = true;
 		adjustPosition = new Vector3( 0.1f , 0.15f, transform.position.z );
 	}

@@ -29,7 +29,7 @@ public class TrestleObstacle : Obstacle {
 	{
 		p.Energy -= 10;
 		p.popEnergyText("-" + 10, Color.red);
-		NGUITools.PlaySound(hitSound, 0.5f);
+		NGUITools.PlaySound(hitSound, 0.75f);
 		isHit = true;
 		adjustPosition = new Vector3( 0.5f , transform.GetChild(0).position.y + 0.3f, transform.GetChild(0).position.z + transform.position.z );
 

@@ -22,7 +22,7 @@ public class VaseObstacle : Obstacle {
 	{
 		p.Energy -= points;
 		p.popEnergyText("-" + points, Color.red);
-		NGUITools.PlaySound(hitSound, 0.5f);
+		NGUITools.PlaySound(hitSound, 0.75f);
 
 		GameObject go = (GameObject) GameObject.Instantiate (objectsSmoke, transform.position, transform.rotation);
 		go.GetComponentInChildren<SpriteRenderer> ().color = new Color( 0.8f, 0.3f, 0.1f, 1f);

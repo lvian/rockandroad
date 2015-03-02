@@ -289,21 +289,18 @@ public class GridSpawner : MonoBehaviour {
 			band = value;
 			switch(band){
 			case GameControl.Band.Skull:
-				Debug.Log("Skull");
 				GameObject bandSkull = GameObject.Find("Skull");
 				level1 = bandSkull.GetComponentInChildren<Level1>();
 				level2 = bandSkull.GetComponentInChildren<Level2>();
 				level3 = bandSkull.GetComponentInChildren<Level3>();
 				break;
 			case GameControl.Band.Wing:
-				Debug.Log("Wing");
 				GameObject bandWing = GameObject.Find("Wing");
 				level1 = bandWing.GetComponentInChildren<Level1>();
 				level2 = bandWing.GetComponentInChildren<Level2>();
 				level3 = bandWing.GetComponentInChildren<Level3>();
 				break;
 			case GameControl.Band.Kiss:
-				Debug.Log("Kiss");
 				GameObject bandKiss = GameObject.Find("Kiss");
 				level1 = bandKiss.GetComponentInChildren<Level1>();
 				level2 = bandKiss.GetComponentInChildren<Level2>();

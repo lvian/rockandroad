@@ -26,7 +26,7 @@ public class ConeObestacle : Obstacle {
 	{
 		p.Energy -= points;
 		p.popEnergyText("-" + points, Color.red);
-		NGUITools.PlaySound(hitSound, 0.5f);
+		NGUITools.PlaySound(hitSound, 0.75f);
 		isHit = true;
 		adjustPosition = new Vector3( 0.5f , - 0.25f, transform.position.z );
 	}

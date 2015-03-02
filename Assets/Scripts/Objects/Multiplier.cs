@@ -20,7 +20,7 @@ public class Multiplier : PowerUp {
 	public override void onCollide (Player p)
 	{
 		p.Multiplier++;
-		NGUITools.PlaySound(hitSound, 0.5f);
+		NGUITools.PlaySound(hitSound, 0.75f);
 		p.givePoints(points);
 		p.popMultiplierText("x"+p.Multiplier, Color.green);
 	}

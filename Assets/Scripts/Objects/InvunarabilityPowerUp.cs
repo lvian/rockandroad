@@ -21,7 +21,7 @@ public class InvunarabilityPowerUp : PowerUp {
 	public override void onCollide (Player p)
 	{
 		p.givePoints(points);
-		NGUITools.PlaySound(hitSound, 0.5f);
+		NGUITools.PlaySound(hitSound, 0.75f);
 		p.popEffectText("INVULNERABLE", Color.green);
 		p.addEffect(new InvulnerabilityEffect(p, duration));
 	}

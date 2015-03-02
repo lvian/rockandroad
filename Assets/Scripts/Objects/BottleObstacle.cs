@@ -36,7 +36,7 @@ public class BottleObstacle : MovableObstacle {
 		p.addEffect(new DungEffect(p, 2f));
 		p.Energy -= 15;
 		p.popEnergyText("-" + 15, Color.red);
-		NGUITools.PlaySound(hitSound, 0.5f);
+		NGUITools.PlaySound(hitSound, 0.75f);
 		p.popEffectText("SLOW", Color.magenta);
 		GetComponentInChildren<Animator> ().enabled = false;
 		GetComponentInChildren<SpriteRenderer> ().enabled = false;
